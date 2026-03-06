@@ -1,7 +1,7 @@
 import Sidebar from "@/components/platform/Sidebar";
 
 export const metadata = {
-  title: "SkyStruct | Governance Platform",
+  title: "HasanOnline | Governance Platform",
   description: "HAI Group governance platform for project lifecycle management",
 };
 

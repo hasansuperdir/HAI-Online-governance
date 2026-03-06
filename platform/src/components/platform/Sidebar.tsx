@@ -23,8 +23,8 @@ export default function Sidebar() {
       {/* Logo */}
       <div className="p-5 border-b border-hai-steel">
         <Link href="/" className="text-xl font-bold">
-          <span className="text-white">Sky</span>
-          <span className="text-blue-400">Struct</span>
+          <span className="text-white">Hasan</span>
+          <span className="text-blue-400">Online</span>
         </Link>
         <div className="text-[10px] text-gray-500 mt-1 tracking-wider uppercase">
           Governance Platform

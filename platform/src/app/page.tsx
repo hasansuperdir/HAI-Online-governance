@@ -9,8 +9,8 @@ export default function Home() {
           <span>Delivering Certainty Across Complex Projects</span>
           <div className="flex gap-5">
             <Link href="/contact" className="hover:text-hai-accent transition-colors">Contact</Link>
-            <Link href="/platform/dashboard" className="hover:text-hai-accent transition-colors font-semibold">
-              SkyStruct Platform →
+            <Link href="/login" className="hover:text-hai-accent transition-colors font-semibold">
+              HasanOnline Platform →
             </Link>
           </div>
         </div>
@@ -29,10 +29,10 @@ export default function Home() {
             <Link href="/about" className="text-sm font-medium text-gray-700 hover:text-hai-accent transition-colors">About</Link>
             <Link href="/contact" className="text-sm font-medium text-gray-700 hover:text-hai-accent transition-colors">Contact</Link>
             <Link
-              href="/platform/dashboard"
+              href="/login"
               className="bg-hai-accent text-white px-5 py-2 rounded-lg text-sm font-semibold hover:bg-hai-accent-dark transition-colors"
             >
-              Launch Platform
+              Launch HasanOnline
             </Link>
           </div>
         </div>
@@ -62,10 +62,10 @@ export default function Home() {
                 Our Services
               </Link>
               <Link
-                href="/platform/dashboard"
+                href="/login"
                 className="border-2 border-white/30 text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-white/10 transition-all"
               >
-                Explore SkyStruct →
+                Explore HasanOnline →
               </Link>
             </div>
           </div>
@@ -109,7 +109,7 @@ export default function Home() {
                 icon: "📋",
               },
               {
-                title: "Digital Platform (SkyStruct)",
+                title: "Digital Platform (HasanOnline)",
                 desc: "Cloud governance platform with 23 automated workflows, real-time dashboards, and ERP integration.",
                 icon: "💻",
               },
@@ -144,19 +144,19 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SkyStruct Platform Section */}
+      {/* HasanOnline Platform Section */}
       <section className="py-20 bg-hai-primary text-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div>
               <p className="text-hai-accent font-semibold text-sm tracking-widest uppercase mb-4">
-                SkyStruct Platform
+                HasanOnline Platform
               </p>
               <h2 className="text-3xl font-bold mb-6">
                 Governance Intelligence,<br />Delivered Digitally
               </h2>
               <p className="text-gray-300 mb-8 leading-relaxed">
-                SkyStruct is HAI&apos;s proprietary governance platform. It automates
+                HasanOnline is HAI&apos;s proprietary governance platform. It automates
                 23 process flows, tracks 27 data entities, and provides real-time
                 KPI dashboards with predictive analytics.
               </p>
@@ -176,10 +176,10 @@ export default function Home() {
                 ))}
               </div>
               <Link
-                href="/platform/dashboard"
+                href="/login"
                 className="inline-block mt-8 bg-hai-accent text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-hai-accent-dark transition-all"
               >
-                Launch SkyStruct →
+                Launch HasanOnline →
               </Link>
             </div>
             <div className="bg-hai-navy rounded-2xl p-8 border border-hai-steel">
@@ -253,7 +253,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Strengthen Your Project Governance?</h2>
           <p className="text-lg opacity-90 mb-8">
-            Let us show you how HAI and SkyStruct can protect your investment.
+            Let us show you how HAI and HasanOnline can protect your investment.
           </p>
           <Link
             href="/contact"
@@ -288,7 +288,7 @@ export default function Home() {
           <div>
             <h4 className="text-white font-semibold mb-4">Platform</h4>
             <div className="space-y-2 text-sm">
-              <div>SkyStruct Overview</div>
+              <div>HasanOnline Overview</div>
               <div>Dashboard & Analytics</div>
               <div>ERP Integration</div>
               <div>AI Tools</div>
