@@ -1,0 +1,527 @@
+================================================================================
+HAI-GOV-024-R0.0 LEVEL 3 DATA MODEL - COMPLETE EXTRACTION SUMMARY
+================================================================================
+
+DOCUMENT CLASSIFICATION: CONFIDENTIAL — CONTRACTUAL
+Document Reference: HAI-SS-DM-2026-001-C
+Creation Date: 2026-02-28
+Version: 1.0
+
+================================================================================
+SHEET STRUCTURE OVERVIEW
+================================================================================
+
+The workbook contains 9 sheets:
+1. COVER SHEET - Contractual deliverable information
+2. Entity Register - Master list of 27 entities (E-01 through E-27)
+3. SOW TRACEABILITY - Statement of Work alignment for each entity
+4. CONFIGURATION OBLIGATIONS - Binding implementation requirements
+5. SIGN-OFF - Certification of implementation
+6. Field Definitions - 152 field specifications across all entities
+7. Relationships - 36 relationship definitions
+8. Enum Definitions - 218 enumeration values
+9. Summary - Overview metrics
+
+================================================================================
+CORE ENTITIES (27 TOTAL)
+================================================================================
+
+E-01: Project
+  - Master project record with governance metadata
+  - Primary Key: Code
+  - Category: Core
+  - Status: Active|Completed|On Hold|Terminated
+  - Mandatory Fields: Code, Name, Type, Current Stage, Budget Baseline, Contract Value, PM, Status, Start Date
+
+E-02: Stage Instance
+  - RIBA stage execution instance with gate controls
+  - Primary Key: Project FK + Stage#
+  - Category: Governance
+  - Related to project lifecycle phases
+
+E-03: Gate Checklist Item
+  - Stage gate completion criterion and evidence tracking
+  - Primary Key: Stage Instance FK + Item#
+  - Category: Governance
+
+E-04: Document
+  - Design and technical document with HAI reference structure
+  - Primary Key: HAI Reference
+  - Category: Document
+  - Disciplines: Architectural, Structural, MEP-Electrical, MEP-Mechanical, MEP-Plumbing, Fire, Civil, Interior, Landscape
+  - Types: Drawing, Specification, Report, Calculation, Schedule, Submittal, Method Statement, As-Built, O&M Manual
+  - Status: Draft, Submitted, Under Review, APP, APP-COM, REJ, INFO, Closed
+
+E-05: Document Review
+  - Document review log with approval tracking
+  - Primary Key: Document FK + Reviewer + Date
+  - Category: Document
+  - Review statuses: APP, APP-COM, REJ, INFO
+
+E-06: Transmittal
+  - Document batch submission with metadata
+  - Primary Key: Reference Number
+  - Category: Document
+  - Types: Incoming, Outgoing
+  - Status: Open, Acknowledged, Closed
+
+E-07: Approval
+  - Approval request with SLA tracking and delegate chains
+  - Primary Key: Project FK + Type + Seq#
+  - Category: Governance
+  - Types: Budget, Comparison, Contract Award, Advance, IPC, Variation, Design-Gateway
+  - Status: Pending, Approved, Rejected, Returned
+
+E-08: Variation
+  - Contract variation/change order with assessment
+  - Primary Key: VO Number
+  - Category: Financial
+  - Status: Draft, Submitted, Under Assessment, Approved, Rejected, Partial
+
+E-09: IPC (Interim Payment Certificate)
+  - Interim Payment Certificate with ERP sync
+  - Primary Key: IPC Number
+  - Category: Financial
+  - Status: Submitted, Under Verification, QS Certified, PM Endorsed, Finance Reviewed, Approved, Paid, Rejected
+
+E-10: Contract/Contract Award
+  - Supply or service contract with ERP linkage
+  - Primary Key: Number
+  - Category: Financial
+  - Types: Main Contract, Subcontract, Contract Award, Consultancy
+  - Status: Draft, Active, Completed, Terminated
+
+E-11: Authority Submission
+  - Qatar authority (QCDD/Kahramaa/Ashghal/Civil Defense) approval tracking
+  - Primary Key: Authority + Reference#
+  - Category: Authority
+  - Authorities: QCDD, Kahramaa, Ashghal, Civil Defense
+  - Submission Types: DC1, DC2, BCC, NOC, Load Application, Fire Strategy, Infrastructure NOC
+  - Status: Not Submitted, Submitted, Under Review, Comments Received, Approved, Rejected
+
+E-12: User/Role
+  - Team member with multi-project allocation and delegation
+  - Primary Key: Email
+  - Category: Core
+  - Departments: PM, Design, Contracts, DocControl, Finance, FM, HSE, IT
+  - Roles: PM, Engineer, QS, DesignMgr, DocController, Finance, FMMgr, Admin, CEO, ExCom
+
+E-13: Contractor/Supplier
+  - External party with scorecard and compliance status
+  - Primary Key: Registration Number
+  - Category: Core
+  - Qualification Status: Qualified, Probation, Disqualified, Pending Review
+
+E-14: Lesson Learned
+  - Project learning with preventive rule conversion
+  - Primary Key: Project FK + Category + Seq#
+  - Category: Quality
+
+E-15: Freeze
+  - Budget/Design/Scope/Regulatory freeze instance
+  - Primary Key: Project FK + Type + Date
+  - Category: Governance
+  - Types: Budget, Design, Scope, Regulatory
+  - Status: Active, Lifted-Partial, Deactivated
+
+E-16: Freeze Exception
+  - Exception to freeze with approval and conditions
+  - Primary Key: Freeze FK + Seq#
+  - Category: Governance
+  - Status: Requested, Under Review, Approved, Rejected, Expired
+
+E-17: Correspondence
+  - Incoming/outgoing correspondence with FIDIC sequence
+  - Primary Key: Reference Number
+  - Category: Document
+  - Types: Incoming, Outgoing
+  - FIDIC Sequence: None, Notice, Response, Determination
+  - Status: Open, Responded, Closed, Escalated
+
+E-18: IR (Inspection Request)
+  - Inspection Request with pass/fail and NCR linkage
+  - Primary Key: IR Number
+  - Category: Quality
+  - Result: Pass, Fail, Conditional
+
+E-19: NCR (Non-Conformance Report)
+  - Non-Conformance Report with corrective action tracking
+  - Primary Key: NCR Number
+  - Category: Quality
+  - Status: Open, Corrective Action Submitted, Re-inspected, Closed
+
+E-20: Site Report
+  - Daily/Weekly construction progress and conditions
+  - Primary Key: Project FK + Date + Type
+  - Category: Analytics
+  - Report Types: Daily, Weekly
+
+E-21: Handover Package
+  - Project completion deliverables and FM acceptance
+  - Primary Key: Project FK
+  - Category: Quality
+  - Status: In Progress, Complete, Accepted by FM
+
+E-22: Warranty
+  - Equipment/system warranty with expiry alerts
+  - Primary Key: Project FK + Equipment Name
+  - Category: Quality
+  - Status: Active, Expiring Soon, Expired
+
+E-23: KPI Snapshot
+  - Time-series KPI with portfolio and project granularity
+  - Primary Key: Snapshot Date + KPI Type + Project FK
+  - Category: Analytics
+  - KPI Types: Approval Turnaround, Stage Compliance, Cost Deviation, Variation Trend, IPC Time, Submittal Metrics, Bottleneck
+  - RAG Status: Red (At Risk), Amber (Caution), Green (On Track)
+
+E-24: Contractor Score
+  - Periodic contractor performance scorecard
+  - Primary Key: Contractor FK + Period
+  - Category: Analytics
+
+E-25: Audit Log
+  - Immutable system activity log for compliance
+  - Primary Key: Timestamp + User + Action + Entity
+  - Category: Core
+
+E-26: ERP Sync Record
+  - SkyStruct-Artan ERP integration transaction log
+  - Primary Key: Sync ID
+  - Category: Integration
+  - Directions: SkyStruct->ERP, ERP->SkyStruct
+  - Entity Types: Budget, PO, IPC, Payment, Actuals
+  - Status: Pending, Success, Failed, Conflict
+
+E-27: GSAS Checkpoint
+  - Qatar GSAS sustainability certification tracking
+  - Primary Key: Project FK + Checkpoint Type
+  - Category: Authority
+  - Checkpoint Types: Registration, Concept Assessment, Design Part 1, Design Part 2, LoC Application, LoC Issued, Construction Audit, Final Review, Final Certificate, Operations
+  - Status: Not Started, In Progress, Submitted, Approved
+
+================================================================================
+RELATIONSHIP STRUCTURE (36 TOTAL)
+================================================================================
+
+Key Relationships:
+- R-01: Project (1) -- (N) Stage Instance [Cascade Delete]
+- R-02: Project (1) -- (N) Document [Cascade Delete]
+- R-03: Project (1) -- (N) Approval [Cascade Delete]
+- R-04: Project (1) -- (N) Variation [Cascade Delete]
+- R-05: Project (1) -- (N) Contract/Contract Award [Cascade Delete]
+- R-06: Project (1) -- (N) Authority Submission [Cascade Delete]
+- R-07: Project (1) -- (N) Lesson Learned [Optional]
+- R-08: Project (1) -- (N) Freeze [Cascade Delete]
+- R-09: Project (1) -- (N) Site Report [Optional]
+- R-10: Project (1) -- (1) Handover Package [Optional]
+- R-11: Project (1) -- (N) KPI Snapshot [Optional]
+- R-12: Project (1) -- (N) GSAS Checkpoint [Optional]
+- R-13: Project (N) -- (N) User/Role [Multi-project allocation]
+- R-14: Stage Instance (1) -- (N) Gate Checklist Item [Cascade Delete]
+- R-15: Stage Instance (1) -- (N) Document [Optional]
+- R-16: Stage Instance (1) -- (N) Authority Submission [Optional]
+- R-17: Stage Instance (1) -- (N) Lesson Learned [Optional]
+- R-18: Stage Instance (1) -- (N) GSAS Checkpoint [Optional]
+- R-19: Document (1) -- (N) Document Review [Cascade Delete]
+- R-20: Document (N) -- (N) Transmittal [Multi-document transmission]
+- R-21: Document (1) -- (N) Correspondence [Optional]
+- R-22: Approval (1) -- (N) Variation [Optional]
+- R-23: Approval (1) -- (N) IPC [Optional]
+- R-24: Approval (1) -- (N) Contract/Contract Award [Required]
+- R-25: Variation (1) -- (N) Freeze Exception [Optional]
+- R-26: Contract (1) -- (N) Variation [Optional]
+- R-27: Contract (1) -- (N) IPC [Optional]
+- R-28: Contractor (1) -- (N) Contract [Required]
+- R-29: Contractor (1) -- (N) IPC [Required]
+- R-30: Contractor (1) -- (N) Contractor Score [Optional]
+- R-31: Contractor (1) -- (N) NCR [Optional]
+- R-32: Freeze (1) -- (N) Freeze Exception [Cascade Delete]
+- R-33: IR (1) -- (1) NCR [Optional]
+- R-34: Handover Package (1) -- (N) Warranty [Cascade Delete]
+- R-35: User/Role (1) -- (N) Approval [Approvers]
+- R-36: User/Role (1) -- (N) Gate Checklist Item [Responsible Party]
+
+================================================================================
+FIELD DEFINITIONS SUMMARY
+================================================================================
+
+Total Fields: 152
+Field Data Types: String, Enum, Integer, Decimal, Date, Boolean
+
+Key Field Characteristics:
+- String fields max length: 20-500 characters
+- Enum fields: 218 unique enumeration values
+- Integer fields: Validation ranges (0-8 for RIBA stages)
+- Date fields: No specific format constraints
+- Required fields: Marked with 'Y'
+- Unique fields: Indexed for PK integrity
+- Calculated fields: Time-based calculations for KPIs
+
+Field Naming Convention: Entity.FieldName (e.g., Project.Code, Document.Discipline)
+
+Fields with Foreign Keys (FK):
+- Project.PM -> E-12 (User/Role)
+- Document.Discipline -> Document.Type enums
+- Review.Reviewer -> E-12 (User/Role)
+- Approval.Approver -> E-12 (User/Role)
+- IPC.QS -> E-12 (User/Role)
+- Variation.Assessor -> E-12 (User/Role)
+- NCR.ResponsibleContractor -> E-13 (Contractor)
+- IR.InspectionOfficer -> E-12 (User/Role)
+- ERP Sync.EntityID -> Various (polymorphic)
+
+================================================================================
+ENUMERATION CATEGORIES (218 VALUES)
+================================================================================
+
+Project Enums (8 values):
+  - Type: School, Residential, Hospitality, Fit-out, Mixed-use
+  - Status: Active, Completed, On Hold, Terminated
+  - GSAS Target: Platinum, Gold, Silver, Bronze
+
+Stage Enums (14 values):
+  - Status: Not Started, Active, Gate Review, Completed
+  - Stage Number: Brief (0), Concept (1), Developed Design (2), Technical Design (3), Technical Design Review (3.1), Production Info (4), Tender & Negotiation (5), Construction (6), Handover (7), In Use (8)
+
+Checklist Enums (12 values):
+  - Category: RIBA, RICS, Qatar Authority, GSAS, HAI-Specific, Entry, Exit, Freeze
+  - Status: Not Started, In Progress, Complete, Not Applicable (N-A)
+
+Document Enums (26 values):
+  - Discipline: Architectural, Structural, MEP-Electrical, MEP-Mechanical, MEP-Plumbing, Fire, Civil, Interior, Landscape
+  - Type: Drawing, Specification, Report, Calculation, Schedule, Submittal, Method Statement, As-Built, O&M Manual
+  - Status: Draft, Submitted, Under Review, APP, APP-COM, REJ, INFO, Closed
+  - Review Status: APP, APP-COM, REJ, INFO
+
+Transmittal Enums (5 values):
+  - Type: Incoming, Outgoing
+  - Status: Open, Acknowledged, Closed
+
+Approval Enums (10 values):
+  - Type: Budget, Comparison, Contract Award, Advance, IPC, Variation, Design-Gateway
+  - Status: Pending, Approved, Rejected, Returned
+
+Variation Enums (6 values):
+  - Status: Draft, Submitted, Under Assessment, Approved, Rejected, Partial
+
+IPC Enums (8 values):
+  - Status: Submitted, Under Verification, QS Certified, PM Endorsed, Finance Reviewed, Approved, Paid, Rejected
+
+Contract Enums (8 values):
+  - Type: Main Contract, Subcontract, Contract Award, Consultancy
+  - Status: Draft, Active, Completed, Terminated
+
+Authority Enums (14 values):
+  - Authority: QCDD, Kahramaa, Ashghal, Civil Defense
+  - Type: DC1, DC2, BCC, NOC, Load Application, Fire Strategy, Infrastructure NOC
+  - Status: Not Submitted, Submitted, Under Review, Comments Received, Approved, Rejected
+
+User Enums (16 values):
+  - Department: PM, Design, Contracts, DocControl, Finance, FM, HSE, IT
+  - Role: PM, Engineer, QS, DesignMgr, DocController, Finance, FMMgr, Admin, CEO, ExCom
+
+Contractor Enums (4 values):
+  - Qualification Status: Qualified, Probation, Disqualified, Pending Review
+
+Freeze Enums (8 values):
+  - Type: Budget, Design, Scope, Regulatory
+  - Status: Active, Lifted-Partial, Deactivated
+  - Exception Status: Requested, Under Review, Approved, Rejected, Expired
+
+Correspondence Enums (8 values):
+  - Type: Incoming, Outgoing
+  - FIDIC Sequence: None, Notice, Response, Determination
+  - Status: Open, Responded, Closed, Escalated
+
+Quality Enums (10 values):
+  - IR Result: Pass, Fail, Conditional
+  - NCR Status: Open, Corrective Action Submitted, Re-inspected, Closed
+  - Site Report Type: Daily, Weekly
+
+Handover Enums (3 values):
+  - Status: In Progress, Complete, Accepted by FM
+
+Warranty Enums (3 values):
+  - Status: Active, Expiring Soon, Expired
+
+KPI Enums (10 values):
+  - Type: Approval Turnaround, Stage Compliance, Cost Deviation, Variation Trend, IPC Time, Submittal Metrics, Bottleneck
+  - RAG Status: Red (At Risk), Amber (Caution), Green (On Track)
+
+GSAS Enums (11 values):
+  - Checkpoint Type: Registration, Concept Assessment, Design Part 1, Design Part 2, LoC Application, LoC Issued, Construction Audit, Final Review, Final Certificate, Operations
+  - Status: Not Started, In Progress, Submitted, Approved
+
+ERP Sync Enums (11 values):
+  - Direction: SkyStruct->ERP, ERP->SkyStruct
+  - Entity Type: Budget, PO, IPC, Payment, Actuals
+  - Status: Pending, Success, Failed, Conflict
+
+================================================================================
+PROCESS FLOW ALLOCATION
+================================================================================
+
+23 Process Flows (PF-01 through PF-23):
+- PF-01 through PF-05: Project Lifecycle & Stage Management
+- PF-06 through PF-11: Document Management
+- PF-12 through PF-16: Approval Workflows
+- PF-17 through PF-18: Variation Management
+- PF-19 through PF-20: Financial & Quality
+- PF-21 through PF-23: Authority & Compliance
+
+Project Phases:
+- Ph1: Brief to Concept
+- Ph2: Concept to Tender
+- Ph3: Construction
+- Ph4: Handover & Closeout
+
+================================================================================
+VALIDATION RULES & CONSTRAINTS
+================================================================================
+
+Mandatory Validations:
+1. Project Code: Regex [A-Z0-9]{3,20}
+2. Stage Number: Range 0-8 (RIBA stages)
+3. Budget Baseline: Must be > 0
+4. Contract Value: Must be > 0
+5. Email fields: Valid email format
+6. All Enum fields: Must match defined value set
+7. Date fields: Standard date format
+8. FK fields: Must reference existing primary key
+
+Business Rules:
+- Project Manager (PM) must be from User/Role entity
+- Stage instances cascade delete with project deletion
+- Gate checklist items cascade with stage deletion
+- Document reviews cascade with document deletion
+- Freeze exceptions cascade with freeze deletion
+- Contractor is mandatory for Contracts and IPCs
+- Approval is mandatory for Contract Awards
+- IR may generate one NCR (1:1 relationship)
+- Handover has one-to-one with Project
+
+================================================================================
+SOW INTEGRATION
+================================================================================
+
+All 27 entities are traced to SOW modules:
+- All Modules: Project, Document, User/Role, Audit Log
+- Project Lifecycle: Stage Instance, Gate Checklist Item, Approval, Freeze, Freeze Exception, GSAS
+- Document Control: Document Review, Transmittal, Correspondence
+- Contracts & Procurement: Variation, Contract Award, Contractor/Supplier
+- Finance & Contracts: IPC, Contract Award, ERP Sync
+- Quality & Construction: IR, NCR, Site Report, Lesson Learned, GSAS
+- Regulatory & Authority: Authority Submission, GSAS
+- Handover & Closeout: Handover Package, Warranty
+- Analytics & Portfolio: KPI Snapshot, Contractor Score
+
+All entities require:
+- Acceptance Test verification (L4-Entity format)
+- Configuration Audit verification
+- Contractual binding obligations met
+
+================================================================================
+INTEGRATION POINTS
+================================================================================
+
+ERP (Artan) Synchronization:
+- Budget data bidirectional sync
+- Purchase Order (PO) sync
+- IPC sync
+- Payment data sync
+- Actuals sync
+- Conflict resolution mechanism
+- Transaction logging with retry capability
+
+External Authority Integration:
+- QCDD (Qatar Central District Cooling)
+- Kahramaa (Qatar General Electricity & Water)
+- Ashghal (Qatar Public Works Authority)
+- Civil Defense
+
+Sustainability Tracking:
+- GSAS checkpoint mapping to design stages
+- License of Conformity (LoC) tracking
+- Compliance audit logging
+
+================================================================================
+DOCUMENT RECORD STRUCTURE
+================================================================================
+
+HAI Reference Format: Hierarchical classification
+- Discipline-based organization (Arch, Struct, MEP, etc.)
+- Stage-based filtering (Design, Construction, etc.)
+- Status tracking with approval chain
+- Revision control with timestamp
+- Multi-reviewer approval loops
+
+Document Control Workflow:
+Draft -> Submitted -> Under Review -> [APP|APP-COM|REJ|INFO] -> Closed
+
+Transmittal Management:
+- Incoming transmittals from consultants/contractors
+- Outgoing transmittals to stakeholders
+- Acknowledgment tracking
+- Document batch transmission
+
+================================================================================
+FINANCIAL TRACKING
+================================================================================
+
+Budget Baseline: Immutable original approved budget
+Contract Value: Main contract value
+Variation Orders: Track changes with assessment
+IPCs: Multi-stage approval (QS -> PM -> Finance -> Approval)
+ERP Sync: Real-time integration with Artan
+
+Financial Approval Chain:
+1. Submitted by Contractor
+2. QS Certification
+3. PM Endorsement
+4. Finance Review
+5. Final Approval
+6. Payment Processing
+
+Variation Workflow:
+Draft -> Submitted -> Under Assessment -> [Approved|Rejected|Partial]
+
+================================================================================
+GOVERNANCE & COMPLIANCE
+================================================================================
+
+Gate Control:
+- Entry gates (pre-stage requirements)
+- Exit gates (completion criteria)
+- Gate review checkpoints
+- Compliance audits
+
+RIBA Stage Alignment:
+- 9 stages (0-8): Brief, Concept, Developed Design, Technical Design, Technical Design Review, Production Info, Tender & Negotiation, Construction, Handover, In Use
+
+Freeze Mechanism:
+- Budget freeze: No new commitments
+- Design freeze: No design changes
+- Scope freeze: No scope changes
+- Regulatory freeze: Awaiting authority approvals
+- Exception mechanism with approval chain
+
+Audit Trail:
+- Immutable logging of all actions
+- Timestamp + User + Action + Entity
+- Compliance verification
+- Traceability for contractual obligations
+
+================================================================================
+FILE LOCATIONS & OUTPUTS
+================================================================================
+
+Primary File: /sessions/affectionate-exciting-mccarthy/mnt/ERP/Claude study/HAI-GOV-024-R0.0_L3_Data_Model.xlsx
+
+Extracted Files:
+- /tmp/field_definitions_detailed.txt (41,060 bytes)
+- /tmp/relationships_detailed.txt (8,808 bytes)
+- /tmp/enum_definitions_detailed.txt (30,625 bytes)
+- Complete extraction: /sessions/affectionate-exciting-mccarthy/mnt/.claude/projects/-sessions-affectionate-exciting-mccarthy/4a3a777d-48f5-4336-99fd-1e1516db5907/tool-results/b99e9d2.txt (113.8 KB)
+
+================================================================================
