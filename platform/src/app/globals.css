@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #0a1628;
+  --accent: #e8740c;
+  --accent-dark: #c76200;
+  --blue: #1a5276;
+  --blue-light: #2980b9;
+  --teal: #007B83;
+  --navy: #111d33;
+  --steel: #2a3a5a;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+/* Scrollbar styling for platform */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #0a1628; }
+::-webkit-scrollbar-thumb { background: #2a3a5a; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #4da6ff; }
