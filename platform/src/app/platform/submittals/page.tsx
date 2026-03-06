@@ -131,6 +131,7 @@ export default function SubmittalsPage() {
   const [submittalType, setSubmittalType] = useState<"contractor" | "consultant">("contractor");
   const [activeCategory, setActiveCategory] = useState<string>("Schedule");
   const [activeSubType, setActiveSubType] = useState<string>("");
+  const [selectedItem, setSelectedItem] = useState<string | null>(null);
 
   const categories = submittalType === "contractor" ? contractorCategories : consultantCategories;
   const categoryKeys = Object.keys(categories);
@@ -226,43 +227,193 @@ export default function SubmittalsPage() {
         ))}
       </div>
 
-      {/* Submittal Table */}
+      {/* Submittal Table + Detail View */}
       {activeSubType ? (
-        <div className="bg-hai-navy border border-hai-steel rounded-lg p-5">
-          <div className="flex items-center justify-between mb-4">
-            <div className="text-xs font-semibold text-blue-400 uppercase tracking-wider">
-              {activeSubType} — Submittal Register
+        <div className="flex gap-4">
+          {/* Left: List */}
+          <div className={`bg-hai-navy border border-hai-steel rounded-lg p-5 ${selectedItem ? "w-[340px] flex-shrink-0" : "flex-1"}`}>
+            <div className="flex items-center justify-between mb-4">
+              <div className="text-xs font-semibold text-blue-400 uppercase tracking-wider">
+                {activeSubType}
+              </div>
+              <span className="text-[10px] text-gray-500">
+                {currentSubmittals.length} item{currentSubmittals.length !== 1 ? "s" : ""}
+              </span>
             </div>
-            <span className="text-[10px] text-gray-500">
-              {currentSubmittals.length} item{currentSubmittals.length !== 1 ? "s" : ""}
-            </span>
-          </div>
-          <table className="w-full">
-            <thead>
-              <tr className="text-[10px] text-gray-500 uppercase border-b border-hai-steel">
-                <th className="text-left pb-2">Ref</th>
-                <th className="text-left pb-2">Title</th>
-                <th className="text-left pb-2">Rev</th>
-                <th className="text-left pb-2">Date</th>
-                <th className="text-left pb-2">Reviewer</th>
-                <th className="text-left pb-2">Status</th>
-              </tr>
-            </thead>
-            <tbody>
+            <div className="space-y-1">
               {currentSubmittals.map((row) => (
-                <tr key={row.ref} className="text-xs border-b border-hai-primary/30 last:border-0 hover:bg-hai-primary/20">
-                  <td className="py-3 text-blue-400 font-medium font-mono">{row.ref}</td>
-                  <td className="py-3 text-gray-300">{row.title}</td>
-                  <td className="py-3 text-gray-400">{row.rev}</td>
-                  <td className="py-3 text-gray-400">{row.date}</td>
-                  <td className="py-3 text-gray-400">{row.reviewer}</td>
-                  <td className="py-3">
-                    <span className={`text-[10px] px-2 py-0.5 rounded border ${row.statusColor}`}>{row.status}</span>
-                  </td>
-                </tr>
+                <button
+                  key={row.ref}
+                  onClick={() => setSelectedItem(selectedItem === row.ref ? null : row.ref)}
+                  className={`w-full text-left px-3 py-2.5 rounded-lg border transition-all ${
+                    selectedItem === row.ref
+                      ? "bg-blue-500/10 border-blue-500/30"
+                      : "border-transparent hover:bg-hai-primary/30"
+                  }`}
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-gray-300 font-medium">{row.title}</span>
+                    <span className={`text-[9px] px-1.5 py-0.5 rounded border ${row.statusColor}`}>{row.status}</span>
+                  </div>
+                  <div className="flex items-center gap-3 mt-1">
+                    <span className="text-[10px] text-blue-400 font-mono">{row.ref}</span>
+                    <span className="text-[10px] text-gray-600">{row.date}</span>
+                    <span className="text-[10px] text-gray-600">Rev {row.rev}</span>
+                  </div>
+                </button>
               ))}
-            </tbody>
-          </table>
+            </div>
+          </div>
+
+          {/* Right: Detail Panel */}
+          {selectedItem && (() => {
+            const item = currentSubmittals.find((s) => s.ref === selectedItem);
+            if (!item) return null;
+            const isRFI = activeSubType.includes("RFI");
+            const isDailyReport = activeSubType === "Daily Report";
+
+            return (
+              <div className="flex-1 bg-hai-navy border border-hai-steel rounded-lg overflow-hidden">
+                {/* Detail Header */}
+                <div className="px-5 py-4 border-b border-hai-steel flex items-center justify-between">
+                  <h3 className="text-sm font-semibold text-white">{item.title}</h3>
+                  <button onClick={() => setSelectedItem(null)} className="text-xs text-gray-500 hover:text-gray-300">Close</button>
+                </div>
+
+                {/* Mail-style metadata */}
+                <div className="px-5 py-4 border-b border-hai-steel/50 space-y-2">
+                  <div className="grid grid-cols-[100px_1fr] gap-y-2 text-xs">
+                    <span className="text-gray-500">Mail Type</span>
+                    <span className="text-gray-300">{isRFI ? "Request For Information" : isDailyReport ? "Daily Site Report" : activeSubType}</span>
+                    <span className="text-gray-500">Reference</span>
+                    <span className="text-blue-400 font-mono">{item.ref}</span>
+                    <span className="text-gray-500">From</span>
+                    <span className="text-gray-300">Contractor — Shelter Engineering</span>
+                    <span className="text-gray-500">To</span>
+                    <span className="text-gray-300">{item.reviewer} <span className="text-gray-600">(+2 more...)</span></span>
+                    <span className="text-gray-500">Sent</span>
+                    <span className="text-gray-300">{item.date}</span>
+                    <span className="text-gray-500">Respond by</span>
+                    <span className="text-orange-400 font-medium">{item.date}</span>
+                    <span className="text-gray-500">Status</span>
+                    <span><span className={`text-[10px] px-2 py-0.5 rounded border ${item.statusColor}`}>{item.status}</span></span>
+                  </div>
+                </div>
+
+                {/* Content — depends on type */}
+                <div className="px-5 py-4">
+                  {isDailyReport ? (
+                    /* Daily Report Detail */
+                    <div className="space-y-3">
+                      {[
+                        { title: "Weather (Clear, 34°C)", content: "Clear skies throughout the day. Max temp 34°C, Min 24°C. Humidity 65%. Wind NW 12 km/h. No rain.", icon: "🌤️" },
+                        { title: "Workforce (People 1,240, Total Hours 9,920)", content: "Concrete crew: 320 | Steel fixers: 180 | MEP: 240 | Formwork: 200 | General labour: 180 | Supervision: 60 | QA/QC: 30 | HSE: 30", icon: "👷" },
+                        { title: "Schedule Delays", content: "Facade delivery delayed by 3 days due to customs clearance. Mitigation: Re-sequencing Level 6-7 interior works to maintain critical path.", icon: "⏰" },
+                        { title: "Material Deliveries", content: "• Rebar 32mm — 45 tonnes received (Voucher #DV-2026-089)\n• Ready-mix concrete G40 — 180 m³ delivered\n• MEP ductwork sections — partial delivery (70%)", icon: "🚛" },
+                        { title: "Equipment (Quantity 8, Runtime Hours 64)", content: "Tower Crane TC-01: 8h | Tower Crane TC-02: 8h | Concrete Pump: 6h | Excavator: 8h | Mobile Crane: 8h | Telehandler x2: 16h | Generator: 10h", icon: "🏗️" },
+                        { title: "General Comments", content: "Concrete pour completed for Level 4 slab Zone B (420 m³). Steel erection progressing on Level 5 columns Grid A-F. MEP rough-in started on Level 3.", icon: "📝" },
+                        { title: "Visitors (2)", content: "• Mr. Hasan Molla — Employer Rep — Site walkthrough & progress review\n• Mr. Ahmed Al-Thani — QCDD Inspector — Fire compartmentation inspection", icon: "👤" },
+                        { title: "Attachments (3)", content: "📎 site-progress-L4-slab.jpg (1.2 MB)\n📎 concrete-pour-report.pdf (340 KB)\n📎 daily-manpower-log.xlsx (85 KB)", icon: "📎" },
+                      ].map((section) => (
+                        <details key={section.title} className="group">
+                          <summary className="flex items-center gap-2 cursor-pointer px-3 py-2 rounded-lg hover:bg-hai-primary/30 transition-all">
+                            <svg className="w-3 h-3 text-gray-500 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                            <span className="text-sm mr-1">{section.icon}</span>
+                            <span className="text-xs text-gray-300 font-medium">{section.title}</span>
+                          </summary>
+                          <div className="ml-8 mt-1 px-3 py-2 bg-hai-primary/20 rounded-lg">
+                            <pre className="text-[11px] text-gray-400 whitespace-pre-wrap font-sans leading-relaxed">{section.content}</pre>
+                          </div>
+                        </details>
+                      ))}
+                    </div>
+                  ) : isRFI ? (
+                    /* RFI Detail */
+                    <div className="space-y-4">
+                      <div className="text-[10px] text-gray-500 uppercase tracking-wider font-semibold">Details</div>
+                      <div className="grid grid-cols-[120px_1fr] gap-y-3 text-xs">
+                        <span className="text-gray-500">Discipline</span>
+                        <span className="text-gray-300">HVAC / MEP</span>
+                        <span className="text-gray-500">Question</span>
+                        <span className="text-gray-300 leading-relaxed">
+                          {item.ref === "RFI-234"
+                            ? "At Grid C-7, the slab edge detail shows a 150mm upstand but the architectural drawing shows flush finish. Please clarify the correct detail and confirm if waterproofing is required at this junction."
+                            : "Due to space constraints, the condensing unit will need to be moved on the roof. Are there any restrictions for moving this 10m to the east?"}
+                        </span>
+                        <span className="text-gray-500">Cost Implication?</span>
+                        <span className="text-yellow-400">Yes — labour charges</span>
+                        <span className="text-gray-500">Schedule Impact?</span>
+                        <span className="text-yellow-400">Yes — minimal (1-2 days)</span>
+                        <span className="text-gray-500">Priority</span>
+                        <span className="text-orange-400">High</span>
+                      </div>
+                      {/* Response thread */}
+                      <div className="mt-4 border-t border-hai-steel/50 pt-4">
+                        <div className="text-[10px] text-gray-500 uppercase tracking-wider font-semibold mb-3">Response Thread</div>
+                        {item.status === "Responded" || item.status === "Approved" ? (
+                          <div className="space-y-3">
+                            <div className="bg-hai-primary/30 rounded-lg p-3 border-l-2 border-blue-500">
+                              <div className="flex items-center justify-between mb-1">
+                                <span className="text-[10px] text-blue-400 font-medium">HTCO Design Consultant</span>
+                                <span className="text-[10px] text-gray-600">{item.date}</span>
+                              </div>
+                              <p className="text-xs text-gray-300 leading-relaxed">
+                                Confirmed: The upstand should be 150mm as per structural requirements. Waterproofing membrane to be applied. Refer to detail DT-WP-003 Rev B.
+                              </p>
+                            </div>
+                            <div className="bg-hai-primary/30 rounded-lg p-3 border-l-2 border-green-500">
+                              <div className="flex items-center justify-between mb-1">
+                                <span className="text-[10px] text-green-400 font-medium">ER — Project Manager</span>
+                                <span className="text-[10px] text-gray-600">{item.date}</span>
+                              </div>
+                              <p className="text-xs text-gray-300">Endorsed. Contractor to proceed per consultant response.</p>
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="text-xs text-gray-600 italic">Awaiting response...</div>
+                        )}
+                      </div>
+                      {/* Attachments */}
+                      <div className="mt-3 border-t border-hai-steel/50 pt-3">
+                        <div className="text-[10px] text-gray-500 uppercase tracking-wider font-semibold mb-2">Attachments</div>
+                        <div className="flex gap-2">
+                          <div className="bg-hai-primary/30 border border-hai-steel/50 rounded px-3 py-2 text-[10px] text-gray-400 flex items-center gap-2">
+                            <span>📎</span> RFI-sketch.pdf <span className="text-gray-600">240 KB</span>
+                          </div>
+                          <div className="bg-hai-primary/30 border border-hai-steel/50 rounded px-3 py-2 text-[10px] text-gray-400 flex items-center gap-2">
+                            <span>📎</span> site-photo.jpg <span className="text-gray-600">1.1 MB</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    /* Generic submittal detail */
+                    <div className="space-y-3">
+                      <div className="text-[10px] text-gray-500 uppercase tracking-wider font-semibold">Submittal Details</div>
+                      <div className="grid grid-cols-[100px_1fr] gap-y-2 text-xs">
+                        <span className="text-gray-500">Type</span>
+                        <span className="text-gray-300">{activeSubType}</span>
+                        <span className="text-gray-500">Discipline</span>
+                        <span className="text-gray-300">{item.ref.includes("ARC") ? "Architecture" : item.ref.includes("STR") ? "Structural" : item.ref.includes("MEP") ? "MEP" : "Multi-discipline"}</span>
+                        <span className="text-gray-500">Description</span>
+                        <span className="text-gray-300 leading-relaxed">{item.title}</span>
+                        <span className="text-gray-500">Revision</span>
+                        <span className="text-gray-300">Rev {item.rev}</span>
+                      </div>
+                      <div className="mt-3 border-t border-hai-steel/50 pt-3">
+                        <div className="text-[10px] text-gray-500 uppercase tracking-wider font-semibold mb-2">Attachments</div>
+                        <div className="bg-hai-primary/30 border border-hai-steel/50 rounded px-3 py-2 text-[10px] text-gray-400 flex items-center gap-2 w-fit">
+                          <span>📎</span> {item.ref}_Rev{item.rev}.pdf <span className="text-gray-600">2.4 MB</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          })()}
         </div>
       ) : (
         <div className="bg-hai-navy border border-hai-steel rounded-lg p-12 text-center">

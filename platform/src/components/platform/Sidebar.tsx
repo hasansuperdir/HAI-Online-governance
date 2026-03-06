@@ -14,6 +14,8 @@ const navItems = [
   { href: "/platform/quality", label: "Quality & HSE", icon: "🔍" },
   { href: "/platform/hse", label: "HSE", icon: "⚠️" },
   { href: "/platform/authority", label: "Authority", icon: "🏛️" },
+  { href: "/platform/tenders", label: "Tenders", icon: "📑" },
+  { href: "/platform/flowcharts", label: "Flowcharts", icon: "🔀" },
   { href: "/platform/analytics", label: "Analytics & AI", icon: "🤖" },
   { href: "/platform/settings", label: "Settings", icon: "⚙️" },
 ];

@@ -2,7 +2,71 @@
 
 import { useState } from "react";
 
-const tabs = ["Payment Certificates", "Contract Terms", "Invoices", "Variation Orders", "Cash Flow"];
+const tabs = ["Cost Worksheet", "Payment Certificates", "Contract Terms", "Invoices", "Variation Orders", "Cash Flow"];
+
+/* ─── Cost Worksheet WBS Data ─── */
+interface WBSItem {
+  code: string;
+  name: string;
+  isSection: boolean;
+  originalBudget: number;
+  approvedChanges: number;
+  approvedTransfers: number;
+  currentBudget: number;
+  potentialChanges: number;
+  potentialTransfers: number;
+  potentialBudget: number;
+  currentContract: number;
+}
+
+const costWorksheet: WBSItem[] = [
+  { code: "5S", name: "CUQ Project", isSection: true, originalBudget: 70000000, approvedChanges: 25000, approvedTransfers: 0, currentBudget: 70025000, potentialChanges: 5500, potentialTransfers: 0, potentialBudget: 70030500, currentContract: 53281345 },
+  // SS.01 Site Preparation
+  { code: "5S.01", name: "Site Preparation Works", isSection: true, originalBudget: 1400000, approvedChanges: 25000, approvedTransfers: 18345, currentBudget: 1443345, potentialChanges: 2500, potentialTransfers: 0, potentialBudget: 1445845, currentContract: 1440845 },
+  { code: "5S.01.02", name: "Demolition Work and Clearance", isSection: false, originalBudget: 358000, approvedChanges: 0, approvedTransfers: 18345, currentBudget: 354345, potentialChanges: 0, potentialTransfers: 0, potentialBudget: 354345, currentContract: 354345 },
+  { code: "5S.01.03", name: "Groundworks", isSection: false, originalBudget: 168000, approvedChanges: 0, approvedTransfers: 0, currentBudget: 168000, potentialChanges: 0, potentialTransfers: 0, potentialBudget: 168000, currentContract: 0 },
+  { code: "5S.01.04", name: "Temporary Traffic Management", isSection: false, originalBudget: 98000, approvedChanges: 0, approvedTransfers: 0, currentBudget: 98000, potentialChanges: 0, potentialTransfers: 0, potentialBudget: 98000, currentContract: 98000 },
+  { code: "5S.01.05", name: "Site Investigation", isSection: false, originalBudget: 728000, approvedChanges: 25000, approvedTransfers: 0, currentBudget: 753000, potentialChanges: 0, potentialTransfers: 0, potentialBudget: 753000, currentContract: 750000 },
+  { code: "5S.01.01", name: "Hazardous & Contaminated ...", isSection: false, originalBudget: 70000, approvedChanges: 0, approvedTransfers: 0, currentBudget: 70000, potentialChanges: 2500, potentialTransfers: 0, potentialBudget: 72500, currentContract: 70000 },
+  // SS.02 Substructure
+  { code: "5S.02", name: "Substructure", isSection: true, originalBudget: 14000000, approvedChanges: 0, approvedTransfers: 0, currentBudget: 14000000, potentialChanges: 5000, potentialTransfers: 0, potentialBudget: 14003000, currentContract: 13475000 },
+  { code: "5S.02.01", name: "Excavation", isSection: false, originalBudget: 1400000, approvedChanges: 0, approvedTransfers: 0, currentBudget: 1400000, potentialChanges: 0, potentialTransfers: 0, potentialBudget: 1400000, currentContract: 1505000 },
+  { code: "5S.02.02", name: "Piling", isSection: false, originalBudget: 4480000, approvedChanges: 0, approvedTransfers: 0, currentBudget: 4480000, potentialChanges: 0, potentialTransfers: 0, potentialBudget: 4480000, currentContract: 4256000 },
+  { code: "5S.02.03", name: "Foundations", isSection: false, originalBudget: 2660000, approvedChanges: 0, approvedTransfers: 0, currentBudget: 2660000, potentialChanges: 3000, potentialTransfers: 0, potentialBudget: 2663000, currentContract: 2527000 },
+  { code: "5S.02.04", name: "Slabs", isSection: false, originalBudget: 1820000, approvedChanges: 0, approvedTransfers: 0, currentBudget: 1820000, potentialChanges: 0, potentialTransfers: 0, potentialBudget: 1820000, currentContract: 1729000 },
+  { code: "5S.02.05", name: "Basement Walls", isSection: false, originalBudget: 2380000, approvedChanges: 0, approvedTransfers: 0, currentBudget: 2380000, potentialChanges: 0, potentialTransfers: 0, potentialBudget: 2380000, currentContract: 2261000 },
+  { code: "5S.02.06", name: "Waterproofing", isSection: false, originalBudget: 1260000, approvedChanges: 0, approvedTransfers: 0, currentBudget: 1260000, potentialChanges: 0, potentialTransfers: 0, potentialBudget: 1260000, currentContract: 1197000 },
+  // SS.03 Super Structure
+  { code: "5S.03", name: "Super Structure", isSection: true, originalBudget: 21000000, approvedChanges: 0, approvedTransfers: 0, currentBudget: 21000000, potentialChanges: 0, potentialTransfers: 0, potentialBudget: 21000000, currentContract: 19950000 },
+  { code: "5S.03.01", name: "Structural Frame", isSection: false, originalBudget: 2520000, approvedChanges: 0, approvedTransfers: 0, currentBudget: 2520000, potentialChanges: 0, potentialTransfers: 0, potentialBudget: 2520000, currentContract: 2394000 },
+  { code: "5S.03.02", name: "Floors", isSection: false, originalBudget: 6090000, approvedChanges: 0, approvedTransfers: 0, currentBudget: 6090000, potentialChanges: 0, potentialTransfers: 0, potentialBudget: 6090000, currentContract: 5785000 },
+  { code: "5S.03.03", name: "Roof", isSection: false, originalBudget: 3360000, approvedChanges: 0, approvedTransfers: 0, currentBudget: 3360000, potentialChanges: 0, potentialTransfers: 0, potentialBudget: 3360000, currentContract: 3192000 },
+  { code: "5S.03.04", name: "Stairs and Ramps", isSection: false, originalBudget: 2520000, approvedChanges: 0, approvedTransfers: 0, currentBudget: 2520000, potentialChanges: 0, potentialTransfers: 0, potentialBudget: 2520000, currentContract: 2394000 },
+  { code: "5S.03.05", name: "Facade", isSection: false, originalBudget: 1470000, approvedChanges: 0, approvedTransfers: 0, currentBudget: 1470000, potentialChanges: 0, potentialTransfers: 0, potentialBudget: 1470000, currentContract: 1396000 },
+  { code: "5S.03.06", name: "External Walls", isSection: false, originalBudget: 2940000, approvedChanges: 0, approvedTransfers: 0, currentBudget: 2940000, potentialChanges: 0, potentialTransfers: 0, potentialBudget: 2940000, currentContract: 2793000 },
+  { code: "5S.03.07", name: "Windows and Doors", isSection: false, originalBudget: 2100000, approvedChanges: 0, approvedTransfers: 0, currentBudget: 2100000, potentialChanges: 0, potentialTransfers: 0, potentialBudget: 2100000, currentContract: 1995000 },
+  // SS.04 Architectural Works
+  { code: "5S.04", name: "Architectural Works", isSection: true, originalBudget: 10500000, approvedChanges: 0, approvedTransfers: 0, currentBudget: 10500000, potentialChanges: 0, potentialTransfers: 0, potentialBudget: 10500000, currentContract: 0 },
+  { code: "5S.04.01", name: "Internal Walls and Partitions", isSection: false, originalBudget: 1785000, approvedChanges: 0, approvedTransfers: 0, currentBudget: 1785000, potentialChanges: 0, potentialTransfers: 0, potentialBudget: 1785000, currentContract: 0 },
+  { code: "5S.04.02", name: "Handrails", isSection: false, originalBudget: 840000, approvedChanges: 0, approvedTransfers: 0, currentBudget: 840000, potentialChanges: 0, potentialTransfers: 0, potentialBudget: 840000, currentContract: 0 },
+  { code: "5S.04.03", name: "Internal Doors", isSection: false, originalBudget: 1575000, approvedChanges: 0, approvedTransfers: 0, currentBudget: 1575000, potentialChanges: 0, potentialTransfers: 0, potentialBudget: 1575000, currentContract: 0 },
+  { code: "5S.04.04", name: "Wall Finishes", isSection: false, originalBudget: 1365000, approvedChanges: 0, approvedTransfers: 0, currentBudget: 1365000, potentialChanges: 0, potentialTransfers: 0, potentialBudget: 1365000, currentContract: 0 },
+  { code: "5S.04.05", name: "Floor Finishes", isSection: false, originalBudget: 735000, approvedChanges: 0, approvedTransfers: 0, currentBudget: 735000, potentialChanges: 0, potentialTransfers: 0, potentialBudget: 735000, currentContract: 0 },
+  { code: "5S.04.06", name: "Ceiling Finishes", isSection: false, originalBudget: 1260000, approvedChanges: 0, approvedTransfers: 0, currentBudget: 1260000, potentialChanges: 0, potentialTransfers: 0, potentialBudget: 1260000, currentContract: 0 },
+  { code: "5S.04.07", name: "Fittings, Furnishings and Equ...", isSection: false, originalBudget: 2750000, approvedChanges: 0, approvedTransfers: 0, currentBudget: 2750000, potentialChanges: 0, potentialTransfers: 0, potentialBudget: 2750000, currentContract: 0 },
+  // SS.05 MEP
+  { code: "5S.05", name: "MEP Services", isSection: true, originalBudget: 18200000, approvedChanges: 0, approvedTransfers: 0, currentBudget: 18200000, potentialChanges: 0, potentialTransfers: 0, potentialBudget: 18200000, currentContract: 14560000 },
+  { code: "5S.05.01", name: "HVAC", isSection: false, originalBudget: 5460000, approvedChanges: 0, approvedTransfers: 0, currentBudget: 5460000, potentialChanges: 0, potentialTransfers: 0, potentialBudget: 5460000, currentContract: 4368000 },
+  { code: "5S.05.02", name: "Electrical", isSection: false, originalBudget: 4550000, approvedChanges: 0, approvedTransfers: 0, currentBudget: 4550000, potentialChanges: 0, potentialTransfers: 0, potentialBudget: 4550000, currentContract: 3640000 },
+  { code: "5S.05.03", name: "Plumbing & Drainage", isSection: false, originalBudget: 3640000, approvedChanges: 0, approvedTransfers: 0, currentBudget: 3640000, potentialChanges: 0, potentialTransfers: 0, potentialBudget: 3640000, currentContract: 2912000 },
+  { code: "5S.05.04", name: "Fire Protection", isSection: false, originalBudget: 2730000, approvedChanges: 0, approvedTransfers: 0, currentBudget: 2730000, potentialChanges: 0, potentialTransfers: 0, potentialBudget: 2730000, currentContract: 2184000 },
+  { code: "5S.05.05", name: "BMS & Controls", isSection: false, originalBudget: 1820000, approvedChanges: 0, approvedTransfers: 0, currentBudget: 1820000, potentialChanges: 0, potentialTransfers: 0, potentialBudget: 1820000, currentContract: 1456000 },
+  // SS.06 External Works
+  { code: "5S.06", name: "External Works", isSection: true, originalBudget: 4900000, approvedChanges: 0, approvedTransfers: 0, currentBudget: 4900000, potentialChanges: 0, potentialTransfers: 0, potentialBudget: 4900000, currentContract: 3675000 },
+  { code: "5S.06.01", name: "Roads and Parking", isSection: false, originalBudget: 1960000, approvedChanges: 0, approvedTransfers: 0, currentBudget: 1960000, potentialChanges: 0, potentialTransfers: 0, potentialBudget: 1960000, currentContract: 1470000 },
+  { code: "5S.06.02", name: "Landscaping", isSection: false, originalBudget: 1470000, approvedChanges: 0, approvedTransfers: 0, currentBudget: 1470000, potentialChanges: 0, potentialTransfers: 0, potentialBudget: 1470000, currentContract: 1102500 },
+  { code: "5S.06.03", name: "Utilities & Infrastructure", isSection: false, originalBudget: 1470000, approvedChanges: 0, approvedTransfers: 0, currentBudget: 1470000, potentialChanges: 0, potentialTransfers: 0, potentialBudget: 1470000, currentContract: 1102500 },
+];
 
 const paymentCerts = [
   { ipc: "IPC-012", period: "Jan 2026", applied: "4,560,000", certified: "4,230,000", retained: "211,500", netPayable: "4,018,500", status: "Under Review", statusColor: "text-yellow-400 bg-yellow-500/10 border-yellow-500/20" },
@@ -50,7 +114,7 @@ const cashFlowData = [
 ];
 
 export default function CommercialPage() {
-  const [activeTab, setActiveTab] = useState("Payment Certificates");
+  const [activeTab, setActiveTab] = useState("Cost Worksheet");
   const maxCum = 58000;
 
   return (
@@ -92,6 +156,64 @@ export default function CommercialPage() {
           </button>
         ))}
       </div>
+
+      {/* Cost Worksheet */}
+      {activeTab === "Cost Worksheet" && (
+        <div className="bg-hai-navy border border-hai-steel rounded-lg p-5 overflow-x-auto">
+          <div className="flex items-center justify-between mb-4">
+            <div className="text-xs font-semibold text-blue-400 uppercase tracking-wider">
+              Cost Worksheet — WBS Breakdown
+            </div>
+            <div className="text-[10px] text-gray-500">Reporting Period: Mar &apos;26</div>
+          </div>
+          <table className="w-full min-w-[1100px]">
+            <thead>
+              <tr className="text-[9px] text-gray-500 uppercase border-b border-hai-steel">
+                <th className="text-left pb-2 pr-2 w-16">Code</th>
+                <th className="text-left pb-2 pr-2">Name</th>
+                <th className="text-right pb-2 pr-2">Original Budget</th>
+                <th className="text-right pb-2 pr-2">Approved Changes</th>
+                <th className="text-right pb-2 pr-2">Approved Transfers</th>
+                <th className="text-right pb-2 pr-2">Current Budget</th>
+                <th className="text-right pb-2 pr-2">Potential Changes</th>
+                <th className="text-right pb-2 pr-2">Potential Transfers</th>
+                <th className="text-right pb-2 pr-2">Potential Budget</th>
+                <th className="text-right pb-2">Current Contract</th>
+              </tr>
+            </thead>
+            <tbody>
+              {costWorksheet.map((row) => {
+                const fmt = (n: number) => n === 0 ? "$0.00" : `$${n.toLocaleString("en-US", { minimumFractionDigits: 2 })}`;
+                return (
+                  <tr
+                    key={row.code}
+                    className={`text-[11px] border-b last:border-0 ${
+                      row.isSection
+                        ? "bg-blue-500/5 border-hai-steel font-semibold"
+                        : "border-hai-primary/20 hover:bg-hai-primary/20"
+                    }`}
+                  >
+                    <td className={`py-1.5 pr-2 font-mono ${row.isSection ? "text-blue-400" : "text-gray-500"}`}>
+                      {row.code}
+                    </td>
+                    <td className={`py-1.5 pr-2 ${row.isSection ? "text-white" : "text-gray-300"} ${!row.isSection ? "pl-4" : ""}`}>
+                      {row.isSection ? `▼ ${row.name}` : row.name}
+                    </td>
+                    <td className={`py-1.5 pr-2 text-right ${row.isSection ? "text-gray-200" : "text-gray-400"}`}>{fmt(row.originalBudget)}</td>
+                    <td className="py-1.5 pr-2 text-right text-gray-400">{fmt(row.approvedChanges)}</td>
+                    <td className="py-1.5 pr-2 text-right text-gray-400">{fmt(row.approvedTransfers)}</td>
+                    <td className={`py-1.5 pr-2 text-right ${row.isSection ? "text-green-400 font-semibold" : "text-gray-300"}`}>{fmt(row.currentBudget)}</td>
+                    <td className="py-1.5 pr-2 text-right text-gray-400">{fmt(row.potentialChanges)}</td>
+                    <td className="py-1.5 pr-2 text-right text-gray-400">{fmt(row.potentialTransfers)}</td>
+                    <td className={`py-1.5 pr-2 text-right ${row.isSection ? "text-blue-400" : "text-gray-400"}`}>{fmt(row.potentialBudget)}</td>
+                    <td className={`py-1.5 text-right ${row.isSection ? "text-orange-400 font-semibold" : row.currentContract > 0 ? "text-gray-300" : "text-gray-600"}`}>{fmt(row.currentContract)}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      )}
 
       {/* Payment Certificates */}
       {activeTab === "Payment Certificates" && (
