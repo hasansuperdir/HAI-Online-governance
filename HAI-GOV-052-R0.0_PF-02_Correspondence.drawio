@@ -1,0 +1,308 @@
+<mxfile host="app.diagrams.net" modified="2026-03-01T12:00:00.000Z" agent="HAI PMO" version="24.0.0" type="device">
+  <diagram id="pf02" name="PF-02: Correspondence Management (FIDIC-Aligned)">
+    <mxGraphModel dx="1800" dy="2400" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- TITLE BAR                               -->
+        <!-- ═══════════════════════════════════════ -->
+        <mxCell id="title_bar" value="" style="rounded=1;whiteSpace=wrap;fillColor=#1B2A4A;strokeColor=none;arcSize=8;" vertex="1" parent="1">
+          <mxGeometry x="40" y="10" width="1090" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="title_text" value="PF-02: Correspondence Management (FIDIC-Aligned)" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontColor=#FFFFFF;fontStyle=1;fontSize=16;fontFamily=Arial;" vertex="1" parent="1">
+          <mxGeometry x="60" y="15" width="500" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="title_meta" value="Module: Correspondence  |  SOW: D.8–D.9  |  RIBA: All Stages" style="text;html=1;align=right;verticalAlign=middle;resizable=0;points=[];autosize=1;fontColor=#4A6FA5;fontSize=9;fontFamily=Arial;" vertex="1" parent="1">
+          <mxGeometry x="720" y="15" width="390" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- Timestamp notice -->
+        <mxCell id="ts_notice" value="All activities are time-stamped by the system  |  FIDIC-aligned response deadlines enforced automatically" style="rounded=1;whiteSpace=wrap;fillColor=#D6E4F0;strokeColor=#4A6FA5;fontColor=#1B2A4A;fontStyle=1;fontSize=9;fontFamily=Arial;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="70" width="1090" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Letter type bar -->
+        <mxCell id="type_bar" value="CONTRACT DEADLINES (SC 1.3, 3.5, 20.2):  Contractor Notice Response = 3 CD  |  NOD = 48h (SC 1.1.2.32)  |  Engineer Response = 15 WD ext. 21 WD (SC 1.9)  |  Determination = 28 CD (SC 3.5.1)  |  Claim Notice = 28 CD / 7 CD for instructions (SC 20.2.1)" style="rounded=1;whiteSpace=wrap;fillColor=#FFF3E0;strokeColor=#E65100;fontColor=#424242;fontSize=8;fontFamily=Arial;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="100" width="1090" height="20" as="geometry"/>
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- SWIM LANES                              -->
+        <!-- ═══════════════════════════════════════ -->
+        <mxCell id="lane_sender" value="SENDER SIDE (HAI PM / Contracts Manager)" style="shape=swimlane;startSize=30;horizontal=1;fillColor=#D6E4F0;strokeColor=#4A6FA5;fontColor=#1B2A4A;fontStyle=1;fontSize=11;fontFamily=Arial;swimlaneLine=1;collapsible=0;rounded=1;arcSize=8;" vertex="1" parent="1">
+          <mxGeometry x="40" y="130" width="1090" height="380" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="lane_recipient" value="RECIPIENT SIDE (Contractor PM / Employer)" style="shape=swimlane;startSize=30;horizontal=1;fillColor=#FFF8E1;strokeColor=#C79100;fontColor=#1B2A4A;fontStyle=1;fontSize=11;fontFamily=Arial;swimlaneLine=1;collapsible=0;rounded=1;arcSize=8;" vertex="1" parent="1">
+          <mxGeometry x="40" y="510" width="1090" height="280" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="lane_system" value="SYSTEM SIDE (Auto-Tracking, SLA Enforcement, Escalation)" style="shape=swimlane;startSize=30;horizontal=1;fillColor=#E8F5E9;strokeColor=#1B5E20;fontColor=#1B2A4A;fontStyle=1;fontSize=11;fontFamily=Arial;swimlaneLine=1;collapsible=0;rounded=1;arcSize=8;" vertex="1" parent="1">
+          <mxGeometry x="40" y="790" width="1090" height="380" as="geometry"/>
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- START                                   -->
+        <!-- ═══════════════════════════════════════ -->
+        <mxCell id="start" value="START" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1B2A4A;strokeColor=#1B2A4A;fontColor=#FFFFFF;fontStyle=1;fontSize=12;fontFamily=Arial;" vertex="1" parent="lane_sender">
+          <mxGeometry x="455" y="45" width="120" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- STEP 1: Draft Letter                    -->
+        <!-- ═══════════════════════════════════════ -->
+        <mxCell id="step1" value="&lt;b&gt;Step 1: Sender (HAI PM)&lt;/b&gt;&lt;br&gt;&lt;br&gt;Draft Letter Using Template&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#555&quot;&gt;System enforces HAI reference numbering (A068-[CNT]-...)&lt;br&gt;Select type: Notice / NOD / Claim / Determination / Instruction / General&lt;br&gt;Paper-original signed by authorized representative (SC 1.3(a))&lt;br&gt;All communications addressed to Engineer (SC 1.3)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1B2A4A;strokeWidth=2;fontSize=10;fontFamily=Arial;align=center;verticalAlign=middle;arcSize=12;" vertex="1" parent="lane_sender">
+          <mxGeometry x="370" y="105" width="290" height="100" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="a_start_s1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#4A6FA5;strokeWidth=2;endArrow=blockThin;endFill=1;" edge="1" source="start" target="step1" parent="lane_sender">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Letter Type Decision -->
+        <mxCell id="type_decision" value="Review&lt;br&gt;Required?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#D6E4F0;strokeColor=#4A6FA5;strokeWidth=2;fontSize=10;fontStyle=1;fontFamily=Arial;fontColor=#1B2A4A;" vertex="1" parent="lane_sender">
+          <mxGeometry x="460" y="225" width="110" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="a_s1_td" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#4A6FA5;strokeWidth=2;endArrow=blockThin;endFill=1;" edge="1" source="step1" target="type_decision" parent="lane_sender">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- STEP 2: Contracts/PM Review             -->
+        <!-- ═══════════════════════════════════════ -->
+        <mxCell id="step2" value="&lt;b&gt;Step 2: HAI Contracts Manager&lt;/b&gt;&lt;br&gt;&lt;br&gt;Review High-Value / Contractual Letter&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#555&quot;&gt;Verify contractual basis, clause refs, time-bar compliance&lt;br&gt;Notices/Determinations/Claims require review (SC 1.3, 20.2)&lt;br&gt;&lt;b&gt;SLA: 1 WD internal turnaround&lt;/b&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1B2A4A;strokeWidth=2;fontSize=10;fontFamily=Arial;align=center;verticalAlign=middle;arcSize=12;" vertex="1" parent="lane_sender">
+          <mxGeometry x="100" y="230" width="250" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- Arrow: Decision YES → Step 2 (left) -->
+        <mxCell id="a_td_s2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#C79100;strokeWidth=2;endArrow=blockThin;endFill=1;" edge="1" source="type_decision" target="step2" parent="lane_sender">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="lbl_td_yes" value="Yes (Notices,&#xa;Determinations,&#xa;high-value)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=8;fontColor=#C79100;fontFamily=Arial;fontStyle=2;" vertex="1" connectable="0" parent="a_td_s2">
+          <mxGeometry x="-0.2" relative="1" as="geometry">
+            <mxPoint y="-15" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Review Decision -->
+        <mxCell id="rev_decision" value="Approved?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#D6E4F0;strokeColor=#4A6FA5;strokeWidth=2;fontSize=10;fontStyle=1;fontFamily=Arial;fontColor=#1B2A4A;" vertex="1" parent="lane_sender">
+          <mxGeometry x="170" y="335" width="100" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="a_s2_rev" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#4A6FA5;strokeWidth=2;endArrow=blockThin;endFill=1;" edge="1" source="step2" target="rev_decision" parent="lane_sender">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Revise loop back -->
+        <mxCell id="a_rev_back" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#B71C1C;strokeWidth=1.5;dashed=1;dashPattern=8 4;endArrow=blockThin;endFill=1;" edge="1" source="rev_decision" target="step1" parent="lane_sender">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="60" y="365"/>
+              <mxPoint x="60" y="155"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl_rev_back" value="Revise" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=8;fontColor=#B71C1C;fontFamily=Arial;fontStyle=3;" vertex="1" connectable="0" parent="a_rev_back">
+          <mxGeometry x="0.3" relative="1" as="geometry">
+            <mxPoint x="-12" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- STEP 3: Issue Letter                    -->
+        <!-- ═══════════════════════════════════════ -->
+        <mxCell id="step3" value="&lt;b&gt;Step 3: Sender&lt;/b&gt;&lt;br&gt;&lt;br&gt;Issue Letter with Tracking Number&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#555&quot;&gt;System assigns unique tracking reference&lt;br&gt;Delivery: hand (against receipt), mail/courier, or electronic (SC 1.3(c))&lt;br&gt;Electronic deemed received D+1 if no non-delivery notification (SC 1.3)&lt;br&gt;Fax: original must follow within 2 WD (SC 1.3)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1B2A4A;strokeWidth=2;fontSize=10;fontFamily=Arial;align=center;verticalAlign=middle;arcSize=12;" vertex="1" parent="lane_sender">
+          <mxGeometry x="730" y="225" width="280" height="100" as="geometry"/>
+        </mxCell>
+
+        <!-- Arrow: Decision NO (direct) → Step 3 -->
+        <mxCell id="a_td_s3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#1B5E20;strokeWidth=2;endArrow=blockThin;endFill=1;" edge="1" source="type_decision" target="step3" parent="lane_sender">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="lbl_td_no" value="No (General&#xa;correspondence)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=8;fontColor=#1B5E20;fontFamily=Arial;fontStyle=2;" vertex="1" connectable="0" parent="a_td_s3">
+          <mxGeometry x="-0.4" relative="1" as="geometry">
+            <mxPoint y="-15" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Arrow: Review Approved → Step 3 -->
+        <mxCell id="a_rev_s3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeColor=#1B5E20;strokeWidth=2;endArrow=blockThin;endFill=1;" edge="1" source="rev_decision" target="step3" parent="lane_sender">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="870" y="365"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl_rev_ok" value="Approved" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=8;fontColor=#1B5E20;fontFamily=Arial;fontStyle=3;" vertex="1" connectable="0" parent="a_rev_s3">
+          <mxGeometry x="-0.3" relative="1" as="geometry">
+            <mxPoint y="-10" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- STEP 4: Recipient Logs Receipt          -->
+        <!-- ═══════════════════════════════════════ -->
+        <mxCell id="step4" value="&lt;b&gt;Step 4: Recipient&lt;/b&gt;&lt;br&gt;&lt;br&gt;Log Receipt Date&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#555&quot;&gt;System records receipt timestamp&lt;br&gt;Delivery confirmation sent to Sender&lt;br&gt;Response deadline clock starts&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#C79100;strokeWidth=2;fontSize=10;fontFamily=Arial;align=center;verticalAlign=middle;arcSize=12;" vertex="1" parent="lane_recipient">
+          <mxGeometry x="390" y="50" width="250" height="100" as="geometry"/>
+        </mxCell>
+
+        <!-- Arrow: Step 3 → Step 4 (cross-lane) -->
+        <mxCell id="a_s3_s4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;strokeColor=#4A6FA5;strokeWidth=2;endArrow=blockThin;endFill=1;" edge="1" parent="1" source="step3" target="step4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="lbl_s3_s4" value="Delivered" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=8;fontColor=#555555;fontFamily=Arial;fontStyle=2;" vertex="1" connectable="0" parent="a_s3_s4">
+          <mxGeometry x="-0.1" relative="1" as="geometry">
+            <mxPoint x="25" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- STEP 7: Recipient Response              -->
+        <!-- ═══════════════════════════════════════ -->
+        <mxCell id="step7" value="&lt;b&gt;Step 7: Recipient&lt;/b&gt;&lt;br&gt;&lt;br&gt;Draft &amp; Submit Response&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#555&quot;&gt;Response logged and linked to original letter&lt;br&gt;System links correspondence chain&lt;br&gt;Late response flagged in system&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#C79100;strokeWidth=2;fontSize=10;fontFamily=Arial;align=center;verticalAlign=middle;arcSize=12;" vertex="1" parent="lane_recipient">
+          <mxGeometry x="390" y="170" width="250" height="100" as="geometry"/>
+        </mxCell>
+
+        <!-- Arrow: Step 4 → Step 7 -->
+        <mxCell id="a_s4_s7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#4A6FA5;strokeWidth=2;endArrow=blockThin;endFill=1;" edge="1" source="step4" target="step7" parent="lane_recipient">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="lbl_s4_s7" value="Prepares response&#xa;within deadline" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=8;fontColor=#555555;fontFamily=Arial;fontStyle=2;" vertex="1" connectable="0" parent="a_s4_s7">
+          <mxGeometry x="-0.1" relative="1" as="geometry">
+            <mxPoint x="45" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- SYSTEM: Step 5 — Track Deadline         -->
+        <!-- ═══════════════════════════════════════ -->
+        <mxCell id="step5" value="&lt;b&gt;Step 5: System — Auto-Track Response Deadline&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#555&quot;&gt;Auto-calculate deadline per contract:&lt;br&gt;Contractor Notice Response = D+3 CD (SC 1.3)  |  NOD = 48h (SC 1.1.2.32)&lt;br&gt;Claim Notice = D+28 CD or D+7 CD for instructions (SC 20.2.1)&lt;br&gt;Fully Detailed Claim = D+7 CD (SC 20.2.4)  |  Post no-obj = 48h (SC 20.2.4)&lt;br&gt;Engineer Response = 15 WD ext. 21 WD (SC 1.9)  |  Determination = 28 CD (SC 3.5.1)&lt;br&gt;Countdown clock visible to all parties&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1B5E20;strokeWidth=2;fontSize=10;fontFamily=Arial;align=center;verticalAlign=middle;arcSize=12;" vertex="1" parent="lane_system">
+          <mxGeometry x="80" y="50" width="400" height="100" as="geometry"/>
+        </mxCell>
+
+        <!-- Arrow: Step 4 → Step 5 (cross-lane) -->
+        <mxCell id="a_s4_s5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;strokeColor=#1B5E20;strokeWidth=2;endArrow=blockThin;endFill=1;" edge="1" parent="1" source="step4" target="step5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="lbl_s4_s5" value="Deadline triggered" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=8;fontColor=#1B5E20;fontFamily=Arial;fontStyle=2;" vertex="1" connectable="0" parent="a_s4_s5">
+          <mxGeometry x="-0.1" relative="1" as="geometry">
+            <mxPoint x="40" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- SYSTEM: Overdue Decision                -->
+        <!-- ═══════════════════════════════════════ -->
+        <mxCell id="overdue_decision" value="Response&lt;br&gt;Received?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#1B5E20;strokeWidth=2;fontSize=10;fontStyle=1;fontFamily=Arial;fontColor=#1B2A4A;" vertex="1" parent="lane_system">
+          <mxGeometry x="230" y="175" width="110" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="a_s5_od" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#4A6FA5;strokeWidth=2;endArrow=blockThin;endFill=1;" edge="1" source="step5" target="overdue_decision" parent="lane_system">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- STEP 6: SLA Escalation Chain            -->
+        <!-- ═══════════════════════════════════════ -->
+        <mxCell id="step6" value="&lt;b&gt;Step 6: System — SLA Escalation Chain&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:12px;&quot;&gt;&lt;b&gt;AUTOMATED ESCALATION&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#555&quot;&gt;L1 (D-2): Pre-deadline reminder&lt;br&gt;L2 (D+0): Deadline alert to assignee + manager&lt;br&gt;L3 (D+3): Department Manager / Discipline Lead escalation&lt;br&gt;L4 (D+7): HAI PM / Programme Director executive alert&lt;br&gt;L5: TIME-BAR CRITICAL — Contracts Manager + Legal alert (48h before expiry)&lt;br&gt;Override: Formal extension by Engineer stops clock&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEBEE;strokeColor=#B71C1C;strokeWidth=2;fontSize=10;fontFamily=Arial;align=center;verticalAlign=middle;arcSize=12;" vertex="1" parent="lane_system">
+          <mxGeometry x="560" y="155" width="340" height="120" as="geometry"/>
+        </mxCell>
+
+        <!-- Arrow: Overdue NO → Escalation -->
+        <mxCell id="a_od_esc" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#B71C1C;strokeWidth=2;endArrow=blockThin;endFill=1;" edge="1" source="overdue_decision" target="step6" parent="lane_system">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="lbl_od_no" value="NO — Overdue" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=9;fontColor=#B71C1C;fontFamily=Arial;fontStyle=3;" vertex="1" connectable="0" parent="a_od_esc">
+          <mxGeometry x="-0.2" relative="1" as="geometry">
+            <mxPoint y="-10" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Escalation detail boxes -->
+        <mxCell id="esc_d3" value="&lt;b&gt;L1-L2&lt;/b&gt;: Reminder + Alert" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF8E1;strokeColor=#C79100;strokeWidth=1;fontSize=9;fontFamily=Arial;align=center;verticalAlign=middle;arcSize=12;" vertex="1" parent="lane_system">
+          <mxGeometry x="570" y="290" width="100" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="esc_d5" value="&lt;b&gt;L3&lt;/b&gt;: Manager escalation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#E65100;strokeWidth=1;fontSize=9;fontFamily=Arial;align=center;verticalAlign=middle;arcSize=12;" vertex="1" parent="lane_system">
+          <mxGeometry x="690" y="290" width="100" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="esc_d7" value="&lt;b&gt;L4-L5&lt;/b&gt;: Executive + Legal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEBEE;strokeColor=#B71C1C;strokeWidth=1;fontSize=9;fontFamily=Arial;align=center;verticalAlign=middle;arcSize=12;" vertex="1" parent="lane_system">
+          <mxGeometry x="810" y="290" width="110" height="35" as="geometry"/>
+        </mxCell>
+
+        <!-- Arrows from escalation to detail boxes -->
+        <mxCell id="a_esc_d3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#C79100;strokeWidth=1;endArrow=blockThin;endFill=1;" edge="1" source="step6" target="esc_d3" parent="lane_system">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="a_esc_d5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#E65100;strokeWidth=1;endArrow=blockThin;endFill=1;" edge="1" source="step6" target="esc_d5" parent="lane_system">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="a_esc_d7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#B71C1C;strokeWidth=1;endArrow=blockThin;endFill=1;" edge="1" source="step6" target="esc_d7" parent="lane_system">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- END — Response Logged & Linked          -->
+        <!-- ═══════════════════════════════════════ -->
+        <mxCell id="end_box" value="&lt;b&gt;Response Linked &amp; Correspondence Closed&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#555&quot;&gt;System links response to original letter&lt;br&gt;Full audit trail available for claims &amp; disputes&lt;br&gt;Correspondence chain archived in EDMS&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#1B5E20;strokeWidth=2;fontSize=10;fontFamily=Arial;align=center;verticalAlign=middle;arcSize=12;" vertex="1" parent="lane_system">
+          <mxGeometry x="80" y="280" width="340" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- Arrow: Overdue YES → End -->
+        <mxCell id="a_od_end" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#1B5E20;strokeWidth=2;endArrow=blockThin;endFill=1;" edge="1" source="overdue_decision" target="end_box" parent="lane_system">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="lbl_od_yes" value="YES — On time" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=9;fontColor=#1B5E20;fontFamily=Arial;fontStyle=3;" vertex="1" connectable="0" parent="a_od_end">
+          <mxGeometry x="-0.2" relative="1" as="geometry">
+            <mxPoint x="30" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Arrow: Step 7 → End (cross-lane) -->
+        <mxCell id="a_s7_end" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;strokeColor=#4A6FA5;strokeWidth=2;dashed=1;dashPattern=8 4;endArrow=blockThin;endFill=1;" edge="1" parent="1" source="step7" target="end_box">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="lbl_s7_end" value="Response submitted" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=8;fontColor=#555555;fontFamily=Arial;fontStyle=2;" vertex="1" connectable="0" parent="a_s7_end">
+          <mxGeometry x="-0.1" relative="1" as="geometry">
+            <mxPoint x="40" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- END terminal -->
+        <mxCell id="end" value="END" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1B5E20;strokeColor=#1B5E20;fontColor=#FFFFFF;fontStyle=1;fontSize=12;fontFamily=Arial;" vertex="1" parent="lane_system">
+          <mxGeometry x="200" y="340" width="120" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- KPI PANEL                               -->
+        <!-- ═══════════════════════════════════════ -->
+        <mxCell id="kpi_panel" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#1B5E20;strokeWidth=2;dashed=1;dashPattern=12 4;arcSize=8;opacity=60;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1180" width="1090" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="kpi_text" value="&lt;b&gt;KPIs:&lt;/b&gt;  Response Time vs Contract SLA (SC 1.3)  |  Time-Bar Compliance Rate (SC 20.2, 3.3, 1.1.2.32)  |  Overdue Count by Type  |  Escalation Frequency (L1–L5)  |  Correspondence Volume by Phase" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];fontSize=9;fontColor=#1B2A4A;fontFamily=Arial;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1185" width="1050" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- BOUNDARY PANEL                          -->
+        <!-- ═══════════════════════════════════════ -->
+        <mxCell id="boundary_panel" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF8E1;strokeColor=#C79100;strokeWidth=1;dashed=1;dashPattern=8 4;arcSize=8;opacity=60;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1240" width="1090" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="boundary_text" value="&lt;b&gt;Boundary:&lt;/b&gt;  All formal correspondence per SC 1.3 (Notices, NODs, Claims, Determinations, Instructions, General).  Contractor has no direct communication with Employer unless instructed by Engineer.  All communications in English (SC 1.4). Links to PF-20 (Claims) and PF-16 (Variations)." style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];fontSize=8;fontColor=#424242;fontFamily=Arial;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1242" width="1050" height="36" as="geometry"/>
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- FOOTER                                  -->
+        <!-- ═══════════════════════════════════════ -->
+        <mxCell id="footer" value="HAI-SS-PFD-2026-002  |  Correspondence Management (FIDIC-Aligned)  |  CONFIDENTIAL" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=8;fontColor=#BDBDBD;fontFamily=Arial;" vertex="1" parent="1">
+          <mxGeometry x="300" y="1290" width="500" height="20" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

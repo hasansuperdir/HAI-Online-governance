@@ -1,0 +1,337 @@
+<mxfile host="app.diagrams.net" modified="2026-02-28T12:00:00.000Z" agent="HAI PMO" version="24.0.0" type="device">
+  <diagram id="pf01" name="PF-01: Document Review &amp; Approval">
+    <mxGraphModel dx="1800" dy="2400" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- SWIM LANES                              -->
+        <!-- ═══════════════════════════════════════ -->
+        <mxCell id="lane_originator" value="ORIGINATOR SIDE" style="shape=swimlane;startSize=30;horizontal=1;fillColor=#D6E4F0;strokeColor=#4A6FA5;fontColor=#1B2A4A;fontStyle=1;fontSize=11;fontFamily=Arial;swimlaneLine=1;collapsible=0;rounded=1;arcSize=8;" vertex="1" parent="1">
+          <mxGeometry x="40" y="120" width="1090" height="320" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="lane_consultant" value="CONSULTANT SIDE" style="shape=swimlane;startSize=30;horizontal=1;fillColor=#FFF8E1;strokeColor=#C79100;fontColor=#1B2A4A;fontStyle=1;fontSize=11;fontFamily=Arial;swimlaneLine=1;collapsible=0;rounded=1;arcSize=8;" vertex="1" parent="1">
+          <mxGeometry x="40" y="440" width="1090" height="480" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="lane_hai" value="HAI SIDE (Employer&apos;s Representative)" style="shape=swimlane;startSize=30;horizontal=1;fillColor=#E8F5E9;strokeColor=#1B5E20;fontColor=#1B2A4A;fontStyle=1;fontSize=11;fontFamily=Arial;swimlaneLine=1;collapsible=0;rounded=1;arcSize=8;" vertex="1" parent="1">
+          <mxGeometry x="40" y="920" width="1090" height="320" as="geometry"/>
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- TITLE BAR                               -->
+        <!-- ═══════════════════════════════════════ -->
+        <mxCell id="title_bar" value="" style="rounded=1;whiteSpace=wrap;fillColor=#1B2A4A;strokeColor=none;arcSize=8;" vertex="1" parent="1">
+          <mxGeometry x="40" y="10" width="1090" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="title_text" value="PF-01: Document Review &amp; Approval Process" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontColor=#FFFFFF;fontStyle=1;fontSize=16;fontFamily=Arial;" vertex="1" parent="1">
+          <mxGeometry x="60" y="15" width="420" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="title_meta" value="Module: EDMS  |  SOW: D.1–D.4, D.7  |  RIBA: All Stages" style="text;html=1;align=right;verticalAlign=middle;resizable=0;points=[];autosize=1;fontColor=#4A6FA5;fontSize=9;fontFamily=Arial;" vertex="1" parent="1">
+          <mxGeometry x="720" y="15" width="390" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- Contract SLA bar -->
+        <mxCell id="ts_notice" value="CONTRACT SLAs (Sub-Clause 3.1, 4.28.1):  Engineer Review = 15 WD (ext. to 22 WD max, then DEEMED REJECTED)  |  Resubmission = 3 WD  |  Further Docs = 48h  |  All activities time-stamped" style="rounded=1;whiteSpace=wrap;fillColor=#D6E4F0;strokeColor=#4A6FA5;fontColor=#1B2A4A;fontStyle=1;fontSize=8;fontFamily=Arial;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="70" width="1090" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Revision convention -->
+        <mxCell id="rev_notice" value="Revision Convention:  DOC-R[n].[m]  |  n = QC revision (increments on C/D)  |  m = QA sub-revision (increments on QA reject, resets on QC increment)  |  Ref: Sub-Clause 4.28.1" style="rounded=1;whiteSpace=wrap;fillColor=#FFF3E0;strokeColor=#E65100;fontColor=#424242;fontSize=8;fontFamily=Arial;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="100" width="1090" height="20" as="geometry"/>
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- START                                   -->
+        <!-- ═══════════════════════════════════════ -->
+        <mxCell id="start" value="START" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1B2A4A;strokeColor=#1B2A4A;fontColor=#FFFFFF;fontStyle=1;fontSize=12;fontFamily=Arial;" vertex="1" parent="lane_originator">
+          <mxGeometry x="455" y="45" width="120" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- STEP 1: Originator uploads              -->
+        <!-- ═══════════════════════════════════════ -->
+        <mxCell id="step1" value="&lt;b&gt;Step 1: Originator&lt;/b&gt;&lt;br&gt;&lt;br&gt;Upload Document Package&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#555&quot;&gt;Cover page, metadata, required attachments&lt;br&gt;System assigns DOC-R0.0 on first submission&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1B2A4A;strokeWidth=2;fontSize=10;fontFamily=Arial;align=center;verticalAlign=middle;arcSize=12;" vertex="1" parent="lane_originator">
+          <mxGeometry x="390" y="110" width="250" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- Arrow: START → Step 1 -->
+        <mxCell id="a_start_s1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#4A6FA5;strokeWidth=2;endArrow=blockThin;endFill=1;" edge="1" source="start" target="step1" parent="lane_originator">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- STEP 2: Originator DC                   -->
+        <!-- ═══════════════════════════════════════ -->
+        <mxCell id="step2" value="&lt;b&gt;Step 2: Originator Document Controller&lt;/b&gt;&lt;br&gt;&lt;br&gt;Log &amp; Process Submission&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#555&quot;&gt;Register in system, assign tracking number,&lt;br&gt;verify completeness, forward to Consultant DC&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1B2A4A;strokeWidth=2;fontSize=10;fontFamily=Arial;align=center;verticalAlign=middle;arcSize=12;" vertex="1" parent="lane_originator">
+          <mxGeometry x="390" y="225" width="250" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- Arrow: Step 1 → Step 2 -->
+        <mxCell id="a_s1_s2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#4A6FA5;strokeWidth=2;endArrow=blockThin;endFill=1;" edge="1" source="step1" target="step2" parent="lane_originator">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="lbl_s1_s2" value="Submitted" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=8;fontColor=#555555;fontFamily=Arial;fontStyle=2;" vertex="1" connectable="0" parent="a_s1_s2">
+          <mxGeometry x="-0.1" relative="1" as="geometry">
+            <mxPoint x="25" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- STEP 3: Consultant DC — QA Check        -->
+        <!-- ═══════════════════════════════════════ -->
+        <mxCell id="step3" value="&lt;b&gt;Step 3: Consultant Document Controller&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:12px;&quot;&gt;&lt;b&gt;QA CHECK&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#555&quot;&gt;Verify format, numbering, attachments,&lt;br&gt;discipline compliance, completeness&lt;br&gt;&lt;b&gt;SLA: Within 15 WD review window (SC 4.28.1)&lt;/b&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#C79100;strokeWidth=2;fontSize=10;fontFamily=Arial;align=center;verticalAlign=middle;arcSize=12;" vertex="1" parent="lane_consultant">
+          <mxGeometry x="390" y="45" width="250" height="100" as="geometry"/>
+        </mxCell>
+
+        <!-- Arrow: Step 2 → Step 3 (cross-lane) -->
+        <mxCell id="a_s2_s3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;strokeColor=#4A6FA5;strokeWidth=2;endArrow=blockThin;endFill=1;" edge="1" parent="1" source="step2" target="step3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="lbl_s2_s3" value="Forwarded" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=8;fontColor=#555555;fontFamily=Arial;fontStyle=2;" vertex="1" connectable="0" parent="a_s2_s3">
+          <mxGeometry x="-0.1" relative="1" as="geometry">
+            <mxPoint x="25" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- QA Decision Diamond -->
+        <mxCell id="qa_decision" value="QA&lt;br&gt;Pass?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF8E1;strokeColor=#C79100;strokeWidth=2;fontSize=10;fontStyle=1;fontFamily=Arial;fontColor=#1B2A4A;" vertex="1" parent="lane_consultant">
+          <mxGeometry x="460" y="170" width="110" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- Arrow: Step 3 → QA Decision -->
+        <mxCell id="a_s3_qa" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#4A6FA5;strokeWidth=2;endArrow=blockThin;endFill=1;" edge="1" source="step3" target="qa_decision" parent="lane_consultant">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- QA FAIL → Return to Originator -->
+        <mxCell id="qa_fail_box" value="&lt;b&gt;&lt;font color=&quot;#B71C1C&quot;&gt;QA FAIL&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#555&quot;&gt;Return to Originator&lt;br&gt;Sub-revision: R[n].m → R[n].(m+1)&lt;br&gt;&lt;b&gt;Resubmit within 3 WD (SC 3.1)&lt;/b&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEBEE;strokeColor=#B71C1C;strokeWidth=1.5;dashed=1;dashPattern=8 4;fontSize=10;fontFamily=Arial;align=center;verticalAlign=middle;arcSize=12;" vertex="1" parent="lane_consultant">
+          <mxGeometry x="730" y="175" width="180" height="70" as="geometry"/>
+        </mxCell>
+
+        <!-- Arrow: QA Decision → QA Fail (right) -->
+        <mxCell id="a_qa_fail" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#B71C1C;strokeWidth=2;endArrow=blockThin;endFill=1;" edge="1" source="qa_decision" target="qa_fail_box" parent="lane_consultant">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="lbl_qa_fail" value="FAIL" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=9;fontColor=#B71C1C;fontFamily=Arial;fontStyle=3;" vertex="1" connectable="0" parent="a_qa_fail">
+          <mxGeometry x="-0.2" relative="1" as="geometry">
+            <mxPoint y="-10" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Arrow: QA Fail → loop back to Step 1 (cross-lane) -->
+        <mxCell id="a_qa_loop" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#B71C1C;strokeWidth=1.5;dashed=1;dashPattern=8 4;endArrow=blockThin;endFill=1;" edge="1" parent="1" source="qa_fail_box" target="step1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1010" y="655"/>
+              <mxPoint x="1010" y="275"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl_qa_loop" value="Resubmit as&#xa;R[n].(m+1)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=8;fontColor=#B71C1C;fontFamily=Arial;fontStyle=2;" vertex="1" connectable="0" parent="a_qa_loop">
+          <mxGeometry x="0.3" relative="1" as="geometry">
+            <mxPoint x="15" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- STEP 4: Consultant Engineer — QC Review -->
+        <!-- ═══════════════════════════════════════ -->
+        <mxCell id="step4" value="&lt;b&gt;Step 4: Consultant Technical Designated Engineer&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:12px;&quot;&gt;&lt;b&gt;QC REVIEW &amp; STATUS ASSIGNMENT&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#555&quot;&gt;Technical review, markup, comments&lt;br&gt;Assign Status: A (No-objection) / B (No-objection w/ comments) / C (Fails to comply) / D (Rejected)&lt;br&gt;&lt;b&gt;If no Notice within 22 WD → DEEMED REJECTED (SC 4.28.1)&lt;/b&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#C79100;strokeWidth=2;fontSize=10;fontFamily=Arial;align=center;verticalAlign=middle;arcSize=12;" vertex="1" parent="lane_consultant">
+          <mxGeometry x="390" y="275" width="250" height="100" as="geometry"/>
+        </mxCell>
+
+        <!-- Arrow: QA Pass → Step 4 -->
+        <mxCell id="a_qa_s4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#1B5E20;strokeWidth=2;endArrow=blockThin;endFill=1;" edge="1" source="qa_decision" target="step4" parent="lane_consultant">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="lbl_qa_pass" value="PASS" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=9;fontColor=#1B5E20;fontFamily=Arial;fontStyle=3;" vertex="1" connectable="0" parent="a_qa_s4">
+          <mxGeometry x="-0.2" relative="1" as="geometry">
+            <mxPoint x="20" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- QC Decision Diamond -->
+        <mxCell id="qc_decision" value="Status&lt;br&gt;Code?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF8E1;strokeColor=#C79100;strokeWidth=2;fontSize=10;fontStyle=1;fontFamily=Arial;fontColor=#1B2A4A;" vertex="1" parent="lane_consultant">
+          <mxGeometry x="460" y="400" width="110" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- Arrow: Step 4 → QC Decision -->
+        <mxCell id="a_s4_qc" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#4A6FA5;strokeWidth=2;endArrow=blockThin;endFill=1;" edge="1" source="step4" target="qc_decision" parent="lane_consultant">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- STATUS CODE LEGEND (left of Step 4) -->
+        <mxCell id="legend_title" value="&lt;b&gt;Status Codes&lt;/b&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontColor=#1B2A4A;fontFamily=Arial;" vertex="1" parent="lane_consultant">
+          <mxGeometry x="80" y="275" width="100" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="legend_a" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1B5E20;strokeColor=none;arcSize=50;" vertex="1" parent="lane_consultant">
+          <mxGeometry x="80" y="300" width="26" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="legend_a_txt" value="&lt;b&gt;A&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontColor=#FFFFFF;fontFamily=Arial;" vertex="1" parent="lane_consultant">
+          <mxGeometry x="80" y="300" width="26" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="legend_a_desc" value="A — No-objection: Proceed to execution (SC 4.28.1(i))" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];fontSize=9;fontColor=#555;fontFamily=Arial;" vertex="1" parent="lane_consultant">
+          <mxGeometry x="112" y="300" width="250" height="26" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="legend_b" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C79100;strokeColor=none;arcSize=50;" vertex="1" parent="lane_consultant">
+          <mxGeometry x="80" y="330" width="26" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="legend_b_txt" value="&lt;b&gt;B&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontColor=#FFFFFF;fontFamily=Arial;" vertex="1" parent="lane_consultant">
+          <mxGeometry x="80" y="330" width="26" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="legend_b_desc" value="B — No-objection w/ minor comments (SC 4.28.1(i))" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];fontSize=9;fontColor=#555;fontFamily=Arial;" vertex="1" parent="lane_consultant">
+          <mxGeometry x="112" y="330" width="280" height="26" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="legend_c" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E65100;strokeColor=none;arcSize=50;" vertex="1" parent="lane_consultant">
+          <mxGeometry x="80" y="360" width="26" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="legend_c_txt" value="&lt;b&gt;C&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontColor=#FFFFFF;fontFamily=Arial;" vertex="1" parent="lane_consultant">
+          <mxGeometry x="80" y="360" width="26" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="legend_c_desc" value="C — Fails to comply: Revise &amp; resubmit in 3 WD (SC 4.28.1(ii))" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];fontSize=9;fontColor=#555;fontFamily=Arial;" vertex="1" parent="lane_consultant">
+          <mxGeometry x="112" y="360" width="280" height="26" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="legend_d" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#B71C1C;strokeColor=none;arcSize=50;" vertex="1" parent="lane_consultant">
+          <mxGeometry x="80" y="390" width="26" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="legend_d_txt" value="&lt;b&gt;D&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontColor=#FFFFFF;fontFamily=Arial;" vertex="1" parent="lane_consultant">
+          <mxGeometry x="80" y="390" width="26" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="legend_d_desc" value="D — Rejected: Complete redo, resubmit in 3 WD (SC 4.28.1(ii))" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];fontSize=9;fontColor=#555;fontFamily=Arial;" vertex="1" parent="lane_consultant">
+          <mxGeometry x="112" y="390" width="250" height="26" as="geometry"/>
+        </mxCell>
+
+        <!-- C/D branch → Resubmit (right) -->
+        <mxCell id="qc_resubmit" value="&lt;b&gt;&lt;font color=&quot;#E65100&quot;&gt;RESUBMIT&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#555&quot;&gt;Originator revises per comments&lt;br&gt;Main revision: R[n].m → R[(n+1)].0&lt;br&gt;&lt;b&gt;Resubmit within 3 WD (SC 3.1/4.28.1)&lt;/b&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#E65100;strokeWidth=1.5;fontSize=10;fontFamily=Arial;align=center;verticalAlign=middle;arcSize=12;" vertex="1" parent="lane_consultant">
+          <mxGeometry x="730" y="400" width="180" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- Arrow: QC Decision → C/D Resubmit -->
+        <mxCell id="a_qc_cd" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#E65100;strokeWidth=2;endArrow=blockThin;endFill=1;" edge="1" source="qc_decision" target="qc_resubmit" parent="lane_consultant">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="lbl_qc_cd" value="C or D" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=9;fontColor=#E65100;fontFamily=Arial;fontStyle=3;" vertex="1" connectable="0" parent="a_qc_cd">
+          <mxGeometry x="-0.2" relative="1" as="geometry">
+            <mxPoint y="-10" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Arrow: C/D Resubmit → loop back to Step 1 -->
+        <mxCell id="a_cd_loop" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#E65100;strokeWidth=1.5;dashed=1;dashPattern=8 4;endArrow=blockThin;endFill=1;" edge="1" parent="1" source="qc_resubmit" target="step1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1060" y="880"/>
+              <mxPoint x="1060" y="275"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl_cd_loop" value="Resubmit as&#xa;R[(n+1)].0" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=8;fontColor=#E65100;fontFamily=Arial;fontStyle=2;" vertex="1" connectable="0" parent="a_cd_loop">
+          <mxGeometry x="0.4" relative="1" as="geometry">
+            <mxPoint x="15" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- STEP 5: HAI Technical Designated Engineer         -->
+        <!-- ═══════════════════════════════════════ -->
+        <mxCell id="step5" value="&lt;b&gt;Step 5: HAI Technical Designated Engineer&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:12px;&quot;&gt;&lt;b&gt;ENDORSE OR REVISE STATUS&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#555&quot;&gt;Review Consultant&amp;#39;s assigned status&lt;br&gt;Endorse as-is OR revise to different code&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1B5E20;strokeWidth=2;fontSize=10;fontFamily=Arial;align=center;verticalAlign=middle;arcSize=12;" vertex="1" parent="lane_hai">
+          <mxGeometry x="390" y="50" width="250" height="100" as="geometry"/>
+        </mxCell>
+
+        <!-- Arrow: QC Decision A/B → Step 5 (cross-lane) -->
+        <mxCell id="a_qc_s5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#1B5E20;strokeWidth=2;endArrow=blockThin;endFill=1;" edge="1" parent="1" source="qc_decision" target="step5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="lbl_qc_ab" value="A or B" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=9;fontColor=#1B5E20;fontFamily=Arial;fontStyle=3;" vertex="1" connectable="0" parent="a_qc_s5">
+          <mxGeometry x="-0.2" relative="1" as="geometry">
+            <mxPoint x="20" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- HAI Endorsement Decision -->
+        <mxCell id="hai_decision" value="HAI&lt;br&gt;Endorses?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#1B5E20;strokeWidth=2;fontSize=10;fontStyle=1;fontFamily=Arial;fontColor=#1B2A4A;" vertex="1" parent="lane_hai">
+          <mxGeometry x="460" y="170" width="110" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- Arrow: Step 5 → HAI Decision -->
+        <mxCell id="a_s5_hd" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#4A6FA5;strokeWidth=2;endArrow=blockThin;endFill=1;" edge="1" source="step5" target="hai_decision" parent="lane_hai">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- HAI Revises → back to originator (C/D) -->
+        <mxCell id="hai_revise_box" value="&lt;b&gt;&lt;font color=&quot;#B71C1C&quot;&gt;STATUS REVISED&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#555&quot;&gt;HAI changes to C or D&lt;br&gt;R[n].m → R[(n+1)].0&lt;br&gt;Back to Originator&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEBEE;strokeColor=#B71C1C;strokeWidth=1.5;dashed=1;dashPattern=8 4;fontSize=10;fontFamily=Arial;align=center;verticalAlign=middle;arcSize=12;" vertex="1" parent="lane_hai">
+          <mxGeometry x="100" y="175" width="180" height="70" as="geometry"/>
+        </mxCell>
+
+        <!-- Arrow: HAI Decision → Revise (left) -->
+        <mxCell id="a_hd_rev" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#B71C1C;strokeWidth=2;endArrow=blockThin;endFill=1;" edge="1" source="hai_decision" target="hai_revise_box" parent="lane_hai">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="lbl_hd_rev" value="Revises to C/D" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=8;fontColor=#B71C1C;fontFamily=Arial;fontStyle=3;" vertex="1" connectable="0" parent="a_hd_rev">
+          <mxGeometry x="-0.2" relative="1" as="geometry">
+            <mxPoint y="-10" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Arrow: HAI Revise → loop back to Step 1 -->
+        <mxCell id="a_hai_loop" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#B71C1C;strokeWidth=1.5;dashed=1;dashPattern=8 4;endArrow=blockThin;endFill=1;" edge="1" parent="1" source="hai_revise_box" target="step1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="100" y="1130"/>
+              <mxPoint x="100" y="275"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl_hai_loop" value="Resubmit as&#xa;R[(n+1)].0" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=8;fontColor=#B71C1C;fontFamily=Arial;fontStyle=2;" vertex="1" connectable="0" parent="a_hai_loop">
+          <mxGeometry x="0.5" relative="1" as="geometry">
+            <mxPoint x="-15" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- END — Document Closed                   -->
+        <!-- ═══════════════════════════════════════ -->
+        <mxCell id="end" value="END — Document Approved &amp; Archived" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1B5E20;strokeColor=#1B5E20;fontColor=#FFFFFF;fontStyle=1;fontSize=11;fontFamily=Arial;" vertex="1" parent="lane_hai">
+          <mxGeometry x="420" y="270" width="190" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- Arrow: HAI Endorses → END -->
+        <mxCell id="a_hd_end" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#1B5E20;strokeWidth=2;endArrow=blockThin;endFill=1;" edge="1" source="hai_decision" target="end" parent="lane_hai">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="lbl_hd_end" value="Endorses A or B" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=9;fontColor=#1B5E20;fontFamily=Arial;fontStyle=3;" vertex="1" connectable="0" parent="a_hd_end">
+          <mxGeometry x="-0.2" relative="1" as="geometry">
+            <mxPoint x="25" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- HAI OVERRIDE PANEL                      -->
+        <!-- ═══════════════════════════════════════ -->
+        <mxCell id="override_panel" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#1B5E20;strokeWidth=2;dashed=1;dashPattern=12 4;arcSize=8;opacity=60;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1260" width="1090" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="override_icon" value="⚡" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1265" width="30" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="override_text" value="&lt;b&gt;HAI OVERRIDE AUTHORITY (SC 3.1)&lt;/b&gt;  —  Engineer (HAI) has full visibility and can intervene/override at ANY step.  Approval does not relieve Contractor from any obligation (SC 3.1 para 12).  Further docs may be requested at any time (48h response, SC 3.1).  Override logged with timestamp &amp; rationale." style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];fontSize=9;fontColor=#1B2A4A;fontFamily=Arial;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="95" y="1265" width="1020" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- FOOTER                                  -->
+        <!-- ═══════════════════════════════════════ -->
+        <mxCell id="footer" value="HAI-SS-PFD-2026-001  |  Document Review &amp; Approval Process  |  CONFIDENTIAL" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=8;fontColor=#BDBDBD;fontFamily=Arial;" vertex="1" parent="1">
+          <mxGeometry x="300" y="1330" width="500" height="20" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

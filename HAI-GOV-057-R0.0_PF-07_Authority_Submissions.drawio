@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="draw.io" modified="2026-03-01T00:00:00Z" version="1.0" type="document">
+  <diagram id="PF-07" name="PF-07_Authority_Submission">
+    <mxGraphModel dx="1500" dy="1500" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- TITLE BAR -->
+        <mxCell id="title_bg" value="" style="rectangle;fillColor=#1B2A4A;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1169" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="title_text" value="PF-07: Authority Submission Tracking" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=white;fontSize=28;fontStyle=bold;fontFamily=sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="20" y="0" width="500" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="module_text" value="Module: Authority | SOW: A.1 | RIBA: Stages 2-5" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#E8E8E8;fontSize=12;fontFamily=sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="20" y="40" width="450" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- SLA BAR -->
+        <mxCell id="sla_bg" value="" style="rectangle;fillColor=#F5F5F5;strokeColor=#CCCCCC;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="0" y="80" width="1169" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="sla_text" value="AUTHORITY SUBMISSIONS: QCDD | Kahramaa | Ashghal | Civil Defense | DC1→Gate 2 | DC2→Gate 3.1 | BCC→Gate 6 | NOC per authority | Regulatory Freeze if resubmission in frozen stage" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontFamily=sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="10" y="85" width="1149" height="70" as="geometry" />
+        </mxCell>
+        
+        <!-- SWIM LANE HEADERS -->
+        <mxCell id="lane_header_design" value="HAI Technical Design (Technical Design Manager + PM)" style="rectangle;fillColor=#D6E4F0;strokeColor=#1B2A4A;strokeWidth=2;fontSize=12;fontStyle=bold;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="0" y="160" width="340" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_header_auth" value="External Authority" style="rectangle;fillColor=#FFF8E1;strokeColor=#1B2A4A;strokeWidth=2;fontSize=12;fontStyle=bold;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="340" y="160" width="390" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_header_system" value="System (Tracking, Gate Update)" style="rectangle;fillColor=#E8F5E9;strokeColor=#1B2A4A;strokeWidth=2;fontSize=12;fontStyle=bold;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="730" y="160" width="439" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- SWIM LANE SEPARATORS -->
+        <mxCell id="sep1" value="" style="line;strokeColor=#CCCCCC;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="340" y="160" width="1" height="950" as="geometry" />
+        </mxCell>
+        <mxCell id="sep2" value="" style="line;strokeColor=#CCCCCC;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="730" y="160" width="1" height="950" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 1: Prepare Submission Package -->
+        <mxCell id="step1" value="Technical Design Manager: Prepare Submission Package&#10;Per authority checklist (DC1/DC2/BCC/NOC)&#10;Compile all required documents" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="20" y="220" width="300" height="90" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 1 -->
+        <mxCell id="arr1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="step1" target="step2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 2: HAI PM Review & Authorize -->
+        <mxCell id="step2" value="HAI PM: Review &amp; Authorize&#10;Verify completeness, quality check&#10;Sign-off for submission&#10;SLA: 1 WD" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="20" y="350" width="300" height="90" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 2 -->
+        <mxCell id="arr2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="step1" target="step2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- DECISION: Package Complete? -->
+        <mxCell id="dec1" value="Package&#10;Complete?" style="rhombus;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="50" y="480" width="120" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 3 -->
+        <mxCell id="arr3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="step2" target="dec1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- RETURN BOX: Incomplete Package -->
+        <mxCell id="return1" value="Return to Technical Design Mgr&#10;Complete missing items" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEBEE;strokeColor=#B71C1C;strokeWidth=2;fontSize=9;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="30" y="600" width="130" height="70" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 4 (from dec1 NO) -->
+        <mxCell id="arr4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#B71C1C;strokeWidth=2;" edge="1" parent="1" source="dec1" target="return1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 3: Technical Design Manager Submit to Authority -->
+        <mxCell id="step3" value="Technical Design Manager: Submit to Authority&#10;Log submission date, ref number&#10;Track timeline (30-60 days typical)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="360" y="480" width="340" height="90" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 5 (from dec1 YES) -->
+        <mxCell id="arr5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="dec1" target="step3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="edgeLabel" x="220" y="520" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- STEP 4: System Track Status -->
+        <mxCell id="step4" value="System: Track Submission Status&#10;Submitted / Review / Comments / Approved / Rejected&#10;Monitor authority timeline" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="750" y="480" width="330" height="90" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 6 -->
+        <mxCell id="arr6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="step3" target="step4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- DECISION: Authority Decision -->
+        <mxCell id="dec2" value="Authority&#10;Decision?" style="rhombus;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="800" y="620" width="120" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 7 -->
+        <mxCell id="arr7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="step4" target="dec2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- DECISION PATH: Comments -->
+        <mxCell id="comments" value="Authority Issues Comments" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE082;strokeColor=#F57F17;strokeWidth=2;fontSize=9;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="950" y="630" width="140" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 8a (from dec2 Comments) -->
+        <mxCell id="arr8a" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#F57F17;strokeWidth=2;" edge="1" parent="1" source="dec2" target="comments">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 5: Technical Design Manager Process Comments -->
+        <mxCell id="step5" value="Technical Design Manager: Process Comments&#10;Revise documents as required&#10;Resubmit if needed" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="360" y="630" width="340" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 9 -->
+        <mxCell id="arr9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#F57F17;strokeWidth=2;" edge="1" parent="1" source="comments" target="step5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- REJECTION PATH -->
+        <mxCell id="reject" value="Authority Rejects Submission" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEBEE;strokeColor=#B71C1C;strokeWidth=2;fontSize=9;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="750" y="755" width="170" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 10 (from dec2 Rejected) -->
+        <mxCell id="arr10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#B71C1C;strokeWidth=2;" edge="1" parent="1" source="dec2" target="reject">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="edgeLabel" x="820" y="705" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- ARROW from step5 back up to dec2 (resubmit loop) -->
+        <mxCell id="arr11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#F57F17;strokeWidth=2;" edge="1" parent="1" source="step5" target="step3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="edgeLabel" x="350" y="580" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- APPROVAL PATH -->
+        <mxCell id="approved" value="Authority Approves Submission" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C8E6C9;strokeColor=#388E3C;strokeWidth=2;fontSize=9;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="750" y="850" width="170" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 12 (from dec2 Approved) -->
+        <mxCell id="arr12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#388E3C;strokeWidth=2;" edge="1" parent="1" source="dec2" target="approved">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="edgeLabel" x="850" y="705" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- STEP 6: System Update Stage Gate -->
+        <mxCell id="step6" value="System: Update Stage Gate Checklist&#10;DC1→Stage 2, DC2→Stage 3.1, BCC→Stage 6&#10;Record authority approval date" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="750" y="990" width="330" height="90" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 13 -->
+        <mxCell id="arr13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#388E3C;strokeWidth=2;" edge="1" parent="1" source="approved" target="step6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- END ELLIPSE -->
+        <mxCell id="end" value="END: Authority Approval Recorded" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1B2A4A;strokeColor=#333333;strokeWidth=2;fontSize=11;fontColor=white;fontStyle=bold;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="750" y="1140" width="330" height="70" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 14 -->
+        <mxCell id="arr14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="step6" target="end">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- KPI BOX -->
+        <mxCell id="kpi_box" value="KPIs: Authority cycle duration, Conditions closure rate, Resubmission count, Gate progression" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1976D2;strokeWidth=1;fontSize=9;fontFamily=sans-serif;align=center;" vertex="1" parent="1">
+          <mxGeometry x="20" y="1140" width="300" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- BOUNDARY BOX -->
+        <mxCell id="boundary_box" value="Boundary: External authority submissions only. Excludes internal HAI design review." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F57F17;strokeWidth=1;fontSize=9;fontFamily=sans-serif;align=center;" vertex="1" parent="1">
+          <mxGeometry x="360" y="1140" width="340" height="50" as="geometry" />
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

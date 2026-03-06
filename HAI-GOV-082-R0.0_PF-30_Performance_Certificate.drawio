@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="draw.io" modified="2026-03-02T00:00:00Z" version="1.0" type="document">
+  <diagram id="PF-30" name="PF-30_Performance_Certificate">
+    <mxGraphModel dx="1500" dy="1500" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title_bg" value="" style="rectangle;fillColor=#1B2A4A;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1169" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="title_text" value="PF-30: Performance Certificate Management" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=white;fontSize=28;fontStyle=bold;fontFamily=sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="20" y="0" width="500" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="module_text" value="Module: Contract Admin | SOW: FIDIC Cl. 11.9 | Performance certificate at end of DLP per FIDIC 1999 Red Book" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#E8E8E8;fontSize=12;fontFamily=sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="20" y="40" width="600" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="sla_bg" value="" style="rectangle;fillColor=#F5F5F5;strokeColor=#CCCCCC;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="0" y="80" width="1169" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="sla_text" value="PERFORMANCE CERT: DLP monitoring monthly | Defect notifications within 7 BD | Rectification per agreed timeline | Certificate within 28 days after DLP expiry | Outstanding obligations tracked | Unfulfilled obligations clause applied if needed" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontFamily=sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="10" y="85" width="1149" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_header_1" value="DLP Monitoring" style="rectangle;fillColor=#D6E4F0;strokeColor=#1B2A4A;strokeWidth=2;fontSize=12;fontStyle=bold;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="0" y="160" width="389" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="sep1" value="" style="line;strokeColor=#CCCCCC;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="389" y="160" width="1" height="650" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_header_2" value="Defect Rectification" style="rectangle;fillColor=#FFF8E1;strokeColor=#1B2A4A;strokeWidth=2;fontSize=12;fontStyle=bold;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="389" y="160" width="389" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="sep2" value="" style="line;strokeColor=#CCCCCC;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="778" y="160" width="1" height="650" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_header_3" value="Certificate Issuance" style="rectangle;fillColor=#E8F5E9;strokeColor=#1B2A4A;strokeWidth=2;fontSize=12;fontStyle=bold;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="778" y="160" width="391" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="s10" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#333333;strokeColor=#333333;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="179" y="220" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="s11" value="DLP Commencement
+TOC date reference
+Monitoring schedule set" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="119" y="270" width="150" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="s12" value="Defect Identification
+Regular inspections
+User-reported defects" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="119" y="390" width="150" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="s13" value="Rectification Notice
+Contractor notification
+Timeline for remedy" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="508" y="510" width="150" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="s14" value="All Defects
+Rectified?" style="rhombus;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="523" y="630" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="s15" value="DLP Expiry Review
+Final inspection
+Compliance assessment" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="508" y="750" width="150" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="s16" value="Performance Certificate
+Engineer recommendation
+ER/HAI endorsement" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="898" y="870" width="150" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="s17" value="Obligations Complete
+All liabilities discharged
+Warranty period noted" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="898" y="990" width="150" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="arr18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="s10" target="s11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="s11" target="s12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="s12" target="s13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="s13" target="s14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="s14" target="s15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="s15" target="s16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="s16" target="s17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

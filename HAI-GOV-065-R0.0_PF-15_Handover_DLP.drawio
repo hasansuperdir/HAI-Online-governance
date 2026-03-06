@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="Electron" modified="2026-03-01" agent="5.0" version="14.0">
+  <diagram id="PF-15" name="PF-15 Handover & DLP">
+    <mxGraphModel dx="100" dy="100" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1169" pageHeight="827">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" parent="1" value="PF-15: Handover &amp; DLP Management" style="shape=rectangle;fillColor=%231B2A4A;strokeColor=none;fontColor=white;fontSize=18;fontStyle=bold" vertex="1">
+          <mxGeometry x="0" y="0" width="1169" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="sla" parent="1" value="HANDOVER &amp; DLP (SC 10, 11): TOC=307 CD | DLP=400 days from TOC | Retention: 5% at TOC, 5% at DLP end | Defect SLA per severity | Delay damages QAR 39,800/d + 4,000/d" style="shape=rectangle;fillColor=%23D6E4F0;strokeColor=%23333333;fontSize=8" vertex="1">
+          <mxGeometry x="0" y="60" width="1169" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="lane1" parent="1" value="CONTRACTOR SIDE" style="shape=rectangle;fillColor=%23D6E4F0;strokeColor=%23333333;fontSize=11;fontStyle=bold" vertex="1">
+          <mxGeometry x="0" y="110" width="389" height="650" as="geometry"/>
+        </mxCell>
+        <mxCell id="lane2" parent="1" value="HAI + FM + BU SIDE" style="shape=rectangle;fillColor=%23FFF8E1;strokeColor=%23333333;fontSize=11;fontStyle=bold" vertex="1">
+          <mxGeometry x="389" y="110" width="390" height="650" as="geometry"/>
+        </mxCell>
+        <mxCell id="lane3" parent="1" value="SYSTEM SIDE" style="shape=rectangle;fillColor=%23E8F5E9;strokeColor=%23333333;fontSize=11;fontStyle=bold" vertex="1">
+          <mxGeometry x="779" y="110" width="390" height="650" as="geometry"/>
+        </mxCell>
+        <mxCell id="start" parent="1" value="START" style="ellipse;fillColor=%231B2A4A;strokeColor=%23333333;fontColor=white;fontSize=10;fontStyle=bold" vertex="1">
+          <mxGeometry x="410" y="750" width="50" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="step1" parent="1" value="Initiate Handover&#10;(as-builts, O&amp;M, training, certs)" style="shape=rounded=1;fillColor=white;strokeColor=%23333333;fontSize=9" vertex="1">
+          <mxGeometry x="380" y="160" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="step2" parent="1" value="Upload Deliverables&#10;Indexed vs Checklist&#10;SLA: 10 WD" style="shape=rounded=1;fillColor=white;strokeColor=%23333333;fontSize=9" vertex="1">
+          <mxGeometry x="50" y="280" width="140" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="step3" parent="1" value="Asset Accepted?&#10;(FM review, 5 WD)" style="shape=polygon;points=[[50,0],[100,50],[50,100],[0,50]];fillColor=white;strokeColor=%23333333;fontSize=9" vertex="1">
+          <mxGeometry x="410" y="370" width="120" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="step4" parent="1" value="Operational Accepted?&#10;(BU sign-off, 3 WD)" style="shape=polygon;points=[[50,0],[100,50],[50,100],[0,50]];fillColor=white;strokeColor=%23333333;fontSize=9" vertex="1">
+          <mxGeometry x="410" y="500" width="120" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="step5" parent="1" value="Gate 6: Taking Over&#10;Approved&#10;(FM + BU sign-off)" style="shape=rounded=1;fillColor=white;strokeColor=%23333333;fontSize=9" vertex="1">
+          <mxGeometry x="380" y="640" width="140" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="step6" parent="1" value="DLP Clock Auto-Start&#10;400 days from TOC (SC 11)" style="shape=rounded=1;fillColor=white;strokeColor=%23333333;fontSize=9" vertex="1">
+          <mxGeometry x="820" y="620" width="140" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="kpi" parent="1" value="KPIs:&#10;• Handover %&#10;• Defect closure rate&#10;• DLP actual vs plan" style="shape=rounded=1;fillColor=%23FFF9C4;strokeColor=%23333333;fontSize=8;align=left" vertex="1">
+          <mxGeometry x="850" y="750" width="140" height="70" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

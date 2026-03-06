@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="draw.io" modified="2026-03-01T00:00:00Z" version="1.0" type="document">
+  <diagram id="PF-18" name="PF-18_Report_Generation">
+    <mxGraphModel dx="1500" dy="1500" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- TITLE BAR -->
+        <mxCell id="title_bg" value="" style="rectangle;fillColor=#1B2A4A;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1169" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="title_text" value="PF-18: Report Generation & Export" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=white;fontSize=28;fontStyle=bold;fontFamily=sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="20" y="0" width="450" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="module_text" value="Module: KPI | SOW: K.4-K.8 | RIBA: Performance reporting and distribution" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#E8E8E8;fontSize=12;fontFamily=sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="20" y="40" width="500" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- SLA BAR -->
+        <mxCell id="sla_bg" value="" style="rectangle;fillColor=#F5F5F5;strokeColor=#CCCCCC;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="0" y="80" width="1169" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="sla_text" value="REPORT MANAGEMENT: Template library (standard/custom) | Scope configuration | Data compilation | PDF/Excel export | Scheduled distribution | SLA: 24-hour delivery" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontFamily=sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="10" y="85" width="1149" height="70" as="geometry" />
+        </mxCell>
+        
+        <!-- SWIM LANE HEADERS -->
+        <mxCell id="lane_header_1" value="User Request" style="rectangle;fillColor=#D6E4F0;strokeColor=#1B2A4A;strokeWidth=2;fontSize=12;fontStyle=bold;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="0" y="160" width="300" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_header_2" value="Report Engine" style="rectangle;fillColor=#FFF8E1;strokeColor=#1B2A4A;strokeWidth=2;fontSize=12;fontStyle=bold;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="300" y="160" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_header_3" value="Output & Distribution" style="rectangle;fillColor=#E8F5E9;strokeColor=#1B2A4A;strokeWidth=2;fontSize=12;fontStyle=bold;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="730" y="160" width="439" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- SWIM LANE SEPARATORS -->
+        <mxCell id="sep1" value="" style="line;strokeColor:#CCCCCC;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="300" y="160" width="1" height="750" as="geometry" />
+        </mxCell>
+        <mxCell id="sep2" value="" style="line;strokeColor:#CCCCCC;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="730" y="160" width="1" height="750" as="geometry" />
+        </mxCell>
+        
+        <!-- START -->
+        <mxCell id="start" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#333333;strokeColor=#333333;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="135" y="220" width="30" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 1: Select Template -->
+        <mxCell id="step1" value="Select Template&#10;Standard/Custom options&#10;Review parameters" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor:#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="75" y="280" width="150" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 1 -->
+        <mxCell id="arr1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor:#333333;strokeWidth=2;" edge="1" parent="1" source="start" target="step1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 2: Configure Scope -->
+        <mxCell id="step2" value="Configure Scope&#10;Date range selection&#10;Filter criteria" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor:#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="75" y="400" width="150" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 2 -->
+        <mxCell id="arr2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor:#333333;strokeWidth=2;" edge="1" parent="1" source="step1" target="step2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 3: Compile Data -->
+        <mxCell id="step3" value="Compile Data&#10;Query datasets&#10;Aggregate metrics" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor:#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="345" y="400" width="150" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 3 -->
+        <mxCell id="arr3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor:#333333;strokeWidth=2;" edge="1" parent="1" source="step2" target="step3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 4: Generate PDF/Excel -->
+        <mxCell id="step4" value="Generate PDF/Excel&#10;Format rendering&#10;Embed charts" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="345" y="520" width="150" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 4 -->
+        <mxCell id="arr4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor:#333333;strokeWidth=2;" edge="1" parent="1" source="step3" target="step4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- DECISION: Schedule? -->
+        <mxCell id="dec1" value="Schedule&#10;Repeat?" style="rhombus;whiteSpace=wrap;html=1;fillColor=white;strokeColor:#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="760" y="520" width="100" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 5 -->
+        <mxCell id="arr5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor:#333333;strokeWidth=2;" edge="1" parent="1" source="step4" target="dec1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 5: Schedule Distribution -->
+        <mxCell id="step5" value="Schedule Distribution&#10;Frequency setup&#10;Recipient list" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor:#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="760" y="400" width="150" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 6 -->
+        <mxCell id="arr6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor:#333333;strokeWidth=2;" edge="1" parent="1" source="dec1" target="step5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="edgeLabel" x="780" y="460" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- STEP 6: Distribute Report -->
+        <mxCell id="step6" value="Distribute Report&#10;Email delivery&#10;Portal upload" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor:#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="760" y="280" width="150" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 7 -->
+        <mxCell id="arr7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor:#333333;strokeWidth=2;" edge="1" parent="1" source="step5" target="step6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 7b (from dec1 NO) -->
+        <mxCell id="arr7b" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor:#333333;strokeWidth=2;" edge="1" parent="1" source="dec1" target="step6">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="edgeLabel" x="730" y="340" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- END -->
+        <mxCell id="end" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#333333;strokeColor=#333333;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="135" y="650" width="30" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- BOUNDARY BOX -->
+        <mxCell id="boundary" value="SLA: 24-hour delivery" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#2E7D32;strokeWidth=2;fontSize=9;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="345" y="640" width="140" height="60" as="geometry" />
+        </Cell>
+        
+        <!-- ARROW 8 -->
+        <mxCell id="arr8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor:#333333;strokeWidth=2;" edge="1" parent="1" source="step6" target="end">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="draw.io" modified="2026-03-01T00:00:00Z" version="1.0" type="document">
+  <diagram id="PF-05" name="PF-05_Stage_Gate">
+    <mxGraphModel dx="1500" dy="1500" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- TITLE BAR -->
+        <mxCell id="title_bg" value="" style="rectangle;fillColor=#1B2A4A;strokeColor=none;width=1200;height=80;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1169" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="title_text" value="PF-05: Stage-Gate Progression" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=white;fontSize=28;fontStyle=bold;fontFamily=sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="20" y="0" width="500" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="module_text" value="Module: Stage Gate | SOW: SG.1-SG.7 | RIBA: All transitions" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#E8E8E8;fontSize=12;fontFamily=sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="20" y="40" width="600" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- CONTRACT SLA BAR -->
+        <mxCell id="sla_bg" value="" style="rectangle;fillColor=#F5F5F5;strokeColor=#CCCCCC;strokeWidth=1;width=1200;height=75;" vertex="1" parent="1">
+          <mxGeometry x="0" y="80" width="1169" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="sla_text" value="STAGE GATES: All exit criteria must pass (all-or-nothing) | Technical Design Freeze @ Gate 4 | Spatial Coordination Freeze @ Gate 3 (SC 14.1) | TOC @ Gate 6 (SC 10.1, 307 CD) | DLP @ Gate 7 (400 days) | Final Account @ Gate 8" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontFamily=sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="10" y="85" width="1149" height="65" as="geometry" />
+        </mxCell>
+        
+        <!-- SWIM LANE HEADERS -->
+        <mxCell id="lane_header_pm" value="HAI PM" style="rectangle;fillColor=#D6E4F0;strokeColor=#1B2A4A;strokeWidth=2;fontSize=12;fontStyle=bold;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="0" y="155" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_header_auth" value="Gate Authority" style="rectangle;fillColor=#D6E4F0;strokeColor=#1B2A4A;strokeWidth=2;fontSize=12;fontStyle=bold;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="320" y="155" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_header_system" value="System (Validation/Freeze Rules)" style="rectangle;fillColor=#E8F5E9;strokeColor=#1B2A4A;strokeWidth=2;fontSize=12;fontStyle=bold;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="640" y="155" width="529" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- SWIM LANE SEPARATORS -->
+        <mxCell id="sep1" value="" style="line;strokeColor=#CCCCCC;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="320" y="155" width="1" height="950" as="geometry" />
+        </mxCell>
+        <mxCell id="sep2" value="" style="line;strokeColor=#CCCCCC;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="640" y="155" width="1" height="950" as="geometry" />
+        </mxCell>
+        
+        <!-- START ELLIPSE -->
+        <mxCell id="start" value="START: Request Stage Advancement" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1B2A4A;strokeColor=#333333;strokeWidth=2;fontSize=11;fontColor=white;fontStyle=bold;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="30" y="210" width="260" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 1: PM Request stage advancement -->
+        <mxCell id="step1" value="HAI PM: Request Stage Advancement&#10;Submit for next gate review" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="30" y="300" width="260" height="70" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 2: System validate exit criteria -->
+        <mxCell id="step2" value="System: Validate ALL Exit Criteria&#10;RIBA, RICS, Qatar, GSAS, HAI standards&#10;Open gate package checklist&#10;SLA: Real-time" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="700" y="290" width="240" height="90" as="geometry" />
+        </mxCell>
+        
+        <!-- DECISION: Criteria Complete? -->
+        <mxCell id="dec1" value="Exit Criteria&#10;Complete?" style="rhombus;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="360" y="310" width="120" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- BLOCK BOX -->
+        <mxCell id="block_box" value="BLOCK: Incomplete&#10;Show missing items&#10;Return to PM" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEBEE;strokeColor=#B71C1C;strokeWidth=2;fontSize=9;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="510" y="330" width="110" height="70" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 3: System route to Gate Approver -->
+        <mxCell id="step3" value="System: Route to Gate Approver(s)&#10;Per delegation matrix&#10;SLA: Real-time" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="700" y="420" width="240" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 4: Gate Authority review -->
+        <mxCell id="step4" value="Gate Approver: Review Gate Package&#10;Checklist, evidence, deliverables&#10;SLA: 5 WD" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF8E1;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="360" y="430" width="260" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- DECISION: Gate Approved? -->
+        <mxCell id="dec2" value="Gate&#10;Approved?" style="rhombus;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="360" y="550" width="120" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- REJECTION BOX -->
+        <mxCell id="reject_box" value="REJECTED&#10;Return to PM for remediation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEBEE;strokeColor=#B71C1C;strokeWidth=2;fontSize=9;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="510" y="570" width="110" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 5: System advance stage -->
+        <mxCell id="step5" value="System: Advance Stage&#10;Activate FREEZE RULES&#10;Create next stage checklist&#10;SLA: 1 WD" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="700" y="550" width="240" height="90" as="geometry" />
+        </mxCell>
+        
+        <!-- GATE 3 BOX: Spatial Coordination Freeze -->
+        <mxCell id="gate3_box" value="GATE 3 (Spatial Coordination)&#10;Spatial Coordination Freeze Activated (SC 14.1)&#10;Contract Price Locked" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F57F17;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="30" y="680" width="260" height="75" as="geometry" />
+        </mxCell>
+        
+        <!-- GATE 4 BOX: Technical Design Freeze -->
+        <mxCell id="gate4_box" value="GATE 4 (Technical Design)&#10;Technical Design Freeze Activated (SC 4.28.1)&#10;No further design submissions" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F57F17;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="30" y="795" width="260" height="75" as="geometry" />
+        </mxCell>
+        
+        <!-- GATE 6 BOX: TOC -->
+        <mxCell id="gate6_box" value="GATE 6 (TOC)&#10;Taking Over Certificate (SC 10.1)&#10;Completion = 307 calendar days" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F57F17;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="30" y="910" width="260" height="75" as="geometry" />
+        </mxCell>
+        
+        <!-- GATE 7 BOX: DLP End -->
+        <mxCell id="gate7_box" value="GATE 7 (DLP End)&#10;Defects Liability Period = 400 days from TOC&#10;Final defect rectification deadline" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F57F17;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="30" y="1025" width="260" height="85" as="geometry" />
+        </mxCell>
+        
+        <!-- GATE 8 BOX: Final Account -->
+        <mxCell id="gate8_box" value="GATE 8 (Final Account)&#10;SC 14.11-14.14 Finalization&#10;Close contract records" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F57F17;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="30" y="1140" width="260" height="75" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 6: System create next checklist -->
+        <mxCell id="step6" value="System: Create Next Stage Checklist&#10;Auto-populate tasks & deliverables&#10;SLA: 1 WD" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="700" y="690" width="240" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- END ELLIPSE -->
+        <mxCell id="end" value="END: Stage Advancement Complete" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1B2A4A;strokeColor=#333333;strokeWidth=2;fontSize=11;fontColor=white;fontStyle=bold;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="700" y="1100" width="240" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- KPI BOX -->
+        <mxCell id="kpi_box" value="KPIs: Stage cycle duration, Gate approval turnaround, Checklist completion rate" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1976D2;strokeWidth=1;fontSize=9;fontFamily=sans-serif;align=center;" vertex="1" parent="1">
+          <mxGeometry x="360" y="1100" width="260" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- BOUNDARY BOX -->
+        <mxCell id="boundary_box" value="Boundary: Stage transitions only. Excludes within-stage activities. Gates are all-or-nothing." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F57F17;strokeWidth=1;fontSize=9;fontFamily=sans-serif;align=center;" vertex="1" parent="1">
+          <mxGeometry x="360" y="1170" width="260" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROWS -->
+        <mxCell id="arr1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor:#333333;strokeWidth=2;" edge="1" parent="1" source="start" target="step1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor:#333333;strokeWidth=2;" edge="1" parent="1" source="step1" target="step2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="step2" target="dec1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr3_2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#B71C1C;strokeWidth=2;" edge="1" parent="1" source="dec1" target="block_box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr3_3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="dec1" target="step3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="edgeLabel" x="740" y="360" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor:#333333;strokeWidth=2;" edge="1" parent="1" source="step3" target="step4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor:#333333;strokeWidth=2;" edge="1" parent="1" source="step4" target="dec2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr5_2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#B71C1C;strokeWidth=2;" edge="1" parent="1" source="dec2" target="reject_box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr5_3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="dec2" target="step5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="edgeLabel" x="740" y="590" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor:#333333;strokeWidth=2;" edge="1" parent="1" source="step5" target="step6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr_gates" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#F57F17;strokeWidth=1;dashed=1;" edge="1" parent="1" source="step5" target="gate3_box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr_end" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor:#333333;strokeWidth=2;" edge="1" parent="1" source="step6" target="end">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

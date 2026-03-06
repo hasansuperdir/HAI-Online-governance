@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="draw.io" modified="2026-03-01T00:00:00Z" version="1.0" type="document">
+  <diagram id="PF-11" name="PF-11_Spatial Coordination_Cost_Management">
+    <mxGraphModel dx="1500" dy="1500" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- TITLE BAR -->
+        <mxCell id="title_bg" value="" style="rectangle;fillColor=#1B2A4A;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1169" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="title_text" value="PF-11: Spatial Coordination Cost Management" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=white;fontSize=28;fontStyle=bold;fontFamily=sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="20" y="0" width="450" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="module_text" value="Module: Financial Control | SOW: G.7-G.10 | RIBA: Cost planning and baseline management" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#E8E8E8;fontSize=12;fontFamily=sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="20" y="40" width="500" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- SLA BAR -->
+        <mxCell id="sla_bg" value="" style="rectangle;fillColor=#F5F5F5;strokeColor=#CCCCCC;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="0" y="80" width="1169" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="sla_text" value="COST MANAGEMENT: RICS L0-L4 competencies applied | Gate 3 baseline freeze | Monthly FFC review cycles | Variance thresholds: 5% Minor, 10% Major, 15% Critical | Escalation to CEO for approval" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontFamily=sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="10" y="85" width="1149" height="70" as="geometry" />
+        </mxCell>
+        
+        <!-- SWIM LANE HEADERS -->
+        <mxCell id="lane_header_1" value="HAI QS (Quantity Surveyor)" style="rectangle;fillColor=#D6E4F0;strokeColor=#1B2A4A;strokeWidth=2;fontSize=12;fontStyle=bold;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="0" y="160" width="300" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_header_2" value="HAI Finance + PM" style="rectangle;fillColor=#FFF8E1;strokeColor=#1B2A4A;strokeWidth=2;fontSize=12;fontStyle=bold;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="300" y="160" width="400" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_header_3" value="System & Escalation" style="rectangle;fillColor=#E8F5E9;strokeColor=#1B2A4A;strokeWidth=2;fontSize=12;fontStyle=bold;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="700" y="160" width="469" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- SWIM LANE SEPARATORS -->
+        <mxCell id="sep1" value="" style="line;strokeColor=#CCCCCC;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="300" y="160" width="1" height="750" as="geometry" />
+        </mxCell>
+        <mxCell id="sep2" value="" style="line;strokeColor=#CCCCCC;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="700" y="160" width="1" height="750" as="geometry" />
+        </mxCell>
+        
+        <!-- START -->
+        <mxCell id="start" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#333333;strokeColor=#333333;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="135" y="220" width="30" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 1: Cost Planning -->
+        <mxCell id="step1" value="Cost Plan Development&#10;RICS L0-L4 competencies&#10;Detailed estimating" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="75" y="280" width="150" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 1 -->
+        <mxCell id="arr1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="start" target="step1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 2: Spatial Coordination Baseline -->
+        <mxCell id="step2" value="Spatial Coordination Baseline Approval&#10;Gate 3 review&#10;Freeze version control" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="335" y="280" width="150" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 2 -->
+        <mxCell id="arr2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="step1" target="step2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 3: Monthly FFC Review -->
+        <mxCell id="step3" value="Monthly FFC Review&#10;Expenditure vs Spatial Coordination&#10;Trend analysis" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="335" y="400" width="150" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 3 -->
+        <mxCell id="arr3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="step2" target="step3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- DECISION: Variance Check -->
+        <mxCell id="dec1" value="Variance&#10;Check" style="rhombus;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="360" y="520" width="100" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 4 -->
+        <mxCell id="arr4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="step3" target="dec1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- VARIANCE THRESHOLDS BOX -->
+        <mxCell id="var_box" value="5% Minor | 10% Major | 15% Critical" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF8E1;strokeColor=#F9A825;strokeWidth=2;fontSize=9;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="730" y="530" width="180" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 4: Report Generation -->
+        <mxCell id="step4" value="Generate Variance Report&#10;Financial impact analysis&#10;Corrective actions" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="335" y="640" width="150" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 5 -->
+        <mxCell id="arr5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="dec1" target="step4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- ESCALATION: L1-L3 -->
+        <mxCell id="esc1" value="L1 Escalation&#10;PM &amp; Finance review" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE5B4;strokeColor=#FF8C00;strokeWidth=2;fontSize=9;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="730" y="640" width="160" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 6 -->
+        <mxCell id="arr6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="step4" target="esc1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 5: CEO Amendment -->
+        <mxCell id="step5" value="CEO Approval&#10;Spatial Coordination amendment if needed&#10;Authority adjustment" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="335" y="760" width="150" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 7 -->
+        <mxCell id="arr7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="esc1" target="step5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 6: Update Baseline -->
+        <mxCell id="step6" value="Update Cost Baseline&#10;Version control increment&#10;Document approval" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="75" y="760" width="150" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 8 -->
+        <mxCell id="arr8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="step5" target="step6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- END -->
+        <mxCell id="end" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#333333;strokeColor=#333333;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="135" y="880" width="30" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 9 -->
+        <mxCell id="arr9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="step6" target="end">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

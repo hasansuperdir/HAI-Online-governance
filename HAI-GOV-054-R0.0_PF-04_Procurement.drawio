@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="draw.io" modified="2026-03-01T00:00:00Z" version="1.0" type="document">
+  <diagram id="PF-04" name="PF-04_Procurement">
+    <mxGraphModel dx="1500" dy="1500" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- TITLE BAR -->
+        <mxCell id="title_bg" value="" style="rectangle;fillColor=#1B2A4A;strokeColor=none;width=1200;height=80;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1169" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="title_text" value="PF-04: Procurement (RFP to LPO)" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=white;fontSize=28;fontStyle=bold;fontFamily=sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="20" y="0" width="400" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="module_text" value="Module: Procurement | SOW: P.1-P.3, SG.3 | RIBA: Stage 3" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#E8E8E8;fontSize=12;fontFamily=sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="20" y="40" width="600" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- CONTRACT SLA BAR -->
+        <mxCell id="sla_bg" value="" style="rectangle;fillColor=#F5F5F5;strokeColor=#CCCCCC;strokeWidth=1;width=1200;height=60;" vertex="1" parent="1">
+          <mxGeometry x="0" y="80" width="1169" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="sla_text" value="CONTRACT CONTEXT: Spatial Coordination Freeze (Gate 3/SG.3) must be approved before procurement | Employer consent for subcontractors (SC 4.4) | Delegation matrix per SC 3.1 | ERP PO sync on approval" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontFamily=sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="10" y="85" width="1149" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- SWIM LANE HEADERS -->
+        <mxCell id="lane_header_hai" value="HAI (PM/Procurement/Contracts)" style="rectangle;fillColor=#D6E4F0;strokeColor=#1B2A4A;strokeWidth=2;fontSize=12;fontStyle=bold;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="0" y="140" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_header_supplier" value="Supplier/Contractor" style="rectangle;fillColor=#D6E4F0;strokeColor=#1B2A4A;strokeWidth=2;fontSize=12;fontStyle=bold;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="320" y="140" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_header_system" value="System/Approval/ERP" style="rectangle;fillColor=#E8F5E9;strokeColor=#1B2A4A;strokeWidth=2;fontSize=12;fontStyle=bold;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="640" y="140" width="529" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- SWIM LANE SEPARATORS -->
+        <mxCell id="sep1" value="" style="line;strokeColor=#CCCCCC;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="320" y="140" width="1" height="650" as="geometry" />
+        </mxCell>
+        <mxCell id="sep2" value="" style="line;strokeColor=#CCCCCC;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="640" y="140" width="1" height="650" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 1: HAI PM Initiate procurement -->
+        <mxCell id="step1" value="HAI PM: Initiate Procurement Request&#10;Scope, budget ref, estimated value&#10;SLA: Gate 3 approval (Spatial Coordination Freeze)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="30" y="200" width="260" height="70" as="geometry" />
+        </mxCell>
+        
+        <!-- DECISION: Spatial Coordination Freeze approved? -->
+        <mxCell id="dec1" value="Spatial Coordination Freeze&#10;Approved?" style="rhombus;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="360" y="195" width="120" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- REJECT BOX 1 -->
+        <mxCell id="reject1" value="Return to PM&#10;Awaiting Spatial Coordination Approval" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEBEE;strokeColor=#B71C1C;strokeWidth=2;fontSize=9;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="360" y="290" width="120" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 2: HAI Procurement Prepare RFP -->
+        <mxCell id="step2" value="HAI Procurement: Prepare RFP Package&#10;Specs, terms, bid schedule&#10;SC 4.4 (Employer consent required)&#10;SLA: 3 WD" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="30" y="310" width="260" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 3: System Issue RFP -->
+        <mxCell id="step3" value="System: Issue RFP to Suppliers&#10;Log response deadline, enforce tracking&#10;SLA: 1 WD" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="700" y="310" width="240" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 4: System - Supplier receive RFP -->
+        <mxCell id="step4" value="Supplier: Receive & Review RFP&#10;Prepare bid response" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="360" y="430" width="120" height="70" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 5: Supplier submit bid -->
+        <mxCell id="step5" value="Supplier: Submit Bid&#10;Before deadline" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="360" y="530" width="120" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 6: HAI Procurement Evaluate bids -->
+        <mxCell id="step6" value="HAI Procurement & PM: Evaluate Bids&#10;Comparison sheet, compliance check&#10;SLA: 5 WD" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="30" y="520" width="260" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- DECISION: Bid Compliant? -->
+        <mxCell id="dec2" value="Bid&#10;Compliant?" style="rhombus;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="360" y="645" width="120" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- REJECT BOX 2 -->
+        <mxCell id="reject2" value="Non-Compliant Bid&#10;Return to supplier or re-tender" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEBEE;strokeColor=#B71C1C;strokeWidth=2;fontSize=9;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="510" y="660" width="110" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 7: HAI Contracts Recommendation memo -->
+        <mxCell id="step7" value="HAI Contracts: Prepare Recommendation&#10;Award/re-tender decision&#10;SLA: 2 WD" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="30" y="640" width="260" height="70" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 8: Approval Authority -->
+        <mxCell id="step8" value="Approval Authority: Approve Award&#10;Per delegation matrix (SC 3.1)&#10;Route by LPO value threshold&#10;SLA: 3 WD" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF8E1;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="30" y="745" width="260" height="90" as="geometry" />
+        </mxCell>
+        
+        <!-- DECISION: Award Approved? -->
+        <mxCell id="dec3" value="Award&#10;Approved?" style="rhombus;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="360" y="760" width="120" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- REJECT BOX 3 -->
+        <mxCell id="reject3" value="Not Approved&#10;Remediation required" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEBEE;strokeColor=#B71C1C;strokeWidth=2;fontSize=9;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="510" y="780" width="110" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 9: HAI Contracts Issue LPO/Contract -->
+        <mxCell id="step9" value="HAI Contracts: Issue LPO/Contract&#10;Execute and send to supplier&#10;SLA: 2 WD" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="30" y="880" width="260" height="70" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 10: System Push to ERP -->
+        <mxCell id="step10" value="System: Push LPO to ERP&#10;Create PO, sync approval&#10;SLA: 1 WD" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="700" y="880" width="240" height="70" as="geometry" />
+        </mxCell>
+        
+        <!-- DECISION: ERP Sync OK? -->
+        <mxCell id="dec4" value="ERP Sync&#10;Success?" style="rhombus;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="360" y="890" width="120" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- FALLBACK BOX -->
+        <mxCell id="fallback" value="Manual PO Creation Fallback&#10;Ticket logged, escalation L2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEBEE;strokeColor=#B71C1C;strokeWidth=2;fontSize=9;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="510" y="905" width="110" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- END ELLIPSE -->
+        <mxCell id="end" value="END: LPO Issued & PO Created" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1B2A4A;strokeColor=#333333;strokeWidth=2;fontSize=11;fontColor=white;fontStyle=bold;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="30" y="1000" width="260" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- KPI BOX -->
+        <mxCell id="kpi_box" value="KPIs: Procurement cycle time, Bid evaluation turnaround, PO creation lag" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1976D2;strokeWidth=1;fontSize=9;fontFamily=sans-serif;align=center;" vertex="1" parent="1">
+          <mxGeometry x="700" y="1000" width="240" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- BOUNDARY BOX -->
+        <mxCell id="boundary_box" value="Boundary: RFP through LPO. Excludes expedited purchases. Post-award changes → PF-03 Variation." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F57F17;strokeWidth=1;fontSize=9;fontFamily=sans-serif;align=center;" vertex="1" parent="1">
+          <mxGeometry x="30" y="1080" width="260" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROWS -->
+        <mxCell id="arr1_1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="step1" target="dec1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr1_2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#B71C1C;strokeWidth=2;" edge="1" parent="1" source="dec1" target="reject1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="edgeLabel" x="380" y="330" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr1_3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="dec1" target="step2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="edgeLabel" x="220" y="330" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="step2" target="step3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="step3" target="step4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="step4" target="step5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="step5" target="step6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="step6" target="dec2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr6_2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#B71C1C;strokeWidth=2;" edge="1" parent="1" source="dec2" target="reject2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr6_3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="dec2" target="step7">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="edgeLabel" x="220" y="680" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="step7" target="step8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="step8" target="dec3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr8_2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#B71C1C;strokeWidth=2;" edge="1" parent="1" source="dec3" target="reject3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr8_3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="dec3" target="step9">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="edgeLabel" x="220" y="820" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="step9" target="step10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="step10" target="dec4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr10_2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#B71C1C;strokeWidth=2;" edge="1" parent="1" source="dec4" target="fallback">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr10_3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="dec4" target="end">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="edgeLabel" x="220" y="970" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

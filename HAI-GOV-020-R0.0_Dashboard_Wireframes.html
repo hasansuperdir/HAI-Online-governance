@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HAI-GOV-020 | SkyStruct Dashboard Wireframes</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:#f5f6fa;color:#2E4057}
+.header{background:#2E4057;color:#fff;padding:16px 24px;display:flex;justify-content:space-between;align-items:center}
+.header h1{font-size:18px;font-weight:600}
+.header .doc-ref{font-size:12px;opacity:.7}
+.nav{background:#fff;border-bottom:1px solid #e0e0e0;padding:0 24px;display:flex;gap:0;overflow-x:auto}
+.nav button{padding:12px 20px;border:none;background:none;cursor:pointer;font-size:13px;color:#666;border-bottom:3px solid transparent;white-space:nowrap}
+.nav button.active{color:#2E4057;border-bottom-color:#4A90D9;font-weight:600}
+.nav button:hover{background:#f5f6fa}
+.dashboard{display:none;padding:24px;max-width:1400px;margin:0 auto}
+.dashboard.active{display:block}
+.dash-title{font-size:16px;font-weight:600;margin-bottom:16px;color:#2E4057}
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:24px}
+.kpi-card{background:#fff;border-radius:8px;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.1);border-left:4px solid #4A90D9}
+.kpi-card.green{border-left-color:#27AE60}
+.kpi-card.amber{border-left-color:#F39C12}
+.kpi-card.red{border-left-color:#E74C3C}
+.kpi-label{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px}
+.kpi-value{font-size:28px;font-weight:700;margin:4px 0}
+.kpi-target{font-size:11px;color:#888}
+.kpi-card.green .kpi-value{color:#27AE60}
+.kpi-card.amber .kpi-value{color:#F39C12}
+.kpi-card.red .kpi-value{color:#E74C3C}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:24px}
+@media(max-width:900px){.grid-2,.grid-3{grid-template-columns:1fr}}
+.card{background:#fff;border-radius:8px;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.card h3{font-size:13px;font-weight:600;margin-bottom:12px;color:#2E4057;border-bottom:1px solid #eee;padding-bottom:8px}
+.mini-table{width:100%;font-size:11px;border-collapse:collapse}
+.mini-table th{background:#f5f6fa;padding:6px 8px;text-align:left;font-weight:600;border-bottom:1px solid #ddd}
+.mini-table td{padding:6px 8px;border-bottom:1px solid #f0f0f0}
+.mini-table tr:hover{background:#f9f9fa}
+.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:600}
+.badge-green{background:#E8F5E9;color:#27AE60}
+.badge-amber{background:#FFF3E0;color:#F39C12}
+.badge-red{background:#FFEBEE;color:#E74C3C}
+.badge-blue{background:#E3F2FD;color:#1976D2}
+.bar-chart{display:flex;align-items:flex-end;gap:8px;height:120px;padding:8px 0}
+.bar{background:#4A90D9;border-radius:3px 3px 0 0;flex:1;min-width:20px;position:relative;transition:height .3s}
+.bar:hover{background:#2E4057}
+.bar-label{position:absolute;bottom:-18px;left:50%;transform:translateX(-50%);font-size:9px;color:#888;white-space:nowrap}
+.bar-val{position:absolute;top:-16px;left:50%;transform:translateX(-50%);font-size:9px;font-weight:600;color:#2E4057}
+.donut-container{display:flex;align-items:center;justify-content:center;gap:16px}
+.donut{width:100px;height:100px}
+.legend{font-size:11px}
+.legend-item{display:flex;align-items:center;gap:6px;margin-bottom:4px}
+.legend-dot{width:10px;height:10px;border-radius:50%}
+.action-list{list-style:none}
+.action-list li{padding:8px 0;border-bottom:1px solid #f0f0f0;font-size:12px;display:flex;justify-content:space-between;align-items:center}
+.action-list li:last-child{border:none}
+.priority-high{color:#E74C3C;font-weight:600}
+.priority-med{color:#F39C12;font-weight:600}
+.priority-low{color:#27AE60;font-weight:600}
+.stage-indicator{display:flex;gap:4px;margin-bottom:24px}
+.stage-dot{flex:1;height:8px;border-radius:4px;background:#e0e0e0}
+.stage-dot.active{background:#4A90D9}
+.stage-dot.complete{background:#27AE60}
+.wireframe-note{background:#FFF9C4;border:1px dashed #F9A825;border-radius:4px;padding:8px 12px;font-size:11px;margin-bottom:16px;color:#666}
+</style>
+</head>
+<body>
+
+<div class="header">
+    <div>
+        <h1>SkyStruct Platform — Dashboard Wireframes</h1>
+        <div class="doc-ref">HAI-GOV-020-R0.0 | ARADA Governance | For software configurator reference</div>
+    </div>
+</div>
+
+<div class="nav" id="nav">
+    <button class="active" onclick="showDash('er')">ER Dashboard (R01-R02)</button>
+    <button onclick="showDash('cost')">Cost Dashboard (R03-R05)</button>
+    <button onclick="showDash('quality')">Quality Dashboard (R06-R08)</button>
+    <button onclick="showDash('contractor')">Contractor Portal (R10-R11)</button>
+    <button onclick="showDash('consultant')">Consultant Portal (R12)</button>
+    <button onclick="showDash('governance')">Governance Dashboard (R01-R13)</button>
+</div>
+
+<!-- ER Dashboard -->
+<div class="dashboard active" id="dash-er">
+    <div class="wireframe-note">WIREFRAME: ER Programme Director / Project Manager Dashboard — Ref: GOV-016, GOV-017</div>
+    <div class="dash-title">Programme Overview — Stage 5 (Construction)</div>
+    <div class="stage-indicator">
+        <div class="stage-dot complete" title="Stage 0"></div>
+        <div class="stage-dot complete" title="Stage 1"></div>
+        <div class="stage-dot complete" title="Stage 2"></div>
+        <div class="stage-dot complete" title="Stage 3"></div>
+        <div class="stage-dot complete" title="Stage 4"></div>
+        <div class="stage-dot active" title="Stage 5 (Current)"></div>
+        <div class="stage-dot" title="Stage 6"></div>
+        <div class="stage-dot" title="Stage 7"></div>
+        <div class="stage-dot" title="Stage 8"></div>
+    </div>
+    <div class="kpi-row">
+        <div class="kpi-card green"><div class="kpi-label">Submittal Response (KPI-001)</div><div class="kpi-value">11.2 CD</div><div class="kpi-target">Target: ≤14 CD</div></div>
+        <div class="kpi-card green"><div class="kpi-label">Approval Efficiency (KPI-011)</div><div class="kpi-value">93%</div><div class="kpi-target">Target: ≥90%</div></div>
+        <div class="kpi-card amber"><div class="kpi-label">Budget Variance (KPI-010)</div><div class="kpi-value">+7.2%</div><div class="kpi-target">Target: ≤5%</div></div>
+        <div class="kpi-card green"><div class="kpi-label">Gate Compliance (KPI-005)</div><div class="kpi-value">100%</div><div class="kpi-target">Target: 100%</div></div>
+        <div class="kpi-card red"><div class="kpi-label">Risk Register Currency (KPI-008)</div><div class="kpi-value">72%</div><div class="kpi-target">Target: ≥90%</div></div>
+    </div>
+    <div class="grid-2">
+        <div class="card">
+            <h3>Pending Actions (My Queue)</h3>
+            <ul class="action-list">
+                <li><span>Approve VO-0034 — MEP Scope Change</span><span class="priority-high">Due: 2 CD</span></li>
+                <li><span>Endorse IPC #12 — QAR 4,230,000</span><span class="priority-high">Due: 3 CD</span></li>
+                <li><span>Review Gate 5.3 Checklist</span><span class="priority-med">Due: 5 CD</span></li>
+                <li><span>Sign-off Contractor Score — Feb 2026</span><span class="priority-med">Due: 7 CD</span></li>
+                <li><span>Acknowledge Risk R-045 escalation</span><span class="priority-low">Due: 10 CD</span></li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>Submittal Status (Last 30 Days)</h3>
+            <div class="bar-chart">
+                <div class="bar" style="height:90%"><div class="bar-val">45</div><div class="bar-label">Received</div></div>
+                <div class="bar" style="height:60%;background:#27AE60"><div class="bar-val">30</div><div class="bar-label">Approved (A/B)</div></div>
+                <div class="bar" style="height:16%;background:#F39C12"><div class="bar-val">8</div><div class="bar-label">Revise (C)</div></div>
+                <div class="bar" style="height:6%;background:#E74C3C"><div class="bar-val">3</div><div class="bar-label">Rejected (D)</div></div>
+                <div class="bar" style="height:8%;background:#888"><div class="bar-val">4</div><div class="bar-label">Pending</div></div>
+            </div>
+        </div>
+    </div>
+    <div class="grid-3">
+        <div class="card">
+            <h3>SLA Compliance</h3>
+            <table class="mini-table">
+                <tr><th>SLA</th><th>Compliance</th><th>Status</th></tr>
+                <tr><td>SLA-001 Submittals</td><td>94%</td><td><span class="badge badge-green">On Track</span></td></tr>
+                <tr><td>SLA-003 Correspondence</td><td>88%</td><td><span class="badge badge-amber">Warning</span></td></tr>
+                <tr><td>SLA-006 IPC Cert</td><td>100%</td><td><span class="badge badge-green">On Track</span></td></tr>
+                <tr><td>SLA-009 NCR Closure</td><td>78%</td><td><span class="badge badge-red">Breach</span></td></tr>
+            </table>
+        </div>
+        <div class="card">
+            <h3>Escalations Active</h3>
+            <table class="mini-table">
+                <tr><th>Item</th><th>Level</th><th>Days Overdue</th></tr>
+                <tr><td>NCR-0089</td><td><span class="badge badge-red">L3</span></td><td>5 CD</td></tr>
+                <tr><td>RFI-0234</td><td><span class="badge badge-amber">L2</span></td><td>2 CD</td></tr>
+                <tr><td>VO-0031</td><td><span class="badge badge-amber">L2</span></td><td>1 CD</td></tr>
+            </table>
+        </div>
+        <div class="card">
+            <h3>Upcoming Gate Milestones</h3>
+            <table class="mini-table">
+                <tr><th>Gate</th><th>Target</th><th>Readiness</th></tr>
+                <tr><td>Gate 5.4</td><td>15 Apr 2026</td><td><span class="badge badge-green">87%</span></td></tr>
+                <tr><td>Gate 6.0</td><td>30 Jun 2026</td><td><span class="badge badge-blue">42%</span></td></tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Cost Dashboard -->
+<div class="dashboard" id="dash-cost">
+    <div class="wireframe-note">WIREFRAME: Cost & Financial Dashboard — Ref: PF-03, PF-08, PF-11, GOV-017</div>
+    <div class="dash-title">Financial Overview</div>
+    <div class="kpi-row">
+        <div class="kpi-card green"><div class="kpi-label">IPC Cycle Time (KPI-004)</div><div class="kpi-value">22 CD</div><div class="kpi-target">Target: ≤28 CD (FIDIC 14.6)</div></div>
+        <div class="kpi-card amber"><div class="kpi-label">Variation Processing (KPI-003)</div><div class="kpi-value">32 CD</div><div class="kpi-target">Target: ≤28 CD</div></div>
+        <div class="kpi-card amber"><div class="kpi-label">Budget Variance (KPI-010)</div><div class="kpi-value">+7.2%</div><div class="kpi-target">Target: ≤5%</div></div>
+        <div class="kpi-card green"><div class="kpi-label">Freeze Exception Rate (KPI-009)</div><div class="kpi-value">1.8%</div><div class="kpi-target">Target: ≤2%</div></div>
+    </div>
+    <div class="grid-2">
+        <div class="card">
+            <h3>IPC Summary</h3>
+            <table class="mini-table">
+                <tr><th>IPC #</th><th>Applied (QAR)</th><th>Certified (QAR)</th><th>Status</th></tr>
+                <tr><td>#12</td><td>4,560,000</td><td>4,230,000</td><td><span class="badge badge-amber">Under Review</span></td></tr>
+                <tr><td>#11</td><td>3,890,000</td><td>3,740,000</td><td><span class="badge badge-green">Paid</span></td></tr>
+                <tr><td>#10</td><td>4,120,000</td><td>3,980,000</td><td><span class="badge badge-green">Paid</span></td></tr>
+            </table>
+        </div>
+        <div class="card">
+            <h3>Variation Register</h3>
+            <table class="mini-table">
+                <tr><th>VO #</th><th>Description</th><th>Value (QAR)</th><th>Status</th></tr>
+                <tr><td>VO-034</td><td>MEP Scope Change</td><td>890,000</td><td><span class="badge badge-amber">Pending Approval</span></td></tr>
+                <tr><td>VO-033</td><td>Foundation Redesign</td><td>1,450,000</td><td><span class="badge badge-green">Approved</span></td></tr>
+                <tr><td>VO-032</td><td>Facade Material Change</td><td>320,000</td><td><span class="badge badge-green">Approved</span></td></tr>
+            </table>
+        </div>
+    </div>
+    <div class="grid-2">
+        <div class="card">
+            <h3>Budget vs Actual</h3>
+            <div class="bar-chart">
+                <div class="bar" style="height:100%;background:#4A90D9"><div class="bar-val">120M</div><div class="bar-label">Spatial Coordination</div></div>
+                <div class="bar" style="height:75%;background:#27AE60"><div class="bar-val">90M</div><div class="bar-label">Committed</div></div>
+                <div class="bar" style="height:55%;background:#F39C12"><div class="bar-val">66M</div><div class="bar-label">Paid</div></div>
+                <div class="bar" style="height:85%;background:#E74C3C"><div class="bar-val">102M</div><div class="bar-label">Forecast</div></div>
+            </div>
+        </div>
+        <div class="card">
+            <h3>Claims Register</h3>
+            <table class="mini-table">
+                <tr><th>Claim</th><th>FIDIC Ref</th><th>Amount (QAR)</th><th>Status</th></tr>
+                <tr><td>CLM-003</td><td>20.1</td><td>2,340,000</td><td><span class="badge badge-red">Under Assessment</span></td></tr>
+                <tr><td>CLM-002</td><td>8.4 (EOT)</td><td>N/A (45 CD)</td><td><span class="badge badge-amber">Determination Due</span></td></tr>
+                <tr><td>CLM-001</td><td>20.1</td><td>890,000</td><td><span class="badge badge-green">Settled</span></td></tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Quality Dashboard -->
+<div class="dashboard" id="dash-quality">
+    <div class="wireframe-note">WIREFRAME: Quality & HSE Dashboard — Ref: PF-10, PF-31, GOV-017</div>
+    <div class="dash-title">Quality & Site Supervision</div>
+    <div class="kpi-row">
+        <div class="kpi-card amber"><div class="kpi-label">NCR Closure Rate (KPI-006)</div><div class="kpi-value">88%</div><div class="kpi-target">Target: ≥95%</div></div>
+        <div class="kpi-card green"><div class="kpi-label">Inspection Pass Rate</div><div class="kpi-value">94%</div><div class="kpi-target">Target: ≥90%</div></div>
+        <div class="kpi-card green"><div class="kpi-label">HSE Incident Rate (KPI-012)</div><div class="kpi-value">0.12</div><div class="kpi-target">Target: 0</div></div>
+        <div class="kpi-card red"><div class="kpi-label">Open Snags (KPI-015)</div><div class="kpi-value">47</div><div class="kpi-target">Overdue: 12</div></div>
+    </div>
+    <div class="grid-2">
+        <div class="card">
+            <h3>NCR Register</h3>
+            <table class="mini-table">
+                <tr><th>NCR</th><th>Location</th><th>Category</th><th>Days Open</th><th>Status</th></tr>
+                <tr><td>NCR-089</td><td>B2 Level 3</td><td>Concrete</td><td>19</td><td><span class="badge badge-red">Overdue</span></td></tr>
+                <tr><td>NCR-088</td><td>Tower A</td><td>MEP</td><td>8</td><td><span class="badge badge-amber">In Progress</span></td></tr>
+                <tr><td>NCR-087</td><td>Podium</td><td>Waterproof</td><td>3</td><td><span class="badge badge-green">Rectified</span></td></tr>
+                <tr><td>NCR-086</td><td>B1 Level 1</td><td>Rebar</td><td>0</td><td><span class="badge badge-green">Closed</span></td></tr>
+            </table>
+        </div>
+        <div class="card">
+            <h3>Inspection Summary (This Month)</h3>
+            <div class="bar-chart">
+                <div class="bar" style="height:100%;background:#4A90D9"><div class="bar-val">87</div><div class="bar-label">Requested</div></div>
+                <div class="bar" style="height:86%;background:#27AE60"><div class="bar-val">75</div><div class="bar-label">Passed</div></div>
+                <div class="bar" style="height:8%;background:#E74C3C"><div class="bar-val">7</div><div class="bar-label">Failed</div></div>
+                <div class="bar" style="height:6%;background:#888"><div class="bar-val">5</div><div class="bar-label">Pending</div></div>
+            </div>
+        </div>
+    </div>
+    <div class="grid-2">
+        <div class="card">
+            <h3>Snag List Status</h3>
+            <table class="mini-table">
+                <tr><th>Zone</th><th>Open</th><th>In Progress</th><th>Closed</th><th>Total</th></tr>
+                <tr><td>Tower A</td><td>12</td><td>8</td><td>45</td><td>65</td></tr>
+                <tr><td>Tower B</td><td>18</td><td>5</td><td>32</td><td>55</td></tr>
+                <tr><td>Podium</td><td>7</td><td>3</td><td>28</td><td>38</td></tr>
+                <tr><td>Basement</td><td>10</td><td>2</td><td>19</td><td>31</td></tr>
+            </table>
+        </div>
+        <div class="card">
+            <h3>HSE Statistics</h3>
+            <table class="mini-table">
+                <tr><th>Metric</th><th>This Month</th><th>Cumulative</th></tr>
+                <tr><td>Man-Hours</td><td>180,000</td><td>2,340,000</td></tr>
+                <tr><td>Near Misses</td><td>3</td><td>28</td></tr>
+                <tr><td>First Aid</td><td>1</td><td>12</td></tr>
+                <tr><td>LTI</td><td>0</td><td>1</td></tr>
+                <tr><td>LTIFR</td><td>0.00</td><td>0.09</td></tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Contractor Portal -->
+<div class="dashboard" id="dash-contractor">
+    <div class="wireframe-note">WIREFRAME: Contractor Portal — Ref: PF-01, PF-08, PF-10, GOV-017 (Limited access per GOV-012)</div>
+    <div class="dash-title">Contractor Dashboard — [Company Name]</div>
+    <div class="kpi-row">
+        <div class="kpi-card"><div class="kpi-label">Open Submittals</div><div class="kpi-value">12</div><div class="kpi-target">4 pending review</div></div>
+        <div class="kpi-card amber"><div class="kpi-label">Resubmissions Due</div><div class="kpi-value">3</div><div class="kpi-target">Code C responses</div></div>
+        <div class="kpi-card"><div class="kpi-label">Next IPC Due</div><div class="kpi-value">15 Mar</div><div class="kpi-target">IPC #13</div></div>
+        <div class="kpi-card green"><div class="kpi-label">Performance Score</div><div class="kpi-value">78</div><div class="kpi-target">Previous: 74</div></div>
+    </div>
+    <div class="grid-2">
+        <div class="card">
+            <h3>My Submittals</h3>
+            <table class="mini-table">
+                <tr><th>Submittal</th><th>Category</th><th>Submitted</th><th>Response</th></tr>
+                <tr><td>SUB-0456</td><td>B-Material</td><td>18 Feb</td><td><span class="badge badge-amber">Under Review</span></td></tr>
+                <tr><td>SUB-0455</td><td>C-Method Stmt</td><td>15 Feb</td><td><span class="badge badge-green">Code B</span></td></tr>
+                <tr><td>SUB-0454</td><td>D-QA/QC</td><td>12 Feb</td><td><span class="badge badge-red">Code C</span></td></tr>
+                <tr><td>SUB-0453</td><td>A-Design</td><td>10 Feb</td><td><span class="badge badge-green">Code A</span></td></tr>
+            </table>
+        </div>
+        <div class="card">
+            <h3>Outstanding Actions</h3>
+            <ul class="action-list">
+                <li><span>Resubmit SUB-0454 (ITP revision)</span><span class="priority-high">Due: 3 CD</span></li>
+                <li><span>Rectify NCR-088 (MEP alignment)</span><span class="priority-high">Due: 6 CD</span></li>
+                <li><span>Submit IPC #13 application</span><span class="priority-med">Due: 12 CD</span></li>
+                <li><span>Upload progress photos (Week 23)</span><span class="priority-low">Due: 2 CD</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Consultant Portal -->
+<div class="dashboard" id="dash-consultant">
+    <div class="wireframe-note">WIREFRAME: Consultant Review Portal — Ref: PF-01, GOV-012 (Review access per GOV-012)</div>
+    <div class="dash-title">Consultant Dashboard — [Firm Name]</div>
+    <div class="kpi-row">
+        <div class="kpi-card red"><div class="kpi-label">Pending Reviews</div><div class="kpi-value">8</div><div class="kpi-target">3 overdue SLA</div></div>
+        <div class="kpi-card green"><div class="kpi-label">Avg Review Time</div><div class="kpi-value">9.4 CD</div><div class="kpi-target">SLA: 14 CD</div></div>
+        <div class="kpi-card"><div class="kpi-label">Reviews This Month</div><div class="kpi-value">23</div><div class="kpi-target">Last month: 19</div></div>
+    </div>
+    <div class="grid-2">
+        <div class="card">
+            <h3>Review Queue</h3>
+            <table class="mini-table">
+                <tr><th>Submittal</th><th>Category</th><th>Received</th><th>SLA Remaining</th></tr>
+                <tr><td>SUB-0456</td><td>B-Material</td><td>18 Feb</td><td><span class="badge badge-red">-2 CD</span></td></tr>
+                <tr><td>SUB-0457</td><td>C-Method</td><td>20 Feb</td><td><span class="badge badge-amber">3 CD</span></td></tr>
+                <tr><td>SUB-0458</td><td>D-QA/QC</td><td>22 Feb</td><td><span class="badge badge-green">8 CD</span></td></tr>
+                <tr><td>SUB-0459</td><td>E-HSE</td><td>24 Feb</td><td><span class="badge badge-green">10 CD</span></td></tr>
+            </table>
+        </div>
+        <div class="card">
+            <h3>Review History</h3>
+            <table class="mini-table">
+                <tr><th>Code</th><th>Count</th><th>%</th></tr>
+                <tr><td>A - Approved</td><td>42</td><td>38%</td></tr>
+                <tr><td>B - Approved w/ Comments</td><td>35</td><td>32%</td></tr>
+                <tr><td>C - Revise & Resubmit</td><td>25</td><td>23%</td></tr>
+                <tr><td>D - Rejected</td><td>8</td><td>7%</td></tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Governance Dashboard -->
+<div class="dashboard" id="dash-governance">
+    <div class="wireframe-note">WIREFRAME: Governance & Compliance Dashboard — Ref: PF-05, PF-09, PF-23, GOV-017, GOV-018</div>
+    <div class="dash-title">Governance Overview</div>
+    <div class="kpi-row">
+        <div class="kpi-card green"><div class="kpi-label">Gate Compliance (KPI-005)</div><div class="kpi-value">100%</div><div class="kpi-target">All gates passed correctly</div></div>
+        <div class="kpi-card green"><div class="kpi-label">Approval Efficiency (KPI-011)</div><div class="kpi-value">93%</div><div class="kpi-target">Target: ≥90%</div></div>
+        <div class="kpi-card amber"><div class="kpi-label">Freeze Exceptions (KPI-009)</div><div class="kpi-value">1.8%</div><div class="kpi-target">Target: ≤2%</div></div>
+        <div class="kpi-card green"><div class="kpi-label">Audit Trail Coverage</div><div class="kpi-value">100%</div><div class="kpi-target">All events logged</div></div>
+    </div>
+    <div class="grid-2">
+        <div class="card">
+            <h3>Stage Gate Status</h3>
+            <table class="mini-table">
+                <tr><th>Gate</th><th>Name</th><th>Date Passed</th><th>Prerequisites</th></tr>
+                <tr><td>Gate 0</td><td>Strategic Definition</td><td>01 Jun 2025</td><td><span class="badge badge-green">14/14</span></td></tr>
+                <tr><td>Gate 1</td><td>Preparation & Briefing</td><td>15 Jul 2025</td><td><span class="badge badge-green">8/8</span></td></tr>
+                <tr><td>Gate 2</td><td>Concept Design</td><td>01 Sep 2025</td><td><span class="badge badge-green">10/10</span></td></tr>
+                <tr><td>Gate 3</td><td>Spatial Coordination</td><td>15 Oct 2025</td><td><span class="badge badge-green">12/12</span></td></tr>
+                <tr><td>Gate 4</td><td>Technical Design</td><td>01 Jan 2026</td><td><span class="badge badge-green">15/15</span></td></tr>
+                <tr><td>Gate 5</td><td>Manufacturing & Construction</td><td>In Progress</td><td><span class="badge badge-blue">Active</span></td></tr>
+            </table>
+        </div>
+        <div class="card">
+            <h3>Freeze Register</h3>
+            <table class="mini-table">
+                <tr><th>Freeze Type</th><th>Activated</th><th>Exceptions</th><th>Status</th></tr>
+                <tr><td>Design Freeze</td><td>Gate 3</td><td>3</td><td><span class="badge badge-green">Active</span></td></tr>
+                <tr><td>Budget Freeze</td><td>Gate 3</td><td>1</td><td><span class="badge badge-green">Active</span></td></tr>
+                <tr><td>Scope Freeze</td><td>Gate 4</td><td>2</td><td><span class="badge badge-green">Active</span></td></tr>
+                <tr><td>Regulatory Freeze</td><td>Gate 4</td><td>0</td><td><span class="badge badge-green">Active</span></td></tr>
+            </table>
+        </div>
+    </div>
+    <div class="grid-2">
+        <div class="card">
+            <h3>Recent Audit Events (GOV-018)</h3>
+            <table class="mini-table">
+                <tr><th>Event</th><th>User</th><th>Time</th><th>Type</th></tr>
+                <tr><td>IPC #12 Certified</td><td>R05 Cost Mgr</td><td>2h ago</td><td><span class="badge badge-blue">AE-006</span></td></tr>
+                <tr><td>VO-034 Submitted</td><td>R10 Contr PM</td><td>4h ago</td><td><span class="badge badge-blue">AE-007</span></td></tr>
+                <tr><td>NCR-089 Escalated L3</td><td>System</td><td>6h ago</td><td><span class="badge badge-red">AE-012</span></td></tr>
+                <tr><td>Role Change: R08 Added</td><td>R14 Admin</td><td>1d ago</td><td><span class="badge badge-amber">AE-015</span></td></tr>
+            </table>
+        </div>
+        <div class="card">
+            <h3>Contractor Performance (KPI-007)</h3>
+            <table class="mini-table">
+                <tr><th>Contractor</th><th>Score</th><th>Trend</th><th>Status</th></tr>
+                <tr><td>Main Contractor A</td><td>78</td><td>+4</td><td><span class="badge badge-amber">Adequate</span></td></tr>
+                <tr><td>MEP Sub B</td><td>85</td><td>+2</td><td><span class="badge badge-green">Good</span></td></tr>
+                <tr><td>Facade Sub C</td><td>62</td><td>-3</td><td><span class="badge badge-red">Below Target</span></td></tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+function showDash(id) {
+    document.querySelectorAll('.dashboard').forEach(d => d.classList.remove('active'));
+    document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
+    document.getElementById('dash-' + id).classList.add('active');
+    event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

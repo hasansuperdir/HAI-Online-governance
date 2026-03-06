@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HAI Group | Delivering Certainty Across Complex Projects</title>
+<meta name="description" content="HAI is an employer representative and project delivery partner. We strengthen governance, control risk, and protect the owner's commercial position.">
+<meta property="og:title" content="HAI Group | Delivering Certainty Across Complex Projects">
+<meta property="og:description" content="Employer-side programme management and construction governance consultancy.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_GB">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --primary:#0a1628;--accent:#e8740c;--accent-dark:#c76200;--blue:#1a5276;--blue-light:#2980b9;
+  --text:#2c3e50;--text-light:#5d6d7e;--bg:#ffffff;--bg-light:#f8f9fa;--bg-alt:#ecf0f1;
+  --border:#dce1e6;--shadow:0 2px 20px rgba(0,0,0,.08);
+}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--text);background:var(--bg);line-height:1.7;font-size:16px;}
+a{text-decoration:none;color:inherit;transition:color .3s;}
+.skip-link{position:absolute;top:-40px;left:0;background:var(--accent);color:#fff;padding:8px 16px;z-index:200;font-size:14px;font-weight:600;transition:top .3s;}
+.skip-link:focus{top:0;}
+
+/* ─── NAV ─── */
+.topbar{background:var(--primary);color:#fff;font-size:12px;padding:6px 0;letter-spacing:.3px;}
+.topbar .container{display:flex;justify-content:space-between;align-items:center;}
+.topbar a{color:#aab;transition:color .3s;}.topbar a:hover{color:#fff;}
+.topbar-links{display:flex;gap:20px;}
+nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;transition:box-shadow .3s;}
+nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.1);}
+nav .container{display:flex;align-items:center;justify-content:space-between;height:70px;}
+.logo{display:flex;align-items:center;gap:10px;font-size:24px;font-weight:800;letter-spacing:1px;}
+.logo .h{color:var(--primary);}.logo .a{color:var(--accent);}.logo .i{color:var(--blue);}.logo sub{font-size:10px;color:var(--text-light);font-weight:400;letter-spacing:.5px;vertical-align:baseline;margin-left:4px;}
+.nav-links{display:flex;gap:6px;align-items:center;}
+.nav-link{padding:8px 14px;font-size:13px;font-weight:600;color:var(--text);border-radius:4px;transition:all .3s;cursor:pointer;position:relative;}
+.nav-link:hover{color:var(--accent);}
+.nav-link::after{content:'';position:absolute;bottom:0;left:50%;width:0;height:2px;background:var(--accent);transition:all .3s;transform:translateX(-50%);}
+.nav-link:hover::after,.nav-link.active::after{width:70%;}
+.nav-cta{background:var(--accent);color:#fff!important;border-radius:4px;padding:10px 20px;font-weight:700;}
+.nav-cta:hover{background:var(--accent-dark);}
+.nav-cta::after{display:none!important;}
+.menu-btn{display:none;background:none;border:none;font-size:24px;cursor:pointer;color:var(--text);}
+
+/* ─── CONTAINER ─── */
+.container{max-width:1200px;margin:0 auto;padding:0 24px;}
+.section{padding:80px 0;}
+.section-tag{font-size:12px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;}
+.section-title{font-size:36px;font-weight:800;color:var(--primary);margin-bottom:16px;line-height:1.2;}
+.section-subtitle{font-size:17px;color:var(--text-light);max-width:680px;line-height:1.8;}
+
+/* ─── HERO ─── */
+.hero{background:linear-gradient(135deg,var(--primary) 0%,#1a3050 50%,#0d2137 100%);color:#fff;padding:120px 0 100px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");}
+.hero-content{position:relative;z-index:2;max-width:700px;}
+.hero h1{font-size:52px;font-weight:800;line-height:1.15;margin-bottom:20px;}
+.hero h1 .highlight{color:var(--accent);}
+.hero p{font-size:18px;color:rgba(255,255,255,.8);line-height:1.8;margin-bottom:32px;max-width:560px;}
+.hero-pillars{display:flex;gap:32px;margin-top:40px;padding-top:32px;border-top:1px solid rgba(255,255,255,.15);}
+.hero-pillar{font-size:14px;color:rgba(255,255,255,.75);line-height:1.6;padding-left:16px;border-left:2px solid var(--accent);flex:1;}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:4px;font-size:14px;font-weight:700;cursor:pointer;transition:all .3s;border:none;}
+.btn-primary{background:var(--accent);color:#fff;}.btn-primary:hover{background:var(--accent-dark);transform:translateY(-2px);box-shadow:0 6px 20px rgba(232,116,12,.3);}
+.btn-outline{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.3);}.btn-outline:hover{border-color:#fff;background:rgba(255,255,255,.1);}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;}
+
+/* ─── CARDS ─── */
+.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px;}
+.card-grid-2{grid-template-columns:repeat(2,1fr);}
+.card{background:#fff;border:1px solid var(--border);border-radius:8px;padding:32px;transition:all .4s;position:relative;overflow:hidden;}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:var(--accent);}
+.card-icon{width:56px;height:56px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px;}
+.card-icon.orange{background:rgba(232,116,12,.1);color:var(--accent);}
+.card-icon.blue{background:rgba(26,82,118,.1);color:var(--blue);}
+.card-icon.teal{background:rgba(0,123,131,.1);color:#007B83;}
+.card h3{font-size:18px;font-weight:700;color:var(--primary);margin-bottom:8px;}
+.card p{font-size:14px;color:var(--text-light);line-height:1.7;}
+.card-link{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--accent);margin-top:16px;transition:gap .3s;}
+.card-link:hover{gap:10px;}
+
+/* ─── PHILOSOPHY ─── */
+.phil-list{display:flex;flex-direction:column;gap:16px;margin-top:24px;}
+.phil-item{display:flex;gap:20px;align-items:flex-start;padding:20px;border-radius:8px;border:1px solid var(--border);background:#fff;transition:all .3s;}
+.phil-item:hover{border-color:var(--accent);box-shadow:var(--shadow);}
+.phil-num{width:40px;height:40px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;flex-shrink:0;}
+.phil-text h4{font-size:15px;font-weight:700;color:var(--primary);margin-bottom:4px;}
+.phil-text p{font-size:13px;color:var(--text-light);line-height:1.6;}
+.values-strip{display:flex;gap:16px;flex-wrap:wrap;margin-top:24px;}
+.value-tag{padding:8px 16px;border-radius:20px;background:var(--bg-light);border:1px solid var(--border);font-size:13px;font-weight:600;color:var(--primary);}
+
+/* ─── LIFECYCLE STAGES ─── */
+.stage-flow{display:flex;gap:4px;margin-top:32px;}
+.stage-item{flex:1;padding:20px 14px;background:#fff;border:1px solid var(--border);border-radius:8px;text-align:center;position:relative;transition:all .3s;}
+.stage-item:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:var(--shadow);}
+.stage-item::after{content:'\2192';position:absolute;right:-14px;top:50%;transform:translateY(-50%);font-size:18px;color:var(--accent);z-index:2;font-weight:700;}
+.stage-item:last-child::after{display:none;}
+.stage-num{font-size:28px;font-weight:800;color:var(--accent);margin-bottom:4px;}
+.stage-name{font-size:14px;font-weight:700;color:var(--primary);margin-bottom:6px;}
+.stage-desc{font-size:11px;color:var(--text-light);line-height:1.5;}
+.cadence-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:24px;}
+.cadence-item{padding:16px;border-left:3px solid var(--accent);background:var(--bg-light);border-radius:0 6px 6px 0;}
+.cadence-item h4{font-size:13px;font-weight:700;color:var(--primary);margin-bottom:4px;}
+.cadence-item p{font-size:12px;color:var(--text-light);line-height:1.5;}
+
+/* ─── PROJECTS ─── */
+.proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:40px;}
+.proj-card{border-radius:8px;overflow:hidden;position:relative;height:340px;cursor:pointer;transition:all .4s;}
+.proj-card:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(0,0,0,.15);}
+.proj-card:hover .proj-overlay{opacity:1;}
+.proj-gradient{position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(180deg,transparent 20%,rgba(10,22,40,.92) 100%);}
+.proj-info{position:absolute;bottom:0;left:0;right:0;padding:24px;color:#fff;z-index:2;}
+.proj-info .proj-sector{font-size:10px;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+.proj-info h3{font-size:18px;font-weight:700;margin-bottom:4px;}
+.proj-info .proj-loc{font-size:12px;color:rgba(255,255,255,.7);}
+.proj-info .proj-val{font-size:12px;color:rgba(255,255,255,.55);margin-top:6px;line-height:1.5;font-style:italic;}
+.proj-overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(10,22,40,.92);display:flex;flex-direction:column;justify-content:center;opacity:0;transition:opacity .4s;z-index:3;padding:28px;color:#fff;}
+.proj-overlay .proj-sector{font-size:10px;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+.proj-overlay h3{font-size:18px;margin-bottom:10px;}
+.proj-overlay p{font-size:12px;color:rgba(255,255,255,.75);line-height:1.6;margin-bottom:4px;}
+.proj-overlay .proj-outcome{margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.15);font-size:12px;color:rgba(255,255,255,.6);font-style:italic;}
+
+/* ─── MARKETS / SECTORS ─── */
+.market-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px;}
+.market-item{padding:28px;border:1px solid var(--border);border-radius:8px;text-align:center;transition:all .4s;cursor:pointer;background:#fff;}
+.market-item:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:var(--shadow);}
+.market-icon{font-size:36px;margin-bottom:12px;}
+.market-name{font-size:15px;font-weight:700;color:var(--primary);}
+.market-desc{font-size:12px;color:var(--text-light);margin-top:6px;}
+.market-focus{font-size:11px;color:var(--accent);font-weight:600;margin-top:8px;}
+
+/* ─── PERSPECTIVES ─── */
+.persp-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:40px;}
+.persp-card{background:#fff;border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:all .4s;}
+.persp-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
+.persp-img{height:180px;background:linear-gradient(135deg,var(--blue),var(--primary));position:relative;}
+.persp-img .persp-tag{position:absolute;top:12px;left:12px;background:var(--accent);color:#fff;font-size:10px;font-weight:700;padding:4px 10px;border-radius:3px;text-transform:uppercase;letter-spacing:.5px;}
+.persp-body{padding:20px;}
+.persp-date{font-size:11px;color:var(--text-light);margin-bottom:6px;}
+.persp-body h3{font-size:16px;font-weight:700;color:var(--primary);margin-bottom:8px;line-height:1.4;}
+.persp-body p{font-size:13px;color:var(--text-light);line-height:1.6;}
+
+/* ─── GOVERNANCE BANNER ─── */
+.gov-banner{background:var(--bg-light);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.gov-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+.gov-mockup{background:var(--primary);border-radius:8px;height:360px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.gov-mockup::after{content:'SkyStruct';position:absolute;font-size:48px;color:rgba(255,255,255,.06);bottom:20px;right:20px;}
+.gov-features{display:flex;flex-direction:column;gap:12px;margin-top:16px;}
+.gov-feat{display:flex;gap:12px;align-items:center;padding:10px;border-radius:6px;transition:background .3s;}
+.gov-feat:hover{background:#fff;}
+.gov-check{width:28px;height:28px;border-radius:50%;background:rgba(46,204,113,.1);color:#2ecc71;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0;}
+.gov-feat-text{font-size:14px;color:var(--text);}
+.impl-steps{display:flex;gap:0;margin-top:16px;}
+.impl-step{flex:1;text-align:center;padding:12px 8px;position:relative;}
+.impl-step::after{content:'\2192';position:absolute;right:-6px;top:50%;transform:translateY(-50%);color:var(--accent);font-weight:700;font-size:14px;}
+.impl-step:last-child::after{display:none;}
+.impl-step .step-num{font-size:20px;font-weight:800;color:var(--accent);}
+.impl-step .step-name{font-size:12px;font-weight:700;color:var(--primary);margin-top:2px;}
+.impl-step .step-desc{font-size:10px;color:var(--text-light);margin-top:2px;}
+
+/* ─── ENGAGEMENT OPTIONS ─── */
+.engage-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px;}
+.engage-card{background:#fff;border:1px solid var(--border);border-radius:8px;padding:32px;position:relative;overflow:hidden;transition:all .4s;}
+.engage-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:var(--accent);}
+.engage-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;}
+.engage-card:nth-child(1)::before{background:var(--accent);}
+.engage-card:nth-child(2)::before{background:var(--blue);}
+.engage-card:nth-child(3)::before{background:#2ecc71;}
+.engage-label{font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+.engage-card h3{font-size:17px;font-weight:700;color:var(--primary);margin-bottom:8px;}
+.engage-card p{font-size:13px;color:var(--text-light);line-height:1.6;}
+.engage-list{list-style:none;margin-top:12px;display:flex;flex-direction:column;gap:6px;}
+.engage-list li{font-size:12px;color:var(--text);padding-left:16px;position:relative;}
+.engage-list li::before{content:'\2713';position:absolute;left:0;color:var(--accent);font-weight:700;font-size:11px;}
+
+/* ─── CAREERS ─── */
+.careers-banner{background:linear-gradient(135deg,var(--blue),var(--primary));color:#fff;border-radius:12px;padding:60px;display:flex;align-items:center;justify-content:space-between;gap:40px;margin-top:40px;}
+.careers-banner h3{font-size:28px;font-weight:800;margin-bottom:12px;}
+.careers-banner p{font-size:15px;color:rgba(255,255,255,.8);max-width:500px;line-height:1.7;}
+
+/* ─── CTA BAND ─── */
+.cta-band{background:var(--accent);padding:60px 0;text-align:center;color:#fff;}
+.cta-band h2{font-size:32px;font-weight:800;margin-bottom:12px;}
+.cta-band p{font-size:16px;color:rgba(255,255,255,.85);margin-bottom:24px;}
+.btn-white{background:#fff;color:var(--accent);font-weight:700;}.btn-white:hover{background:rgba(255,255,255,.9);transform:translateY(-2px);}
+
+/* ─── CONTACT ─── */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:40px;}
+.contact-info{display:flex;flex-direction:column;gap:24px;}
+.contact-item{display:flex;gap:16px;align-items:flex-start;}
+.contact-icon{width:48px;height:48px;border-radius:8px;background:var(--bg-light);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.contact-details h4{font-size:14px;font-weight:700;color:var(--primary);margin-bottom:4px;}
+.contact-details p{font-size:13px;color:var(--text-light);}
+.form-group{margin-bottom:16px;}
+.form-group label{display:block;font-size:12px;font-weight:600;color:var(--text);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
+.form-input{width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:6px;font-size:14px;font-family:inherit;color:var(--text);transition:border-color .3s;background:#fff;}
+.form-input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(232,116,12,.1);}
+textarea.form-input{min-height:120px;resize:vertical;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+
+/* ─── FOOTER ─── */
+footer{background:var(--primary);color:rgba(255,255,255,.7);padding:60px 0 30px;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:40px;}
+.footer-brand{font-size:28px;font-weight:800;color:#fff;margin-bottom:12px;}
+.footer-brand .fa{color:var(--accent);}
+.footer-desc{font-size:13px;line-height:1.7;color:rgba(255,255,255,.5);max-width:300px;}
+.footer-title{font-size:12px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px;}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.5);transition:color .3s;}.footer-links a:hover{color:var(--accent);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);margin-top:40px;padding-top:20px;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:rgba(255,255,255,.4);}
+.footer-social{display:flex;gap:12px;}
+.footer-social a{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:14px;color:rgba(255,255,255,.5);transition:all .3s;}
+.footer-social a:hover{border-color:var(--accent);color:var(--accent);background:rgba(232,116,12,.1);}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1024px){
+  .card-grid,.persp-grid,.engage-grid{grid-template-columns:repeat(2,1fr);}
+  .card-grid-2{grid-template-columns:repeat(2,1fr);}
+  .market-grid{grid-template-columns:repeat(2,1fr);}
+  .proj-grid{grid-template-columns:repeat(2,1fr);}
+  .stage-flow{flex-wrap:wrap;}.stage-item{min-width:calc(33% - 4px);}.stage-item:nth-child(3)::after{display:none;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .hero h1{font-size:38px;}
+  .gov-inner,.contact-grid{grid-template-columns:1fr;}
+  .careers-banner{flex-direction:column;text-align:center;}
+  .cadence-grid{grid-template-columns:1fr;}
+  .impl-steps{flex-wrap:wrap;}
+}
+@media(max-width:768px){
+  .nav-links{display:none;}
+  .menu-btn{display:block;}
+  .card-grid,.card-grid-2,.persp-grid,.market-grid,.proj-grid,.engage-grid{grid-template-columns:1fr;}
+  .stage-flow{flex-direction:column;}.stage-item::after{display:none;}
+  .hero h1{font-size:32px;}
+  .hero-pillars{flex-direction:column;gap:16px;}
+  .section{padding:50px 0;}
+  .section-title{font-size:28px;}
+  .form-row{grid-template-columns:1fr;}
+}
+
+/* ─── ANIMATIONS ─── */
+.fade-up{opacity:0;transform:translateY(30px);transition:all .6s ease;}
+.fade-up.visible{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="container">
+    <div>Doha, Qatar &nbsp;|&nbsp; Sunday – Thursday 07:00 – 17:00</div>
+    <div class="topbar-links">
+      <a href="#careers">Careers</a>
+      <a href="#contact">Contact</a>
+      <a href="#">&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;</a>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="container">
+    <div class="logo"><span class="h">H</span><span class="a">A</span><span class="i">I</span><sub>GROUP</sub></div>
+    <div class="nav-links" id="navLinks">
+      <a class="nav-link active" href="#about">About</a>
+      <a class="nav-link" href="#services">Services</a>
+      <a class="nav-link" href="#approach">Approach</a>
+      <a class="nav-link" href="#work">Work</a>
+      <a class="nav-link" href="#skystruct">SkyStruct</a>
+      <a class="nav-link" href="#careers">Careers</a>
+      <a class="nav-link nav-cta" href="#contact">Get in Touch</a>
+    </div>
+    <button class="menu-btn" onclick="toggleMenu()" aria-label="Toggle navigation menu">&#9776;</button>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="main">
+  <div class="container">
+    <div class="hero-content">
+      <h1>Delivering certainty across<br><span class="highlight">complex projects</span></h1>
+      <p>HAI is an employer representative and project delivery partner. We strengthen governance, control risk, and protect the owner's commercial position — across design, procurement, construction, commissioning, and handover.</p>
+      <div class="hero-btns">
+        <a href="#work" class="btn btn-primary">Explore our work &#8594;</a>
+        <a href="#contact" class="btn btn-outline">Speak to the team &#8594;</a>
+      </div>
+      <div class="hero-pillars">
+        <div class="hero-pillar">Clear decisions. Faster approvals. Fewer disputes.</div>
+        <div class="hero-pillar">Independent oversight with owner-aligned accountability.</div>
+        <div class="hero-pillar">Digital governance enabled by SkyStruct.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WHO WE ARE / ABOUT ═══ -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-tag">Who We Are</div>
+    <div class="section-title">Why owners choose HAI</div>
+    <div class="section-subtitle">HAI operates on the employer side. We represent the owner's interests commercially, technically, and operationally — ensuring that the delivery chain performs against agreed scope, time, cost, and quality.</div>
+
+    <div class="phil-list">
+      <div class="phil-item fade-up">
+        <div class="phil-num">1</div>
+        <div class="phil-text"><h4>Accountability must be explicit</h4><p>A project without clear ownership produces noise, delay, and disputes.</p></div>
+      </div>
+      <div class="phil-item fade-up">
+        <div class="phil-num">2</div>
+        <div class="phil-text"><h4>Governance accelerates delivery</h4><p>Governance is not paperwork. It is decision velocity, responsibility clarity, and early escalation.</p></div>
+      </div>
+      <div class="phil-item fade-up">
+        <div class="phil-num">3</div>
+        <div class="phil-text"><h4>Records protect outcomes</h4><p>Projects are managed in real time, but outcomes are defended with evidence. Our records are contemporaneous, structured, and audit-ready.</p></div>
+      </div>
+      <div class="phil-item fade-up">
+        <div class="phil-num">4</div>
+        <div class="phil-text"><h4>Change control is a protection system</h4><p>Uncontrolled change causes cost leakage and time loss. Controlled change protects budgets and reduces disputes.</p></div>
+      </div>
+      <div class="phil-item fade-up">
+        <div class="phil-num">5</div>
+        <div class="phil-text"><h4>Handover is engineered</h4><p>Handover is not a date. It is a closure pathway: commissioning, documentation, defects closure, and authority readiness.</p></div>
+      </div>
+    </div>
+
+    <div class="values-strip fade-up">
+      <div class="value-tag">Governance &amp; transparency</div>
+      <div class="value-tag">Commercial discipline</div>
+      <div class="value-tag">Technical integrity</div>
+      <div class="value-tag">Delivery focus</div>
+      <div class="value-tag">Respect for safety &amp; compliance</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVICES ═══ -->
+<section class="section" id="services" style="background:var(--bg-light);">
+  <div class="container">
+    <div class="section-tag">Our Services</div>
+    <div class="section-title">What we do</div>
+    <div class="section-subtitle">Employer-side delivery leadership across the full project lifecycle. Our services can be engaged individually, or combined into a single integrated delivery mandate.</div>
+    <div class="card-grid">
+      <div class="card fade-up">
+        <div class="card-icon orange">&#127959;</div>
+        <h3>Employer's Representative</h3>
+        <p>Owner-aligned leadership across stakeholders. We structure decisions, enforce governance, and ensure accountability across the delivery chain.</p>
+        <div class="card-link">Learn more &#8594;</div>
+      </div>
+      <div class="card fade-up">
+        <div class="card-icon blue">&#128202;</div>
+        <h3>Programme & Project Management</h3>
+        <p>Full-lifecycle management from early definition through handover — baselines, tracking, recovery, and coordination across design/procurement/site interfaces.</p>
+        <div class="card-link">Learn more &#8594;</div>
+      </div>
+      <div class="card fade-up">
+        <div class="card-icon teal">&#128176;</div>
+        <h3>Cost & Commercial Management</h3>
+        <p>Commercial discipline that protects budgets and reduces disputes — change control, valuation governance, variations strategy, and contract administration support.</p>
+        <div class="card-link">Learn more &#8594;</div>
+      </div>
+      <div class="card fade-up">
+        <div class="card-icon orange">&#128270;</div>
+        <h3>Quality & Technical Assurance</h3>
+        <p>Independent oversight to prevent late rework and hidden defects — early checkpoints, closure discipline, and handover documentation readiness.</p>
+        <div class="card-link">Learn more &#8594;</div>
+      </div>
+      <div class="card fade-up">
+        <div class="card-icon blue">&#9888;</div>
+        <h3>Risk, HSE & Delivery Assurance</h3>
+        <p>Risk managed as a delivery control, not a document — ownership, mitigation discipline, escalation routes, and readiness gates.</p>
+        <div class="card-link">Learn more &#8594;</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:32px;"><a href="#services" class="btn btn-primary">View all services &#8594;</a></div>
+  </div>
+</section>
+
+<!-- ═══ HOW WE WORK ═══ -->
+<section class="section" id="approach">
+  <div class="container">
+    <div class="section-tag">How We Work</div>
+    <div class="section-title">Stage-led delivery</div>
+    <div class="section-subtitle">Delivery improves when governance is enforceable and visible. We support owners across six stages.</div>
+
+    <div class="stage-flow fade-up">
+      <div class="stage-item"><div class="stage-num">1</div><div class="stage-name">Define</div><div class="stage-desc">Objectives, constraints, procurement strategy, baselines, risk mapping</div></div>
+      <div class="stage-item"><div class="stage-num">2</div><div class="stage-name">Design</div><div class="stage-desc">Design management, coordination, authority pathways, readiness for tender</div></div>
+      <div class="stage-item"><div class="stage-num">3</div><div class="stage-name">Procure</div><div class="stage-desc">Tender governance, technical/commercial alignment, award controls</div></div>
+      <div class="stage-item"><div class="stage-num">4</div><div class="stage-name">Deliver</div><div class="stage-desc">Programme control, progress tracking, change governance, quality assurance</div></div>
+      <div class="stage-item"><div class="stage-num">5</div><div class="stage-name">Handover</div><div class="stage-desc">Commissioning, defects closure, O&M readiness, authority readiness</div></div>
+      <div class="stage-item"><div class="stage-num">6</div><div class="stage-name">In-use</div><div class="stage-desc">Performance optimisation, lifecycle planning, preventive maintenance</div></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:48px;">
+      <div>
+        <div class="section-tag">Governance cadence</div>
+        <div style="font-size:20px;font-weight:700;color:var(--primary);margin-bottom:16px;">What makes us effective</div>
+        <div class="cadence-grid" style="grid-template-columns:1fr;">
+          <div class="cadence-item fade-up"><h4>Weekly delivery governance</h4><p>Actions, blockers, decisions — with clear ownership and due dates.</p></div>
+          <div class="cadence-item fade-up"><h4>Commercial/change cycle</h4><p>Instruction &#8594; evaluation &#8594; approval &#8594; valuation &#8594; record.</p></div>
+          <div class="cadence-item fade-up"><h4>Quality closure cadence</h4><p>NCRs, snags, commissioning readiness — tracked continuously.</p></div>
+          <div class="cadence-item fade-up"><h4>Executive visibility</h4><p>Monthly or more frequently for critical programmes.</p></div>
+        </div>
+      </div>
+      <div>
+        <div class="section-tag">Reporting philosophy</div>
+        <div style="font-size:20px;font-weight:700;color:var(--primary);margin-bottom:16px;">Action-led, not status theatre</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div class="cadence-item fade-up"><h4>What changed this week</h4><p>And what will change next week.</p></div>
+          <div class="cadence-item fade-up"><h4>What is blocked and why</h4><p>Who owns the solution and when it closes.</p></div>
+          <div class="cadence-item fade-up"><h4>What risk remains</h4><p>And what decision is required.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FEATURED WORK ═══ -->
+<section class="section" id="work" style="background:var(--bg-light);">
+  <div class="container">
+    <div class="section-tag">Featured Work</div>
+    <div class="section-title">Proof through delivery</div>
+    <div class="section-subtitle">Selected examples of how we protect the owner — through governance, controls, and disciplined delivery.</div>
+    <div class="proj-grid">
+      <div class="proj-card fade-up" style="background:linear-gradient(135deg,#1a3a6a,#0d2137);">
+        <div class="proj-gradient"></div>
+        <div class="proj-info">
+          <div class="proj-sector">Education</div>
+          <h3>University Campus Delivery</h3>
+          <div class="proj-loc">Doha, Qatar &bull; Delivery + Handover</div>
+          <div class="proj-val">Re-established programme control and delivered a structured readiness path to opening.</div>
+        </div>
+        <div class="proj-overlay">
+          <div class="proj-sector">Education</div>
+          <h3>University Campus Delivery</h3>
+          <p><b>Context:</b> Time-critical campus with multiple stakeholders and compliance constraints.</p>
+          <p><b>Risks:</b> Programme drift, delayed decisions, life-safety gaps, fragmented accountability.</p>
+          <p><b>Approach:</b> Re-established governance cadence, strengthened baselines, implemented escalation for life-safety, built closure registers.</p>
+          <div class="proj-outcome">Outcome: Improved delivery control, measurable readiness tracking, structured path to opening.</div>
+        </div>
+      </div>
+      <div class="proj-card fade-up" style="background:linear-gradient(135deg,#2c3e50,#1a5276);">
+        <div class="proj-gradient"></div>
+        <div class="proj-info">
+          <div class="proj-sector">Residential</div>
+          <h3>Residential Development</h3>
+          <div class="proj-loc">Lusail, Qatar &bull; Delivery</div>
+          <div class="proj-val">Strengthened owner governance and variation controls to reduce commercial leakage.</div>
+        </div>
+        <div class="proj-overlay">
+          <div class="proj-sector">Residential</div>
+          <h3>Residential Development</h3>
+          <p><b>Context:</b> Owner-side oversight across multiple packages with quality and commercial risk.</p>
+          <p><b>Risks:</b> Uncontrolled change, late-stage rework, weak evidence trails.</p>
+          <p><b>Approach:</b> Change control workflow, disciplined records, technical assurance checkpoints, evidence-led commercial reporting.</p>
+          <div class="proj-outcome">Outcome: Better cost predictability, stronger closure discipline, defensible records.</div>
+        </div>
+      </div>
+      <div class="proj-card fade-up" style="background:linear-gradient(135deg,#1e8449,#145a32);">
+        <div class="proj-gradient"></div>
+        <div class="proj-info">
+          <div class="proj-sector">Hospitality</div>
+          <h3>Hotel Asset — In-Use Performance</h3>
+          <div class="proj-loc">Doha, Qatar &bull; In-use optimisation</div>
+          <div class="proj-val">Implemented preventive maintenance governance and lifecycle planning.</div>
+        </div>
+        <div class="proj-overlay">
+          <div class="proj-sector">Hospitality</div>
+          <h3>Hotel Asset — In-Use Performance</h3>
+          <p><b>Context:</b> Operational asset requiring performance stability and lifecycle cost control.</p>
+          <p><b>Risks:</b> Reactive maintenance culture, hidden lifecycle cost exposure.</p>
+          <p><b>Approach:</b> Structured PM governance, lifecycle planning framework, owner-facing dashboard of risk and condition.</p>
+          <div class="proj-outcome">Outcome: Improved maintenance predictability, better operations-budget alignment.</div>
+        </div>
+      </div>
+      <div class="proj-card fade-up" style="background:linear-gradient(135deg,#6c3483,#4a235a);">
+        <div class="proj-gradient"></div>
+        <div class="proj-info">
+          <div class="proj-sector">Commercial</div>
+          <h3>HQ Corporate Fit-Out</h3>
+          <div class="proj-loc">Doha, Qatar &bull; Delivery</div>
+          <div class="proj-val">Time-critical fit-out with decision governance and quality assurance controls.</div>
+        </div>
+        <div class="proj-overlay">
+          <div class="proj-sector">Commercial</div>
+          <h3>HQ Corporate Fit-Out</h3>
+          <p><b>Context:</b> Fast-track fit-out with procurement pressure and interface complexity.</p>
+          <p><b>Risks:</b> Late selections, interface clashes, programme compression, quality risk.</p>
+          <p><b>Approach:</b> Decision governance, procurement acceleration, QA controls, milestone readiness tracking.</p>
+          <div class="proj-outcome">Outcome: Improved decision velocity, reduced rework, controlled time-compressed delivery.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SKYSTRUCT ═══ -->
+<section class="section gov-banner" id="skystruct">
+  <div class="container">
+    <div class="gov-inner">
+      <div>
+        <div class="section-tag">Digital Platform</div>
+        <div class="section-title">SkyStruct — Digital governance<br>for capital projects</div>
+        <div class="section-subtitle">SkyStruct standardises how projects submit, review, approve, escalate, and close — so delivery becomes measurable and repeatable across portfolios.</div>
+        <div class="gov-features">
+          <div class="gov-feat fade-up"><div class="gov-check">&#10003;</div><div class="gov-feat-text">Role-based dashboards across owner, consultant, and contractor</div></div>
+          <div class="gov-feat fade-up"><div class="gov-check">&#10003;</div><div class="gov-feat-text">Workflow controls with escalation and audit trail</div></div>
+          <div class="gov-feat fade-up"><div class="gov-check">&#10003;</div><div class="gov-feat-text">Portfolio reporting across projects and programmes</div></div>
+          <div class="gov-feat fade-up"><div class="gov-check">&#10003;</div><div class="gov-feat-text">Structured registers: decisions, change, risks, actions, submittals</div></div>
+        </div>
+        <div style="margin-top:20px;font-size:14px;font-weight:700;color:var(--primary);">Implementation pathway</div>
+        <div class="impl-steps fade-up">
+          <div class="impl-step"><div class="step-num">1</div><div class="step-name">Discovery</div><div class="step-desc">Workflows, roles</div></div>
+          <div class="impl-step"><div class="step-num">2</div><div class="step-name">Configure</div><div class="step-desc">Dashboards, registers</div></div>
+          <div class="impl-step"><div class="step-num">3</div><div class="step-name">Pilot</div><div class="step-desc">1–2 projects</div></div>
+          <div class="impl-step"><div class="step-num">4</div><div class="step-name">Scale</div><div class="step-desc">Portfolio roll-out</div></div>
+          <div class="impl-step"><div class="step-num">5</div><div class="step-name">Improve</div><div class="step-desc">Monthly tuning</div></div>
+        </div>
+        <div style="margin-top:20px;"><a href="#skystruct" class="btn btn-primary">Explore SkyStruct &#8594;</a></div>
+      </div>
+      <div class="gov-mockup fade-up">
+        <div style="text-align:center;">
+          <div style="font-size:14px;color:rgba(255,255,255,.5);margin-bottom:8px;text-transform:uppercase;letter-spacing:2px;">Platform Preview</div>
+          <div style="font-size:36px;font-weight:900;color:rgba(255,255,255,.2);">SkyStruct</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.3);margin-top:8px;">Digital Governance Platform</div>
+          <div style="display:flex;gap:8px;justify-content:center;margin-top:20px;">
+            <div style="padding:6px 12px;background:rgba(77,166,255,.2);border-radius:4px;font-size:10px;color:#4da6ff;">Submittals</div>
+            <div style="padding:6px 12px;background:rgba(255,255,255,.05);border-radius:4px;font-size:10px;color:rgba(255,255,255,.4);">Decisions</div>
+            <div style="padding:6px 12px;background:rgba(255,255,255,.05);border-radius:4px;font-size:10px;color:rgba(255,255,255,.4);">Change</div>
+            <div style="padding:6px 12px;background:rgba(255,255,255,.05);border-radius:4px;font-size:10px;color:rgba(255,255,255,.4);">Dashboards</div>
+          </div>
+          <div style="margin-top:24px;padding:16px 20px;background:rgba(255,255,255,.05);border-radius:6px;text-align:left;">
+            <div style="font-size:10px;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Business outcomes</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.8;">
+              &#10003; Faster decision cycles<br>
+              &#10003; Lower dispute exposure<br>
+              &#10003; Improved predictability<br>
+              &#10003; Reduced rework<br>
+              &#10003; Executive visibility
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SECTORS ═══ -->
+<section class="section" id="sectors">
+  <div class="container">
+    <div class="section-tag">Sectors</div>
+    <div class="section-title">Where we operate</div>
+    <div class="section-subtitle">Across sectors, our focus is consistent: protect the owner's outcomes through governance, disciplined controls, and transparent reporting.</div>
+    <div class="market-grid">
+      <div class="market-item fade-up"><div class="market-icon">&#127979;</div><div class="market-name">Education</div><div class="market-desc">Schools, universities, training facilities</div><div class="market-focus">Life-safety, readiness to open</div></div>
+      <div class="market-item fade-up"><div class="market-icon">&#127968;</div><div class="market-name">Residential</div><div class="market-desc">Towers, villas, compound developments</div><div class="market-focus">Quality, defects prevention, handover</div></div>
+      <div class="market-item fade-up"><div class="market-icon">&#127976;</div><div class="market-name">Hospitality</div><div class="market-desc">Hotels, serviced apartments, F&B</div><div class="market-focus">Asset performance, lifecycle planning</div></div>
+      <div class="market-item fade-up"><div class="market-icon">&#127962;</div><div class="market-name">Commercial & Workplaces</div><div class="market-desc">HQs, offices, fit-outs</div><div class="market-focus">Time-critical delivery, change control</div></div>
+      <div class="market-item fade-up"><div class="market-icon">&#128739;</div><div class="market-name">Mixed-Use</div><div class="market-desc">Integrated developments, masterplans</div><div class="market-focus">Interface management, phased handover</div></div>
+      <div class="market-item fade-up"><div class="market-icon">&#128736;</div><div class="market-name">Asset Operations</div><div class="market-desc">In-use performance, cost protection</div><div class="market-focus">Preventive maintenance, lifecycle modelling</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ENGAGEMENT OPTIONS ═══ -->
+<section class="section" id="engage" style="background:var(--bg-light);">
+  <div class="container">
+    <div class="section-tag">Engagement Options</div>
+    <div class="section-title">How to work with HAI</div>
+    <div class="section-subtitle">HAI can be engaged in different ways depending on the owner's needs and maturity.</div>
+    <div class="engage-grid">
+      <div class="engage-card fade-up">
+        <div class="engage-label">Option A</div>
+        <h3>Full ER + Programme Delivery Partner</h3>
+        <p>End-to-end governance and delivery leadership across projects or programmes.</p>
+        <ul class="engage-list">
+          <li>Employer's Representative / Programme Lead</li>
+          <li>Project Managers</li>
+          <li>Planning / Controls</li>
+          <li>Commercial / QS</li>
+          <li>Technical Assurance</li>
+          <li>Document control / governance admin</li>
+        </ul>
+      </div>
+      <div class="engage-card fade-up">
+        <div class="engage-label" style="color:var(--blue);">Option B</div>
+        <h3>Targeted Assurance / Recovery Support</h3>
+        <p>HAI supports specific problem areas where delivery is at risk.</p>
+        <ul class="engage-list">
+          <li>Governance reset</li>
+          <li>Programme recovery planning</li>
+          <li>Commercial / change control reset</li>
+          <li>Handover readiness recovery</li>
+        </ul>
+      </div>
+      <div class="engage-card fade-up">
+        <div class="engage-label" style="color:#2ecc71;">Option C</div>
+        <h3>Digital Governance Deployment</h3>
+        <p>HAI deploys SkyStruct as a governance layer and trains teams to operate it.</p>
+        <ul class="engage-list">
+          <li>Workflow mapping and configuration</li>
+          <li>Dashboard and register setup</li>
+          <li>Pilot on 1–2 projects</li>
+          <li>Portfolio-wide roll-out</li>
+          <li>Ongoing governance tuning</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PERSPECTIVES ═══ -->
+<section class="section" id="insights">
+  <div class="container">
+    <div class="section-tag">Perspectives</div>
+    <div class="section-title">Insights & Thought Leadership</div>
+    <div class="section-subtitle">Practical insights on governance, delivery controls, and risk management in live projects.</div>
+    <div class="persp-grid">
+      <div class="persp-card fade-up">
+        <div class="persp-img" style="background:linear-gradient(135deg,#e8740c,#c76200);"><div class="persp-tag">Governance</div></div>
+        <div class="persp-body"><div class="persp-date">March 2026 &bull; 6 min read</div><h3>Why projects drift: the governance failure pattern</h3><p>How unclear accountability and late decisions compound into delay and cost exposure.</p></div>
+      </div>
+      <div class="persp-card fade-up">
+        <div class="persp-img" style="background:linear-gradient(135deg,#1a5276,#0d2137);"><div class="persp-tag">Commercial</div></div>
+        <div class="persp-body"><div class="persp-date">February 2026 &bull; 5 min read</div><h3>Variation control that actually works</h3><p>A pragmatic owner-side approach to change governance that reduces disputes.</p></div>
+      </div>
+      <div class="persp-card fade-up">
+        <div class="persp-img" style="background:linear-gradient(135deg,#2ecc71,#1e8449);"><div class="persp-tag">Handover</div></div>
+        <div class="persp-body"><div class="persp-date">January 2026 &bull; 7 min read</div><h3>Handover readiness is a system, not a milestone</h3><p>Commissioning, documentation, defects, and authorities — managed as one closure pathway.</p></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:32px;"><a href="#insights" class="btn" style="color:var(--text);border:2px solid var(--border);background:#fff;">View all insights &#8594;</a></div>
+  </div>
+</section>
+
+<!-- ═══ CAREERS ═══ -->
+<section class="section" id="careers">
+  <div class="container">
+    <div class="section-tag">Careers</div>
+    <div class="section-title">Build the owner-side<br>delivery standard</div>
+    <div class="careers-banner fade-up">
+      <div>
+        <h3>Join HAI</h3>
+        <p>We hire disciplined, accountable professionals who can turn complexity into structure. If you value clear communication, commercial awareness, systems thinking, and respect for safety and quality — we want to hear from you.</p>
+        <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap;">
+          <a href="#contact" class="btn btn-primary">Submit your CV &#8594;</a>
+          <a href="#contact" class="btn btn-outline">View open roles &#8594;</a>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="background:rgba(255,255,255,.1);border-radius:6px;padding:12px 16px;"><div style="font-size:13px;font-weight:700;">Senior Project Manager</div><div style="font-size:11px;color:rgba(255,255,255,.6);">Doha &bull; Full Time</div></div>
+        <div style="background:rgba(255,255,255,.1);border-radius:6px;padding:12px 16px;"><div style="font-size:13px;font-weight:700;">Cost Manager — QS</div><div style="font-size:11px;color:rgba(255,255,255,.6);">Doha &bull; Full Time</div></div>
+        <div style="background:rgba(255,255,255,.1);border-radius:6px;padding:12px 16px;"><div style="font-size:13px;font-weight:700;">Document Controller</div><div style="font-size:11px;color:rgba(255,255,255,.6);">Doha &bull; Full Time</div></div>
+        <div style="background:rgba(255,255,255,.1);border-radius:6px;padding:12px 16px;"><div style="font-size:13px;font-weight:700;">QA/QC Engineer</div><div style="font-size:11px;color:rgba(255,255,255,.6);">Doha &bull; Full Time</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA BAND ═══ -->
+<div class="cta-band">
+  <div class="container">
+    <h2>Ready to strengthen delivery certainty?</h2>
+    <p>Talk to us about your project or programme. We'll outline the governance and controls needed to protect time, cost, and quality.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="#contact" class="btn btn-white">Get in touch &#8594;</a>
+      <a href="#" class="btn" style="background:transparent;color:#fff;border:2px solid rgba(255,255,255,.5);">Download company profile &#8594;</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CONTACT ═══ -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="section-tag">Contact</div>
+    <div class="section-title">Speak to HAI</div>
+    <div class="section-subtitle">Tell us about your project or programme. We will propose a governance and delivery approach aligned with your risk profile.</div>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-info">
+          <div class="contact-item fade-up"><div class="contact-icon">&#128205;</div><div class="contact-details"><h4>Head Office</h4><p>West Bay, Doha, Qatar</p></div></div>
+          <div class="contact-item fade-up"><div class="contact-icon">&#128222;</div><div class="contact-details"><h4>Phone</h4><p>+974 4000 0000</p></div></div>
+          <div class="contact-item fade-up"><div class="contact-icon">&#9993;</div><div class="contact-details"><h4>Email</h4><p>info@haigroup.qa</p></div></div>
+          <div class="contact-item fade-up"><div class="contact-icon">&#128338;</div><div class="contact-details"><h4>Office Hours</h4><p>Sunday – Thursday: 07:00 – 17:00<br>Friday – Saturday: Closed</p></div></div>
+        </div>
+      </div>
+      <div class="card fade-up" style="padding:32px;">
+        <h3 style="font-size:18px;font-weight:700;color:var(--primary);margin-bottom:20px;">Send us a message</h3>
+        <div class="form-row"><div class="form-group"><label>Name</label><input type="text" class="form-input" placeholder="Your name"></div><div class="form-group"><label>Company</label><input type="text" class="form-input" placeholder="Your organisation"></div></div>
+        <div class="form-row"><div class="form-group"><label>Email</label><input type="email" class="form-input" placeholder="your@email.com"></div><div class="form-group"><label>Phone</label><input type="tel" class="form-input" placeholder="+974 XXXX XXXX"></div></div>
+        <div class="form-group"><label>Sector</label><select class="form-input"><option>Select sector</option><option>Education</option><option>Residential</option><option>Hospitality</option><option>Commercial</option><option>Mixed-Use</option><option>Asset Operations</option></select></div>
+        <div class="form-group"><label>Message</label><textarea class="form-input" placeholder="Tell us about your project or programme"></textarea></div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="alert('Thank you. Our team will respond within 24 hours.');">Send message &#8594;</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand"><span>H</span><span class="fa">A</span><span>I</span> Group</div>
+        <p class="footer-desc">Employer-side delivery leadership. Governance, commercial discipline, and delivery certainty for owners and developers.</p>
+      </div>
+      <div>
+        <div class="footer-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#approach">How We Work</a></li>
+          <li><a href="#careers">Careers</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="#services">Employer's Representative</a></li>
+          <li><a href="#services">Programme & PM</a></li>
+          <li><a href="#services">Cost & Commercial</a></li>
+          <li><a href="#services">Quality & Assurance</a></li>
+          <li><a href="#services">Risk & HSE</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-title">Solutions</div>
+        <ul class="footer-links">
+          <li><a href="#skystruct">SkyStruct</a></li>
+          <li><a href="#skystruct">Reporting Dashboards</a></li>
+          <li><a href="#engage">Engagement Options</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-title">Legal</div>
+        <ul class="footer-links">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Use</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+          <li><a href="#">Accessibility</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; 2026 House of Architecture &amp; Interiors (HAI). All rights reserved.</div>
+      <div class="footer-social">
+        <a href="#" aria-label="LinkedIn">in</a>
+        <a href="#" aria-label="X (Twitter)">X</a>
+        <a href="#" aria-label="Email">&#9993;</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'});});});
+window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50);});
+const sections=document.querySelectorAll('.section[id]');
+window.addEventListener('scroll',()=>{
+  let cur='';sections.forEach(s=>{if(window.scrollY>=s.offsetTop-200)cur=s.getAttribute('id');});
+  document.querySelectorAll('.nav-link').forEach(l=>{l.classList.remove('active');if(l.getAttribute('href')==='#'+cur)l.classList.add('active');});
+});
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+function toggleMenu(){const n=document.getElementById('navLinks');n.style.display=n.style.display==='flex'?'none':'flex';}
+</script>
+</body>
+</html>

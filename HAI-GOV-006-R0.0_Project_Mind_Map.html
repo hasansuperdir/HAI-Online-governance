@@ -1,0 +1,2587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAI SkyStruct Platform - Interactive Mind Map</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1B2A4A;
+            color: #333;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(90deg, #1B2A4A 0%, #007B83 100%);
+            color: white;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .header h1 { font-size: 20px; font-weight: 600; }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .controls input {
+            padding: 6px 12px;
+            border: 2px solid rgba(255,255,255,0.7);
+            border-radius: 4px;
+            font-size: 13px;
+            width: 200px;
+            background: rgba(255,255,255,0.9);
+            color: #1B2A4A;
+            outline: none;
+        }
+
+        .btn {
+            padding: 6px 14px;
+            background: white;
+            color: #1B2A4A;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 12px;
+            transition: all 0.2s;
+        }
+
+        .btn:hover { background: #007B83; color: white; }
+
+        .stats {
+            color: rgba(255,255,255,0.9);
+            font-size: 13px;
+            padding: 4px 10px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 4px;
+        }
+
+        .main-area {
+            display: flex;
+            height: calc(100vh - 56px);
+        }
+
+        .tree-container {
+            flex: 1;
+            background: #f8f9fa;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tree-container svg { width: 100%; height: 100%; }
+
+        /* Tree styles */
+        .link {
+            fill: none;
+            stroke: #b0bec5;
+            stroke-width: 1.2px;
+            stroke-opacity: 0.5;
+        }
+
+        .node circle {
+            stroke-width: 2px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .node circle:hover {
+            stroke-width: 3px;
+            filter: drop-shadow(0 0 4px rgba(0,0,0,0.3));
+        }
+
+        .node text {
+            font-size: 11px;
+            fill: #37474f;
+            pointer-events: none;
+        }
+
+        .node.selected circle { stroke-width: 3px; filter: drop-shadow(0 0 6px rgba(0,123,131,0.5)); }
+
+        .node.dimmed { opacity: 0.15; }
+        .link.dimmed { opacity: 0.05; }
+        .node.highlight circle { stroke: #FFD700 !important; stroke-width: 3px; }
+
+        /* Side panel */
+        .side-panel {
+            width: 320px;
+            background: white;
+            border-left: 3px solid #007B83;
+            overflow-y: auto;
+            padding: 20px;
+            transition: width 0.2s;
+        }
+
+        .side-panel.collapsed { width: 0; padding: 0; border: 0; overflow: hidden; }
+
+        .panel-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1B2A4A;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #007B83;
+        }
+
+        .panel-row {
+            margin-bottom: 12px;
+        }
+
+        .panel-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #90a4ae;
+            margin-bottom: 2px;
+        }
+
+        .panel-value {
+            font-size: 13px;
+            color: #37474f;
+        }
+
+        .panel-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .panel-children {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #eee;
+        }
+
+        .panel-child-item {
+            font-size: 12px;
+            color: #546e7a;
+            padding: 3px 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .empty-panel {
+            color: #90a4ae;
+            text-align: center;
+            margin-top: 60px;
+            font-size: 13px;
+        }
+
+        /* Legend */
+        .legend {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            background: rgba(255,255,255,0.95);
+            padding: 12px 16px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            font-size: 11px;
+            z-index: 10;
+        }
+
+        .legend-title { font-weight: 700; color: #1B2A4A; margin-bottom: 6px; }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 3px;
+        }
+
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        /* Zoom hint */
+        .zoom-hint {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            z-index: 10;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>HAI SkyStruct Platform - Interactive Mind Map</h1>
+        <div class="controls">
+            <input type="text" id="searchInput" placeholder="Search nodes...">
+            <button class="btn" id="expandBtn">Expand All</button>
+            <button class="btn" id="collapseBtn">Collapse All</button>
+            <button class="btn" id="resetBtn">Reset View</button>
+            <button class="btn" id="panelToggle">Toggle Panel</button>
+            <div class="stats">
+                <span>Nodes: <strong id="nodeCount">0</strong></span> |
+                <span>Files: <strong>186</strong></span>
+            </div>
+        </div>
+    </div>
+    <div class="main-area">
+        <div class="tree-container" id="treeContainer">
+            <svg id="treeSvg"></svg>
+            <div class="zoom-hint">Scroll to zoom / Drag to pan / Click nodes to expand</div>
+            <div class="legend">
+                <div class="legend-title">Legend</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#3498db"></div> Stage 0</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#9b59b6"></div> Stage 1</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#e74c3c"></div> Stage 2</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#e67e22"></div> Stage 3</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#f39c12"></div> Stage 4</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#c0392b"></div> Stage 5 (Peak)</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#16a085"></div> Stage 6</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#2980b9"></div> Stage 7</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#27ae60"></div> Stage 8</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#34495e"></div> Master Governance</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#7f8c8d"></div> Specifications</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#8E44AD"></div> System Config</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#E67E22"></div> Compliance</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#2196F3"></div> Testing</div>
+            </div>
+        </div>
+        <div class="side-panel" id="sidePanel">
+            <div class="empty-panel">Click a node to view details</div>
+        </div>
+    </div>
+
+    <script>
+    // ─── COLOR MAP ───
+    const COLOR = {
+        root:       "#1B2A4A",
+        "stage-0":  "#3498db",
+        "stage-1":  "#9b59b6",
+        "stage-2":  "#e74c3c",
+        "stage-3":  "#e67e22",
+        "stage-4":  "#f39c12",
+        "stage-5":  "#c0392b",
+        "stage-6":  "#16a085",
+        "stage-7":  "#2980b9",
+        "stage-8":  "#27ae60",
+        master:     "#34495e",
+        specs:      "#7f8c8d",
+        sysconfig:  "#8E44AD",
+        compliance: "#E67E22",
+        testing:    "#2196F3",
+        category:   "#78909c",
+        doc:        "#00897B",
+        pf:         "#5C6BC0",
+        template:   "#8D6E63"
+    };
+
+    function nodeColor(d) {
+        const c = d.data.category;
+        if (c === "stage") return COLOR[d.data.id] || "#607d8b";
+        return COLOR[c] || "#607d8b";
+    }
+
+    // ─── DATA ───
+    const data = {
+  "name": "HAI SkyStruct Platform",
+  "id": "root",
+  "category": "root",
+  "children": [
+    {
+      "name": "Stage 0: Strategic Definition",
+      "id": "stage-0",
+      "category": "stage",
+      "description": "Initial planning and governance setup phase",
+      "children": [
+        {
+          "name": "Governance Documents",
+          "id": "s0-gov",
+          "category": "category",
+          "children": [
+            {
+              "name": "GOV-011",
+              "id": "GOV-011",
+              "category": "doc",
+              "type": "Governance",
+              "format": "DOCX",
+              "stages": "0",
+              "description": "Strategic Planning Document"
+            },
+            {
+              "name": "GOV-012",
+              "id": "GOV-012",
+              "category": "doc",
+              "type": "Governance",
+              "format": "DOCX",
+              "stages": "0",
+              "description": "Requirements Definition"
+            },
+            {
+              "name": "GOV-034",
+              "id": "GOV-034",
+              "category": "doc",
+              "type": "Governance",
+              "format": "DOCX",
+              "stages": "0",
+              "description": "Governance Framework"
+            },
+            {
+              "name": "GOV-035",
+              "id": "GOV-035",
+              "category": "doc",
+              "type": "Governance",
+              "format": "DOCX",
+              "stages": "0",
+              "description": "Risk Management Framework"
+            },
+            {
+              "name": "GOV-014",
+              "id": "GOV-014",
+              "category": "doc",
+              "type": "Governance",
+              "format": "DOCX",
+              "stages": "0",
+              "description": "Stakeholder Management Plan"
+            }
+          ]
+        },
+        {
+          "name": "Process Flows",
+          "id": "s0-pf",
+          "category": "category",
+          "children": [
+            {
+              "name": "PF-05: Stage Gate",
+              "id": "PF-05",
+              "category": "pf",
+              "type": "Process Flow",
+              "format": "DRAWIO",
+              "stages": "0",
+              "description": "Stage gate approval process"
+            },
+            {
+              "name": "PF-19: User Role Management",
+              "id": "PF-19",
+              "category": "pf",
+              "type": "Process Flow",
+              "format": "DRAWIO",
+              "stages": "0",
+              "description": "User and role setup process"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Stage 1: Preparation & Briefing",
+      "id": "stage-1",
+      "category": "stage",
+      "description": "Project setup and brief finalization phase",
+      "children": [
+        {
+          "name": "Governance Documents",
+          "id": "s1-gov",
+          "category": "category",
+          "children": [
+            {
+              "name": "GOV-013",
+              "id": "GOV-013",
+              "category": "doc",
+              "type": "Governance",
+              "format": "DOCX",
+              "stages": "1",
+              "description": "Project Charter"
+            },
+            {
+              "name": "GOV-036",
+              "id": "GOV-036",
+              "category": "doc",
+              "type": "Governance",
+              "format": "DOCX",
+              "stages": "1",
+              "description": "Concept Design Specification"
+            },
+            {
+              "name": "GOV-037",
+              "id": "GOV-037",
+              "category": "doc",
+              "type": "Governance",
+              "format": "DOCX",
+              "stages": "1",
+              "description": "Consultant Selection Criteria"
+            }
+          ]
+        },
+        {
+          "name": "Process Flows",
+          "id": "s1-pf",
+          "category": "category",
+          "children": [
+            {
+              "name": "PF-01: Document Review",
+              "id": "PF-01",
+              "category": "pf",
+              "type": "Process Flow",
+              "format": "DRAWIO",
+              "stages": "1,5",
+              "description": "Document submission and review"
+            },
+            {
+              "name": "PF-02: Correspondence",
+              "id": "PF-02",
+              "category": "pf",
+              "type": "Process Flow",
+              "format": "DRAWIO",
+              "stages": "1,5",
+              "description": "Internal and external correspondence management"
+            },
+            {
+              "name": "PF-09: Approval Engine",
+              "id": "PF-09",
+              "category": "pf",
+              "type": "Process Flow",
+              "format": "DRAWIO",
+              "stages": "1,5",
+              "description": "Approval workflow system"
+            },
+            {
+              "name": "PF-25: Consultant Mobilisation",
+              "id": "PF-25",
+              "category": "pf",
+              "type": "Process Flow",
+              "format": "DRAWIO",
+              "stages": "1",
+              "description": "Consultant team setup and mobilisation"
+            }
+          ]
+        },
+        {
+          "name": "Templates",
+          "id": "s1-tmpl",
+          "category": "category",
+          "children": [
+            {
+              "name": "A-Design: DES-A00_Technical Design_Submittal_Cover.docx",
+              "id": "DES-A00",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "1",
+              "description": "Technical Design submittal cover sheet"
+            },
+            {
+              "name": "General: Action_Item_Tracker.xlsx",
+              "id": "ACT-tracker",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "1,5",
+              "description": "Track action items and ownership"
+            },
+            {
+              "name": "General: Correspondence_Log.xlsx",
+              "id": "CORR-log",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "1,5",
+              "description": "Log all project correspondence"
+            },
+            {
+              "name": "General: Document_Transmittal_Log.xlsx",
+              "id": "DOC-trans",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "1,5",
+              "description": "Track document transmittals"
+            },
+            {
+              "name": "General: RFI_Template.docx",
+              "id": "RFI-tmpl",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "1,5",
+              "description": "Request for Information template"
+            },
+            {
+              "name": "General: MOM_Template.docx",
+              "id": "MOM-tmpl",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "1,5",
+              "description": "Meeting minutes template"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Stage 2: Concept Design",
+      "id": "stage-2",
+      "category": "stage",
+      "description": "Initial design concept development phase",
+      "children": [
+        {
+          "name": "Process Flows",
+          "id": "s2-pf",
+          "category": "category",
+          "children": [
+            {
+              "name": "PF-12: Risk Register",
+              "id": "PF-12",
+              "category": "pf",
+              "type": "Process Flow",
+              "format": "DRAWIO",
+              "stages": "2",
+              "description": "Risk identification and tracking"
+            },
+            {
+              "name": "PF-16: Meeting Action Tracking",
+              "id": "PF-16",
+              "category": "pf",
+              "type": "Process Flow",
+              "format": "DRAWIO",
+              "stages": "2",
+              "description": "Track meeting action items"
+            }
+          ]
+        },
+        {
+          "name": "Templates",
+          "id": "s2-tmpl",
+          "category": "category",
+          "children": [
+            {
+              "name": "General: RFI_Register.xlsx",
+              "id": "RFI-reg",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "2,5",
+              "description": "Register of all RFIs"
+            },
+            {
+              "name": "General: Drawing_Register.xlsx",
+              "id": "DWG-reg",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "2,5",
+              "description": "Master drawing register"
+            },
+            {
+              "name": "General: Photo_Log.xlsx",
+              "id": "PHOTO-log",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "2,5",
+              "description": "Photo documentation log"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Stage 3: Spatial Coordination & Developed Design",
+      "id": "stage-3",
+      "category": "stage",
+      "description": "Detailed design development phase",
+      "children": [
+        {
+          "name": "Process Flows",
+          "id": "s3-pf",
+          "category": "category",
+          "children": [
+            {
+              "name": "PF-06: Freeze Exception",
+              "id": "PF-06",
+              "category": "pf",
+              "type": "Process Flow",
+              "format": "DRAWIO",
+              "stages": "3",
+              "description": "Technical Design freeze and exception process"
+            },
+            {
+              "name": "PF-11: Spatial Coordination Cost",
+              "id": "PF-11",
+              "category": "pf",
+              "type": "Process Flow",
+              "format": "DRAWIO",
+              "stages": "3,5",
+              "description": "Spatial Coordination and cost management"
+            }
+          ]
+        },
+        {
+          "name": "Templates",
+          "id": "s3-tmpl",
+          "category": "category",
+          "children": [
+            {
+              "name": "B-Material: MAT-B00_Material_Submittal_Cover.docx",
+              "id": "MAT-B00",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "3,5",
+              "description": "Material submittal cover"
+            },
+            {
+              "name": "B-Material: MAT-B06_Mock_Up.xlsx",
+              "id": "MAT-B06",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "3,5",
+              "description": "Mock-up documentation"
+            },
+            {
+              "name": "B-Material: MAT-B07_Colour_Finish_Schedule.xlsx",
+              "id": "MAT-B07",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "3,5",
+              "description": "Colour and finish schedule"
+            },
+            {
+              "name": "B-Material: MAT-B08_Equipment_Data_Sheet.xlsx",
+              "id": "MAT-B08",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "3,5",
+              "description": "Equipment data sheets"
+            },
+            {
+              "name": "B-Material: MAT-B11_Concrete_Mix_Technical Design.xlsx",
+              "id": "MAT-B11",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "3,5",
+              "description": "Concrete mix design"
+            },
+            {
+              "name": "C-Method: MS-C01_Excavation_Earthworks.docx",
+              "id": "MS-C01",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "3,5",
+              "description": "Excavation and earthworks method statement"
+            },
+            {
+              "name": "C-Method: MS-C02_Piling_Foundation.docx",
+              "id": "MS-C02",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "3,5",
+              "description": "Piling and foundation method statement"
+            },
+            {
+              "name": "C-Method: MS-C03_Concrete_Works.docx",
+              "id": "MS-C03",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "3,5",
+              "description": "Concrete works method statement"
+            },
+            {
+              "name": "C-Method: MS-C04_Structural_Steel.docx",
+              "id": "MS-C04",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "3,5",
+              "description": "Structural steel method statement"
+            },
+            {
+              "name": "C-Method: MS-C05_Waterproofing.docx",
+              "id": "MS-C05",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "3,5",
+              "description": "Waterproofing method statement"
+            },
+            {
+              "name": "C-Method: MS-C06_MEP_Installation.docx",
+              "id": "MS-C06",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "3,5",
+              "description": "MEP installation method statement"
+            },
+            {
+              "name": "C-Method: MS-C07_Facade_Installation.docx",
+              "id": "MS-C07",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "3,5",
+              "description": "Facade installation method statement"
+            },
+            {
+              "name": "C-Method: MS-C08_Road_Infrastructure.docx",
+              "id": "MS-C08",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "3,5",
+              "description": "Road infrastructure method statement"
+            },
+            {
+              "name": "C-Method: MS-C09_Demolition.docx",
+              "id": "MS-C09",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "3,5",
+              "description": "Demolition method statement"
+            },
+            {
+              "name": "C-Method: MS-C10_Temporary_Works.docx",
+              "id": "MS-C10",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "3,5",
+              "description": "Temporary works method statement"
+            },
+            {
+              "name": "C-Method: MS-C11_Lifting_Crane.docx",
+              "id": "MS-C11",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "3,5",
+              "description": "Lifting and crane method statement"
+            },
+            {
+              "name": "C-Method: MS-C12_Hot_Works.docx",
+              "id": "MS-C12",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "3,5",
+              "description": "Hot works method statement"
+            },
+            {
+              "name": "C-Method: MS-C13_Hot_Weather_Concreting.docx",
+              "id": "MS-C13",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "3,5",
+              "description": "Hot weather concreting method statement"
+            },
+            {
+              "name": "C-Method: MS-C14_Traffic_Management.docx",
+              "id": "MS-C14",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "3,5",
+              "description": "Traffic management method statement"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Stage 4: Technical Design",
+      "id": "stage-4",
+      "category": "stage",
+      "description": "Final technical design phase",
+      "children": [
+        {
+          "name": "Process Flows",
+          "id": "s4-pf",
+          "category": "category",
+          "children": [
+            {
+              "name": "PF-04: Procurement",
+              "id": "PF-04",
+              "category": "pf",
+              "type": "Process Flow",
+              "format": "DRAWIO",
+              "stages": "4,5",
+              "description": "Procurement process management"
+            },
+            {
+              "name": "PF-07: Authority Submissions",
+              "id": "PF-07",
+              "category": "pf",
+              "type": "Process Flow",
+              "format": "DRAWIO",
+              "stages": "4,5",
+              "description": "Regulatory and authority submissions"
+            }
+          ]
+        },
+        {
+          "name": "Templates",
+          "id": "s4-tmpl",
+          "category": "category",
+          "children": [
+            {
+              "name": "J-Specialist: REG-J00_Regulatory_Submittal_Cover.docx",
+              "id": "REG-J00",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "4,5",
+              "description": "Regulatory submittal cover"
+            },
+            {
+              "name": "J-Specialist: REG-J01_Civil_Defence.xlsx",
+              "id": "REG-J01",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "4,5",
+              "description": "Civil defence documentation"
+            },
+            {
+              "name": "J-Specialist: REG-J03_Ashghal_NOC.xlsx",
+              "id": "REG-J03",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "4,5",
+              "description": "Ashghal NOC submission"
+            },
+            {
+              "name": "J-Specialist: REG-J04_Municipality.xlsx",
+              "id": "REG-J04",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "4,5",
+              "description": "Municipality approvals"
+            },
+            {
+              "name": "J-Specialist: REG-J05_Kahramaa.xlsx",
+              "id": "REG-J05",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "4,5",
+              "description": "Kahramaa utility coordination"
+            },
+            {
+              "name": "J-Specialist: REG-J07_GSAS.xlsx",
+              "id": "REG-J07",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "4,5",
+              "description": "GSAS sustainability certification"
+            },
+            {
+              "name": "G-Contractual: CON-G01_Payment_Application.docx",
+              "id": "CON-G01",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "4,5",
+              "description": "Payment application form"
+            },
+            {
+              "name": "G-Contractual: CON-G02_Variation_Proposal.docx",
+              "id": "CON-G02",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "4,5",
+              "description": "Variation proposal template"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Stage 5: Construction (PEAK)",
+      "id": "stage-5",
+      "category": "stage",
+      "description": "Active construction execution phase - ALL 108 templates active",
+      "children": [
+        {
+          "name": "Governance Documents",
+          "id": "s5-gov",
+          "category": "category",
+          "children": [
+            {
+              "name": "GOV-031",
+              "id": "GOV-031",
+              "category": "doc",
+              "type": "Governance",
+              "format": "DOCX",
+              "stages": "5",
+              "description": "Construction Phase Plan"
+            },
+            {
+              "name": "GOV-032",
+              "id": "GOV-032",
+              "category": "doc",
+              "type": "Governance",
+              "format": "DOCX",
+              "stages": "5",
+              "description": "Quality Management Plan"
+            },
+            {
+              "name": "GOV-033",
+              "id": "GOV-033",
+              "category": "doc",
+              "type": "Governance",
+              "format": "DOCX",
+              "stages": "5",
+              "description": "HSE Management Plan"
+            },
+            {
+              "name": "GOV-043",
+              "id": "GOV-043",
+              "category": "doc",
+              "type": "Governance",
+              "format": "DOCX",
+              "stages": "5,8",
+              "description": "Integration Specification"
+            }
+          ]
+        },
+        {
+          "name": "All QA/QC Templates",
+          "id": "s5-qaqc",
+          "category": "category",
+          "children": [
+            {
+              "name": "D-QAQC: QA-D00_NCR_Register.xlsx",
+              "id": "QA-D00",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Non-conformance report register"
+            },
+            {
+              "name": "D-QAQC: QA-D01_Project_Quality_Plan.docx",
+              "id": "QA-D01",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "5",
+              "description": "Project quality plan"
+            },
+            {
+              "name": "D-QAQC: QA-D02_ITP_Template.xlsx",
+              "id": "QA-D02",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Inspection and test plan"
+            },
+            {
+              "name": "D-QAQC: QA-D03_Material_Inspection.xlsx",
+              "id": "QA-D03",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Material inspection checklist"
+            },
+            {
+              "name": "D-QAQC: QA-D04_Concrete_Test.xlsx",
+              "id": "QA-D04",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Concrete testing record"
+            },
+            {
+              "name": "D-QAQC: QA-D05_Welding_Inspection.xlsx",
+              "id": "QA-D05",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Welding inspection record"
+            },
+            {
+              "name": "D-QAQC: QA-D06_Pressure_Test.xlsx",
+              "id": "QA-D06",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Pressure test report"
+            },
+            {
+              "name": "D-QAQC: QA-D07_Commissioning_Procedure.xlsx",
+              "id": "QA-D07",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Commissioning procedure"
+            },
+            {
+              "name": "D-QAQC: QA-D08_NCR_Template.xlsx",
+              "id": "QA-D08a",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "NCR template"
+            },
+            {
+              "name": "D-QAQC: QA-D08_WPS.xlsx",
+              "id": "QA-D08b",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Welding procedure specification"
+            },
+            {
+              "name": "D-QAQC: QA-D09_CAR_Template.xlsx",
+              "id": "QA-D09",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Corrective action request"
+            },
+            {
+              "name": "D-QAQC: QA-D10_Calibration_Register.xlsx",
+              "id": "QA-D10",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Equipment calibration register"
+            },
+            {
+              "name": "D-QAQC: QA-D11_Survey_Report.xlsx",
+              "id": "QA-D11a",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Survey report"
+            },
+            {
+              "name": "D-QAQC: QA-D11_TPI_Register.xlsx",
+              "id": "QA-D11b",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Third party inspection register"
+            },
+            {
+              "name": "D-QAQC: QA-D12_Inspection_Request.xlsx",
+              "id": "QA-D12a",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Inspection request"
+            },
+            {
+              "name": "D-QAQC: QA-D12_Snag_List.xlsx",
+              "id": "QA-D12b",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5,6",
+              "description": "Snag list tracking"
+            }
+          ]
+        },
+        {
+          "name": "All HSE Templates",
+          "id": "s5-hse",
+          "category": "category",
+          "children": [
+            {
+              "name": "E-HSE: HSE-E01_Project_HSE_Plan.docx",
+              "id": "HSE-E01",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "5",
+              "description": "Project HSE plan"
+            },
+            {
+              "name": "E-HSE: HSE-E02_Risk_Assessment.xlsx",
+              "id": "HSE-E02",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Risk assessment matrix"
+            },
+            {
+              "name": "E-HSE: HSE-E03_Permit_to_Work.xlsx",
+              "id": "HSE-E03",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Permit to work system"
+            },
+            {
+              "name": "E-HSE: HSE-E04_Toolbox_Talk.xlsx",
+              "id": "HSE-E04",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Toolbox talk record"
+            },
+            {
+              "name": "E-HSE: HSE-E05_Incident_Report.xlsx",
+              "id": "HSE-E05",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Incident report form"
+            },
+            {
+              "name": "E-HSE: HSE-E06_Near_Miss.xlsx",
+              "id": "HSE-E06",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Near miss report"
+            },
+            {
+              "name": "E-HSE: HSE-E07_Emergency_Response_Plan.docx",
+              "id": "HSE-E07",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "5",
+              "description": "Emergency response plan"
+            },
+            {
+              "name": "E-HSE: HSE-E08_Environmental_Management_Plan.docx",
+              "id": "HSE-E08",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "5",
+              "description": "Environmental management plan"
+            },
+            {
+              "name": "E-HSE: HSE-E09_Waste_Management_Plan.docx",
+              "id": "HSE-E09",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "5",
+              "description": "Waste management plan"
+            },
+            {
+              "name": "E-HSE: HSE-E10_Noise_Dust_Monitoring.xlsx",
+              "id": "HSE-E10",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Noise and dust monitoring"
+            },
+            {
+              "name": "E-HSE: HSE-E11_Statistics.xlsx",
+              "id": "HSE-E11",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "HSE statistics dashboard"
+            },
+            {
+              "name": "E-HSE: HSE-E12_COSHH_Assessment.xlsx",
+              "id": "HSE-E12",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "COSHH assessment"
+            },
+            {
+              "name": "E-HSE: HSE-E13_Hazardous_Material_Register.xlsx",
+              "id": "HSE-E13",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Hazardous material register"
+            },
+            {
+              "name": "E-HSE: HSE-E14_Training_Record.xlsx",
+              "id": "HSE-E14",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Training record log"
+            }
+          ]
+        },
+        {
+          "name": "All Progress Templates",
+          "id": "s5-progress",
+          "category": "category",
+          "children": [
+            {
+              "name": "F-Progress: PRG-F01_Mobilisation_Plan.docx",
+              "id": "PRG-F01",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "5",
+              "description": "Mobilisation plan"
+            },
+            {
+              "name": "F-Progress: PRG-F03_Recovery_Programme.docx",
+              "id": "PRG-F03",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "5",
+              "description": "Recovery programme"
+            },
+            {
+              "name": "F-Progress: PRG-F04_Resource_Histogram.xlsx",
+              "id": "PRG-F04",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Resource histogram"
+            },
+            {
+              "name": "F-Progress: PRG-F05_Cash_Flow.xlsx",
+              "id": "PRG-F05",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Cash flow forecast"
+            },
+            {
+              "name": "F-Progress: PRG-F07_Look_Ahead.xlsx",
+              "id": "PRG-F07",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Look ahead schedule"
+            },
+            {
+              "name": "F-Progress: PRG-F08_S_Curve.xlsx",
+              "id": "PRG-F08",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "S-curve analysis"
+            },
+            {
+              "name": "F-Progress: PRG-F09_Procurement_Schedule.xlsx",
+              "id": "PRG-F09",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Procurement schedule"
+            },
+            {
+              "name": "F-Progress: PRG-F10_Delay_Analysis.docx",
+              "id": "PRG-F10a",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "5",
+              "description": "Delay analysis report"
+            },
+            {
+              "name": "F-Progress: PRG-F10_Milestone_Certificate.xlsx",
+              "id": "PRG-F10b",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Milestone certificate"
+            },
+            {
+              "name": "F-Progress: PRG-F11_Weather_Record.xlsx",
+              "id": "PRG-F11",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Weather record log"
+            },
+            {
+              "name": "F-Progress: PRG-F12_Manpower_Return.xlsx",
+              "id": "PRG-F12",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Manpower returns"
+            }
+          ]
+        },
+        {
+          "name": "Contractual Templates",
+          "id": "s5-contractual",
+          "category": "category",
+          "children": [
+            {
+              "name": "G-Contractual: CON-G00_Claims_Register.xlsx",
+              "id": "CON-G00a",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Claims register"
+            },
+            {
+              "name": "G-Contractual: CON-G00_Variation_Register.xlsx",
+              "id": "CON-G00b",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Variation register"
+            },
+            {
+              "name": "G-Contractual: CON-G03_Claim_Submission.docx",
+              "id": "CON-G03",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "5",
+              "description": "Claim submission template"
+            },
+            {
+              "name": "G-Contractual: CON-G04_EOT_Application.docx",
+              "id": "CON-G04",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "5",
+              "description": "Extension of time application"
+            },
+            {
+              "name": "G-Contractual: CON-G05_Bond_Register.xlsx",
+              "id": "CON-G05a",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Bond register"
+            },
+            {
+              "name": "G-Contractual: CON-G05_Notice_of_Delay.docx",
+              "id": "CON-G05b",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "5",
+              "description": "Notice of delay"
+            },
+            {
+              "name": "G-Contractual: CON-G07_Insurance_Register.xlsx",
+              "id": "CON-G07",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Insurance register"
+            },
+            {
+              "name": "G-Contractual: CON-G08_Retention_Release.docx",
+              "id": "CON-G08a",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "5",
+              "description": "Retention release request"
+            },
+            {
+              "name": "G-Contractual: CON-G08_Subcontractor_Approval.xlsx",
+              "id": "CON-G08b",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Subcontractor approval"
+            },
+            {
+              "name": "G-Contractual: CON-G09_Daywork_Sheet.xlsx",
+              "id": "CON-G09",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Daywork sheet"
+            },
+            {
+              "name": "G-Contractual: CON-G11_Contractual_Notice.docx",
+              "id": "CON-G11",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "5",
+              "description": "Contractual notice"
+            },
+            {
+              "name": "G-Contractual: CON-G12_Dispute_Notice.docx",
+              "id": "CON-G12a",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "5",
+              "description": "Dispute notice"
+            }
+          ]
+        },
+        {
+          "name": "All General Templates",
+          "id": "s5-general",
+          "category": "category",
+          "children": [
+            {
+              "name": "General: RFI_Register.xlsx",
+              "id": "RFI-reg-s5",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "RFI register"
+            },
+            {
+              "name": "General: SI_Register.xlsx",
+              "id": "SI-reg",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Site instruction register"
+            },
+            {
+              "name": "General: Site_Diary.xlsx",
+              "id": "SITE-diary",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Daily site diary"
+            },
+            {
+              "name": "General: Site_Instruction_Template.docx",
+              "id": "SI-tmpl",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "5",
+              "description": "Site instruction template"
+            },
+            {
+              "name": "General: Submittal_Status_Register.xlsx",
+              "id": "SUBMIT-reg",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Submittal status register"
+            },
+            {
+              "name": "General: Submittal_Transmittal_Letter.docx",
+              "id": "SUBMIT-letter",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "5",
+              "description": "Submittal transmittal letter"
+            }
+          ]
+        },
+        {
+          "name": "All Report Templates",
+          "id": "s5-reports",
+          "category": "category",
+          "children": [
+            {
+              "name": "Reports: RPT-F01_Daily_Site_Report.xlsx",
+              "id": "RPT-F01",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Daily site report"
+            },
+            {
+              "name": "Reports: RPT-F02_Weekly_Report.xlsx",
+              "id": "RPT-F02",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Weekly progress report"
+            },
+            {
+              "name": "Reports: RPT-F04_Monthly_Report.xlsx",
+              "id": "RPT-F04",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "5",
+              "description": "Monthly progress report"
+            }
+          ]
+        },
+        {
+          "name": "Process Flows (22 Active)",
+          "id": "s5-pf",
+          "category": "category",
+          "children": [
+            {
+              "name": "PF-03: Variation Order",
+              "id": "PF-03",
+              "category": "pf",
+              "type": "Process Flow",
+              "format": "DRAWIO",
+              "stages": "5",
+              "description": "Variation order processing"
+            },
+            {
+              "name": "PF-08: IPC Processing",
+              "id": "PF-08",
+              "category": "pf",
+              "type": "Process Flow",
+              "format": "DRAWIO",
+              "stages": "5",
+              "description": "Interim payment certificate"
+            },
+            {
+              "name": "PF-10: Quality Supervision",
+              "id": "PF-10",
+              "category": "pf",
+              "type": "Process Flow",
+              "format": "DRAWIO",
+              "stages": "5",
+              "description": "Quality supervision process"
+            },
+            {
+              "name": "PF-13: Contractor Performance",
+              "id": "PF-13",
+              "category": "pf",
+              "type": "Process Flow",
+              "format": "DRAWIO",
+              "stages": "5",
+              "description": "Performance monitoring"
+            },
+            {
+              "name": "PF-17: External Stakeholder Portal",
+              "id": "PF-17",
+              "category": "pf",
+              "type": "Process Flow",
+              "format": "DRAWIO",
+              "stages": "5",
+              "description": "Stakeholder communication"
+            },
+            {
+              "name": "PF-18: Report Generation Export",
+              "id": "PF-18",
+              "category": "pf",
+              "type": "Process Flow",
+              "format": "DRAWIO",
+              "stages": "5",
+              "description": "Report generation system"
+            },
+            {
+              "name": "PF-20: ERP Integration",
+              "id": "PF-20",
+              "category": "pf",
+              "type": "Process Flow",
+              "format": "DRAWIO",
+              "stages": "5",
+              "description": "ERP system integration"
+            },
+            {
+              "name": "PF-21: Dashboard Analytics",
+              "id": "PF-21",
+              "category": "pf",
+              "type": "Process Flow",
+              "format": "DRAWIO",
+              "stages": "5",
+              "description": "Analytics dashboard"
+            },
+            {
+              "name": "PF-22: Notification Escalation",
+              "id": "PF-22",
+              "category": "pf",
+              "type": "Process Flow",
+              "format": "DRAWIO",
+              "stages": "5",
+              "description": "Alert and escalation system"
+            },
+            {
+              "name": "PF-23: Predictive Analytics",
+              "id": "PF-23",
+              "category": "pf",
+              "type": "Process Flow",
+              "format": "DRAWIO",
+              "stages": "5",
+              "description": "Predictive analytics engine"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Stage 6: Handover & Close-Out",
+      "id": "stage-6",
+      "category": "stage",
+      "description": "Project close-out and handover phase",
+      "children": [
+        {
+          "name": "Process Flows",
+          "id": "s6-pf",
+          "category": "category",
+          "children": [
+            {
+              "name": "PF-15: Handover DLP",
+              "id": "PF-15",
+              "category": "pf",
+              "type": "Process Flow",
+              "format": "DRAWIO",
+              "stages": "6,7",
+              "description": "Handover and DLP process"
+            },
+            {
+              "name": "PF-28: TOC Management",
+              "id": "PF-28",
+              "category": "pf",
+              "type": "Process Flow",
+              "format": "DRAWIO",
+              "stages": "6",
+              "description": "Temporary occupation certificate management"
+            },
+            {
+              "name": "PF-31: Snag List Resolution",
+              "id": "PF-31",
+              "category": "pf",
+              "type": "Process Flow",
+              "format": "DRAWIO",
+              "stages": "6",
+              "description": "Snag list resolution process"
+            }
+          ]
+        },
+        {
+          "name": "Templates",
+          "id": "s6-tmpl",
+          "category": "category",
+          "children": [
+            {
+              "name": "H-Handover: HOV-H00_Handover_Cover.docx",
+              "id": "HOV-H00",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "6",
+              "description": "Handover cover sheet"
+            },
+            {
+              "name": "H-Handover: HOV-H01_As_Built_Register.xlsx",
+              "id": "HOV-H01a",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "6",
+              "description": "As-built drawings register"
+            },
+            {
+              "name": "H-Handover: HOV-H01_Demobilisation_Plan.docx",
+              "id": "HOV-H01b",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "6",
+              "description": "Demobilisation plan"
+            },
+            {
+              "name": "H-Handover: HOV-H02_OM_Manual_Template.docx",
+              "id": "HOV-H02",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "6",
+              "description": "O&M manual template"
+            },
+            {
+              "name": "H-Handover: HOV-H04_Spare_Parts.xlsx",
+              "id": "HOV-H04",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "6",
+              "description": "Spare parts register"
+            },
+            {
+              "name": "H-Handover: HOV-H05_Pre_Commissioning.xlsx",
+              "id": "HOV-H05a",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "6",
+              "description": "Pre-commissioning checklist"
+            },
+            {
+              "name": "H-Handover: HOV-H05_Testing_Commissioning.xlsx",
+              "id": "HOV-H05b",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "6",
+              "description": "Testing and commissioning record"
+            },
+            {
+              "name": "H-Handover: HOV-H07_Training_Record.xlsx",
+              "id": "HOV-H07",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "6",
+              "description": "Operator training record"
+            },
+            {
+              "name": "H-Handover: HOV-H10_Building_User_Guide.docx",
+              "id": "HOV-H10",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "6",
+              "description": "Building user guide"
+            },
+            {
+              "name": "H-Handover: HOV-H11_Defects_Tracker.xlsx",
+              "id": "HOV-H11",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "6",
+              "description": "Defects tracker"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Stage 7: In Use (DLP)",
+      "id": "stage-7",
+      "category": "stage",
+      "description": "Defects Liability Period phase",
+      "children": [
+        {
+          "name": "Process Flows",
+          "id": "s7-pf",
+          "category": "category",
+          "children": [
+            {
+              "name": "PF-14: Lessons Learned",
+              "id": "PF-14",
+              "category": "pf",
+              "type": "Process Flow",
+              "format": "DRAWIO",
+              "stages": "7",
+              "description": "Lessons learned capture"
+            },
+            {
+              "name": "PF-27: Lessons Learned CI",
+              "id": "PF-27",
+              "category": "pf",
+              "type": "Process Flow",
+              "format": "DRAWIO",
+              "stages": "7,8",
+              "description": "Continuous improvement process"
+            },
+            {
+              "name": "PF-30: Performance Certificate",
+              "id": "PF-30",
+              "category": "pf",
+              "type": "Process Flow",
+              "format": "DRAWIO",
+              "stages": "7",
+              "description": "Performance monitoring and certification"
+            }
+          ]
+        },
+        {
+          "name": "Templates",
+          "id": "s7-tmpl",
+          "category": "category",
+          "children": [
+            {
+              "name": "H-Handover: Defects tracking",
+              "id": "HOV-H11-s7",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "7",
+              "description": "Defects monitoring during DLP"
+            },
+            {
+              "name": "G-Contractual: Retention release",
+              "id": "CON-G08-s7",
+              "category": "template",
+              "type": "Template",
+              "format": "DOCX",
+              "stages": "7",
+              "description": "Retention fund release processing"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Stage 8: Post-Completion",
+      "id": "stage-8",
+      "category": "stage",
+      "description": "Final settlement and archive phase",
+      "children": [
+        {
+          "name": "Process Flows",
+          "id": "s8-pf",
+          "category": "category",
+          "children": [
+            {
+              "name": "PF-24: Post Go Live Support",
+              "id": "PF-24",
+              "category": "pf",
+              "type": "Process Flow",
+              "format": "DRAWIO",
+              "stages": "8",
+              "description": "Post-completion support"
+            },
+            {
+              "name": "PF-26: Final Account Settlement",
+              "id": "PF-26",
+              "category": "pf",
+              "type": "Process Flow",
+              "format": "DRAWIO",
+              "stages": "8",
+              "description": "Final account settlement"
+            },
+            {
+              "name": "PF-29: Final Payment Certificate",
+              "id": "PF-29",
+              "category": "pf",
+              "type": "Process Flow",
+              "format": "DRAWIO",
+              "stages": "8",
+              "description": "Final payment certificate processing"
+            }
+          ]
+        },
+        {
+          "name": "Templates",
+          "id": "s8-tmpl",
+          "category": "category",
+          "children": [
+            {
+              "name": "G-Contractual: CON-G12_Final_Account.xlsx",
+              "id": "CON-G12b",
+              "category": "template",
+              "type": "Template",
+              "format": "XLSX",
+              "stages": "8",
+              "description": "Final account settlement"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Master Governance (All Stages)",
+      "id": "master-gov",
+      "category": "master",
+      "description": "Core documents applicable across all project stages",
+      "children": [
+        {
+          "name": "GOV-000 Document Register",
+          "id": "GOV-000",
+          "category": "doc",
+          "type": "Governance",
+          "format": "XLSX",
+          "stages": "All",
+          "description": "Complete document register for all HAI SkyStruct documents"
+        },
+        {
+          "name": "GOV-001 Implementation Guidebook",
+          "id": "GOV-001",
+          "category": "doc",
+          "type": "Governance",
+          "format": "DOCX",
+          "stages": "All",
+          "description": "Step-by-step implementation guide"
+        },
+        {
+          "name": "GOV-002 WBS Schedule",
+          "id": "GOV-002",
+          "category": "doc",
+          "type": "Governance",
+          "format": "XLSX",
+          "stages": "All",
+          "description": "Work breakdown structure and schedule"
+        },
+        {
+          "name": "GOV-003 Process Flow Register",
+          "id": "GOV-003",
+          "category": "doc",
+          "type": "Governance",
+          "format": "XLSX",
+          "stages": "All",
+          "description": "Register of all 31 process flows"
+        },
+        {
+          "name": "GOV-004 Cross-Link Index",
+          "id": "GOV-004",
+          "category": "doc",
+          "type": "Governance",
+          "format": "XLSX",
+          "stages": "All",
+          "description": "Cross-reference index for all documents"
+        },
+        {
+          "name": "GOV-005 Stage-Based Organisation",
+          "id": "GOV-005",
+          "category": "doc",
+          "type": "Governance",
+          "format": "DOCX",
+          "stages": "All",
+          "description": "Organisational structure by project stage"
+        },
+        {
+          "name": "GOV-006 Project Mind Map (This File)",
+          "id": "GOV-006",
+          "category": "doc",
+          "type": "Governance",
+          "format": "HTML",
+          "stages": "All",
+          "description": "Interactive mind map visualization of the entire platform"
+        },
+        {
+          "name": "GOV-007 Implementation Roadmap",
+          "id": "GOV-007",
+          "category": "doc",
+          "type": "Governance",
+          "format": "PPTX",
+          "stages": "All",
+          "description": "Implementation roadmap presentation"
+        },
+        {
+          "name": "GOV-008 SkyStruct SOW",
+          "id": "GOV-008",
+          "category": "doc",
+          "type": "Governance",
+          "format": "DOCX",
+          "stages": "All",
+          "description": "Statement of work for SkyStruct engagement"
+        },
+        {
+          "name": "GOV-009 CEO Presentation",
+          "id": "GOV-009",
+          "category": "doc",
+          "type": "Governance",
+          "format": "PPTX",
+          "stages": "All",
+          "description": "Executive presentation for ARADA board on SkyStruct platform"
+        },
+        {
+          "name": "GOV-010 End-User Training Manual",
+          "id": "GOV-010",
+          "category": "doc",
+          "type": "Governance",
+          "format": "DOCX",
+          "stages": "All",
+          "description": "Operational training guide for all platform users"
+        }
+      ]
+    },
+    {
+      "name": "Process Specifications",
+      "id": "spec-docs",
+      "category": "specs",
+      "description": "Detailed process and technical specifications",
+      "children": [
+        {
+          "name": "GOV-021 PF Action Sheets",
+          "id": "GOV-021",
+          "category": "doc",
+          "type": "Specification",
+          "format": "XLSX",
+          "stages": "All",
+          "description": "Action item templates for each process flow"
+        },
+        {
+          "name": "GOV-022 L1 Process Flow Narratives",
+          "id": "GOV-022",
+          "category": "doc",
+          "type": "Specification",
+          "format": "DOCX",
+          "stages": "All",
+          "description": "Detailed narrative descriptions of all process flows"
+        },
+        {
+          "name": "GOV-023 L2 UI Wireframe Specs",
+          "id": "GOV-023",
+          "category": "doc",
+          "type": "Specification",
+          "format": "DRAWIO",
+          "stages": "All",
+          "description": "UI/UX wireframe specifications"
+        },
+        {
+          "name": "GOV-024 L3 Data Model",
+          "id": "GOV-024",
+          "category": "doc",
+          "type": "Specification",
+          "format": "DRAWIO",
+          "stages": "All",
+          "description": "Complete system data model"
+        },
+        {
+          "name": "GOV-025 L4 Acceptance Checklists",
+          "id": "GOV-025",
+          "category": "doc",
+          "type": "Specification",
+          "format": "XLSX",
+          "stages": "All",
+          "description": "UAT acceptance criteria and checklists"
+        }
+      ]
+    },
+    {
+      "name": "System Configuration",
+      "id": "sysconfig-docs",
+      "category": "sysconfig",
+      "description": "Platform configuration, KPIs, security, and dashboard specifications",
+      "children": [
+        {
+          "name": "GOV-011 System Configuration",
+          "id": "GOV-011-master",
+          "category": "doc",
+          "type": "System Config",
+          "format": "XLSX",
+          "stages": "All",
+          "description": "Core system configuration parameters"
+        },
+        {
+          "name": "GOV-012 Role & Permission Matrix",
+          "id": "GOV-012-master",
+          "category": "doc",
+          "type": "System Config",
+          "format": "XLSX",
+          "stages": "All",
+          "description": "RBAC role definitions and permissions"
+        },
+        {
+          "name": "GOV-013 Workflow Engine Rules",
+          "id": "GOV-013-master",
+          "category": "doc",
+          "type": "System Config",
+          "format": "XLSX",
+          "stages": "All",
+          "description": "Workflow automation rules and triggers"
+        },
+        {
+          "name": "GOV-014 Notification Rules",
+          "id": "GOV-014-master",
+          "category": "doc",
+          "type": "System Config",
+          "format": "XLSX",
+          "stages": "All",
+          "description": "Notification and alert configuration"
+        },
+        {
+          "name": "GOV-016 Dashboard Specifications",
+          "id": "GOV-016",
+          "category": "doc",
+          "type": "System Config",
+          "format": "XLSX",
+          "stages": "All",
+          "description": "Dashboard layout and data source specifications"
+        },
+        {
+          "name": "GOV-017 KPI & SLA Definitions",
+          "id": "GOV-017",
+          "category": "doc",
+          "type": "System Config",
+          "format": "XLSX",
+          "stages": "All",
+          "description": "15 KPIs with thresholds, 15 SLAs with escalation rules"
+        },
+        {
+          "name": "GOV-018 Audit Trail & Compliance Spec",
+          "id": "GOV-018",
+          "category": "doc",
+          "type": "System Config",
+          "format": "XLSX",
+          "stages": "All",
+          "description": "20 audit events, compliance requirements, retention schedule"
+        },
+        {
+          "name": "GOV-019 Security & Access Policy",
+          "id": "GOV-019",
+          "category": "doc",
+          "type": "System Config",
+          "format": "XLSX",
+          "stages": "All",
+          "description": "Authentication policy, data classification L1-L4, network security"
+        },
+        {
+          "name": "GOV-020 Dashboard Wireframes",
+          "id": "GOV-020",
+          "category": "doc",
+          "type": "System Config",
+          "format": "HTML",
+          "stages": "All",
+          "description": "6 role-based dashboard mockups"
+        }
+      ]
+    },
+    {
+      "name": "Contract & Compliance",
+      "id": "compliance-docs",
+      "category": "compliance",
+      "description": "RACI, FIDIC mapping, QCS compliance, and change management",
+      "children": [
+        {
+          "name": "GOV-030 RACI Matrix",
+          "id": "GOV-030",
+          "category": "doc",
+          "type": "Compliance",
+          "format": "XLSX",
+          "stages": "All",
+          "description": "Responsibility matrix for all 31 PFs across 14 roles"
+        },
+        {
+          "name": "GOV-038 FIDIC Clause-Workflow Mapping",
+          "id": "GOV-038",
+          "category": "doc",
+          "type": "Compliance",
+          "format": "XLSX",
+          "stages": "4-7",
+          "description": "20 FIDIC clauses mapped to PFs, templates, SLAs"
+        },
+        {
+          "name": "GOV-039 QCS 2014 Compliance Matrix",
+          "id": "GOV-039",
+          "category": "doc",
+          "type": "Compliance",
+          "format": "XLSX",
+          "stages": "2-7",
+          "description": "QCS sections mapped to modules and authority approvals"
+        },
+        {
+          "name": "GOV-040 Platform Change Management Plan",
+          "id": "GOV-040",
+          "category": "doc",
+          "type": "Compliance",
+          "format": "DOCX",
+          "stages": "All",
+          "description": "4-category change process, 7-step CR workflow"
+        }
+      ]
+    },
+    {
+      "name": "Testing & Integration",
+      "id": "testing-docs",
+      "category": "testing",
+      "description": "UAT, migration, and integration specifications",
+      "children": [
+        {
+          "name": "GOV-041 UAT Test Plan",
+          "id": "GOV-041",
+          "category": "doc",
+          "type": "Testing",
+          "format": "DOCX",
+          "stages": "All",
+          "description": "User acceptance testing plan and procedures"
+        },
+        {
+          "name": "GOV-042 Migration Specification",
+          "id": "GOV-042",
+          "category": "doc",
+          "type": "Testing",
+          "format": "DOCX",
+          "stages": "All",
+          "description": "Data migration specifications and procedures"
+        },
+        {
+          "name": "GOV-044 Data Backup & Disaster Recovery",
+          "id": "GOV-044",
+          "category": "doc",
+          "type": "Testing",
+          "format": "DOCX",
+          "stages": "All",
+          "description": "RTO 4h, RPO 1h, backup strategy, DR procedures"
+        }
+      ]
+    }
+  ]
+};
+
+    // ─── LAYOUT ───
+    const container = document.getElementById("treeContainer");
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+
+    const svg = d3.select("#treeSvg")
+        .attr("width", width)
+        .attr("height", height);
+
+    const g = svg.append("g");
+
+    // Zoom
+    const zoom = d3.zoom()
+        .scaleExtent([0.1, 4])
+        .on("zoom", (e) => g.attr("transform", e.transform));
+    svg.call(zoom);
+
+    const root = d3.hierarchy(data);
+    root.x0 = height / 2;
+    root.y0 = 0;
+
+    // Collapse all except root and first level
+    root.children.forEach(collapse);
+    function collapse(d) {
+        if (d.children) {
+            d._children = d.children;
+            d._children.forEach(collapse);
+            d.children = null;
+        }
+    }
+
+    const dx = 22;          // vertical spacing between nodes
+    const dy = 220;         // horizontal spacing between levels
+
+    let i = 0;
+    const duration = 400;
+
+    update(root);
+
+    // Center on root
+    svg.call(zoom.transform,
+        d3.zoomIdentity.translate(80, height / 2).scale(1));
+
+    document.getElementById("nodeCount").textContent = root.descendants().length +
+        countCollapsed(root);
+
+    function countCollapsed(node) {
+        let n = 0;
+        if (node._children) {
+            node._children.forEach(c => { n += 1 + countCollapsed(c); });
+        }
+        if (node.children) {
+            node.children.forEach(c => { n += countCollapsed(c); });
+        }
+        return n;
+    }
+
+    // ─── UPDATE ───
+    function update(source) {
+        const treeLayout = d3.tree().nodeSize([dx, dy]);
+        treeLayout(root);
+
+        const nodes = root.descendants();
+        const links = root.links();
+
+        // Normalize: shift leftmost node to y=0
+        let left = root;
+        root.eachBefore(d => { if (d.x < left.x) left = d; });
+        root.eachBefore(d => d.x -= left.x);
+
+        // ── LINKS ──
+        const link = g.selectAll("path.link")
+            .data(links, d => d.target.id || (d.target.id = ++i));
+
+        const linkEnter = link.enter().append("path")
+            .attr("class", "link")
+            .attr("d", () => {
+                const o = { x: source.x0, y: source.y0 };
+                return diagonal({ source: o, target: o });
+            });
+
+        link.merge(linkEnter).transition().duration(duration)
+            .attr("d", diagonal);
+
+        link.exit().transition().duration(duration)
+            .attr("d", () => {
+                const o = { x: source.x, y: source.y };
+                return diagonal({ source: o, target: o });
+            }).remove();
+
+        // ── NODES ──
+        const node = g.selectAll("g.node")
+            .data(nodes, d => d.id || (d.id = ++i));
+
+        const nodeEnter = node.enter().append("g")
+            .attr("class", "node")
+            .attr("transform", () => `translate(${source.y0},${source.x0})`)
+            .on("click", (event, d) => {
+                event.stopPropagation();
+                toggle(d);
+                update(d);
+            })
+            .on("contextmenu", (event, d) => {
+                event.preventDefault();
+                showDetails(d);
+            });
+
+        nodeEnter.append("circle")
+            .attr("r", 1e-6)
+            .style("fill", d => d._children ? nodeColor(d) : "#fff")
+            .style("stroke", d => nodeColor(d));
+
+        nodeEnter.append("text")
+            .attr("dy", "0.35em")
+            .attr("x", d => d.children || d._children ? -12 : 12)
+            .attr("text-anchor", d => d.children || d._children ? "end" : "start")
+            .text(d => d.data.name)
+            .style("font-size", d => {
+                if (d.depth === 0) return "14px";
+                if (d.depth === 1) return "12px";
+                return "11px";
+            })
+            .style("font-weight", d => d.depth <= 1 ? "700" : "400")
+            .clone(true).lower()
+            .attr("stroke", "white")
+            .attr("stroke-width", 3);
+
+        // Child count badge
+        nodeEnter.filter(d => d._children && d._children.length > 0)
+            .append("text")
+            .attr("class", "badge")
+            .attr("dy", "-0.6em")
+            .attr("x", 0)
+            .attr("text-anchor", "middle")
+            .style("font-size", "9px")
+            .style("fill", "#999")
+            .text(d => d._children ? `(${d._children.length})` : "");
+
+        // Merge
+        const nodeUpdate = node.merge(nodeEnter);
+
+        nodeUpdate.transition().duration(duration)
+            .attr("transform", d => `translate(${d.y},${d.x})`);
+
+        nodeUpdate.select("circle")
+            .attr("r", d => {
+                if (d.depth === 0) return 8;
+                if (d.children || d._children) return 6;
+                return 4;
+            })
+            .style("fill", d => d._children ? nodeColor(d) : "#fff")
+            .style("stroke", d => nodeColor(d));
+
+        // Update badge
+        nodeUpdate.select("text.badge")
+            .text(d => d._children ? `(${d._children.length})` : "");
+
+        // Update text anchor direction
+        nodeUpdate.selectAll("text:not(.badge)")
+            .attr("x", d => d.children || d._children ? -12 : 12)
+            .attr("text-anchor", d => d.children || d._children ? "end" : "start");
+
+        // Exit
+        const nodeExit = node.exit().transition().duration(duration)
+            .attr("transform", () => `translate(${source.y},${source.x})`)
+            .remove();
+
+        nodeExit.select("circle").attr("r", 1e-6);
+        nodeExit.select("text").style("fill-opacity", 1e-6);
+
+        // Stash positions
+        nodes.forEach(d => { d.x0 = d.x; d.y0 = d.y; });
+
+        // Click on node also shows details
+        nodeUpdate.on("click", (event, d) => {
+            event.stopPropagation();
+            showDetails(d);
+            toggle(d);
+            update(d);
+        });
+    }
+
+    function diagonal(d) {
+        return `M${d.source.y},${d.source.x}
+                C${(d.source.y + d.target.y) / 2},${d.source.x}
+                 ${(d.source.y + d.target.y) / 2},${d.target.x}
+                 ${d.target.y},${d.target.x}`;
+    }
+
+    function toggle(d) {
+        if (d.children) {
+            d._children = d.children;
+            d.children = null;
+        } else if (d._children) {
+            d.children = d._children;
+            d._children = null;
+        }
+    }
+
+    // ─── DETAILS PANEL ───
+    function showDetails(d) {
+        const panel = document.getElementById("sidePanel");
+        const n = d.data;
+        let html = `<div class="panel-title">${n.name}</div>`;
+
+        if (n.description) {
+            html += `<div class="panel-row"><div class="panel-label">Description</div><div class="panel-value">${n.description}</div></div>`;
+        }
+        if (n.id && n.id !== "root") {
+            html += `<div class="panel-row"><div class="panel-label">ID</div><div class="panel-value" style="font-family:monospace">${n.id}</div></div>`;
+        }
+        if (n.category) {
+            const bg = COLOR[n.category] || COLOR[n.id] || "#607d8b";
+            html += `<div class="panel-row"><div class="panel-label">Category</div><span class="panel-badge" style="background:${bg}">${n.category}</span></div>`;
+        }
+        if (n.type) {
+            html += `<div class="panel-row"><div class="panel-label">Type</div><div class="panel-value">${n.type}</div></div>`;
+        }
+        if (n.format) {
+            html += `<div class="panel-row"><div class="panel-label">Format</div><div class="panel-value">${n.format}</div></div>`;
+        }
+        if (n.stages) {
+            html += `<div class="panel-row"><div class="panel-label">Active Stages</div><div class="panel-value">${n.stages}</div></div>`;
+        }
+
+        // Show children summary
+        const kids = d.children || d._children;
+        if (kids && kids.length > 0) {
+            html += `<div class="panel-children"><div class="panel-label">Children (${kids.length})</div>`;
+            kids.forEach(c => {
+                html += `<div class="panel-child-item">${c.data.name}</div>`;
+            });
+            html += `</div>`;
+        }
+
+        panel.innerHTML = html;
+        panel.classList.remove("collapsed");
+    }
+
+    // ─── SEARCH ───
+    document.getElementById("searchInput").addEventListener("input", function(e) {
+        const term = e.target.value.toLowerCase().trim();
+
+        if (!term) {
+            g.selectAll(".node").classed("dimmed", false).classed("highlight", false);
+            g.selectAll(".link").classed("dimmed", false);
+            return;
+        }
+
+        // First expand all to search
+        expandAll(root);
+        update(root);
+
+        setTimeout(() => {
+            const allNodes = g.selectAll(".node");
+            const allLinks = g.selectAll(".link");
+
+            const matchSet = new Set();
+
+            allNodes.each(function(d) {
+                const match = d.data.name.toLowerCase().includes(term) ||
+                              (d.data.id && d.data.id.toLowerCase().includes(term)) ||
+                              (d.data.description && d.data.description.toLowerCase().includes(term));
+                if (match) {
+                    matchSet.add(d);
+                    // Also highlight ancestors
+                    let p = d.parent;
+                    while (p) { matchSet.add(p); p = p.parent; }
+                }
+            });
+
+            allNodes.classed("dimmed", d => !matchSet.has(d));
+            allNodes.classed("highlight", d => {
+                const match = d.data.name.toLowerCase().includes(term) ||
+                              (d.data.id && d.data.id.toLowerCase().includes(term));
+                return match;
+            });
+
+            allLinks.classed("dimmed", d => !matchSet.has(d.source) || !matchSet.has(d.target));
+        }, duration + 50);
+    });
+
+    // ─── BUTTONS ───
+    document.getElementById("expandBtn").addEventListener("click", () => {
+        expandAll(root);
+        update(root);
+    });
+
+    document.getElementById("collapseBtn").addEventListener("click", () => {
+        root.children.forEach(collapse);
+        update(root);
+    });
+
+    document.getElementById("resetBtn").addEventListener("click", () => {
+        svg.transition().duration(500).call(
+            zoom.transform,
+            d3.zoomIdentity.translate(80, height / 2).scale(1)
+        );
+    });
+
+    document.getElementById("panelToggle").addEventListener("click", () => {
+        document.getElementById("sidePanel").classList.toggle("collapsed");
+    });
+
+    function expandAll(d) {
+        if (d._children) {
+            d.children = d._children;
+            d._children = null;
+        }
+        if (d.children) d.children.forEach(expandAll);
+    }
+
+    </script>
+</body>
+</html>

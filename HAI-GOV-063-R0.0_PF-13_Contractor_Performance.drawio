@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="draw.io" modified="2026-03-01T00:00:00Z" version="1.0" type="document">
+  <diagram id="PF-13" name="PF-13_Contractor_Scoring">
+    <mxGraphModel dx="1500" dy="1500" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- TITLE BAR -->
+        <mxCell id="title_bg" value="" style="rectangle;fillColor=#1B2A4A;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1169" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="title_text" value="PF-13: Contractor Performance Scoring" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=white;fontSize=28;fontStyle=bold;fontFamily=sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="20" y="0" width="450" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="module_text" value="Module: KPI | SOW: K.1-K.8 | RIBA: Contractor performance monitoring" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#E8E8E8;fontSize=12;fontFamily=sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="20" y="40" width="500" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- SLA BAR -->
+        <mxCell id="sla_bg" value="" style="rectangle;fillColor=#F5F5F5;strokeColor=#CCCCCC;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="0" y="80" width="1169" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="sla_text" value="SCORING ALGORITHM: Time 20% | Value 25% | Defects 25% | Cost 15% | Responsiveness 15% | Thresholds: Watch &lt;60%, Blacklist &lt;40% | Monthly scorecards | Quarterly aggregate reports" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontFamily=sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="10" y="85" width="1149" height="70" as="geometry" />
+        </mxCell>
+        
+        <!-- SWIM LANE HEADERS -->
+        <mxCell id="lane_header_1" value="Data Sources" style="rectangle;fillColor=#D6E4F0;strokeColor=#1B2A4A;strokeWidth=2;fontSize=12;fontStyle=bold;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="0" y="160" width="300" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_header_2" value="Analytics Engine" style="rectangle;fillColor=#FFF8E1;strokeColor=#1B2A4A;strokeWidth=2;fontSize=12;fontStyle=bold;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="300" y="160" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_header_3" value="Output & Actions" style="rectangle;fillColor=#E8F5E9;strokeColor=#1B2A4A;strokeWidth=2;fontSize=12;fontStyle=bold;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="730" y="160" width="439" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- SWIM LANE SEPARATORS -->
+        <mxCell id="sep1" value="" style="line;strokeColor=#CCCCCC;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="300" y="160" width="1" height="750" as="geometry" />
+        </mxCell>
+        <mxCell id="sep2" value="" style="line;strokeColor=#CCCCCC;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="730" y="160" width="1" height="750" as="geometry" />
+        </mxCell>
+        
+        <!-- START -->
+        <mxCell id="start" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#333333;strokeColor=#333333;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="135" y="220" width="30" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 1: Collect Data -->
+        <mxCell id="step1" value="Collect Performance Data&#10;Time, Value, Defects&#10;Cost, Responsiveness metrics" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="75" y="280" width="150" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 1 -->
+        <mxCell id="arr1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="start" target="step1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 2: Apply Algorithm -->
+        <mxCell id="step2" value="Apply Scoring Algorithm&#10;T:20% V:25% D:25% C:15% R:15%&#10;Calculate composite score" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="345" y="280" width="150" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 2 -->
+        <mxCell id="arr2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor:#333333;strokeWidth=2;" edge="1" parent="1" source="step1" target="step2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 3: Monthly Scorecard -->
+        <mxCell id="step3" value="Monthly Scorecard&#10;Performance summary&#10;Trend visualization" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor:#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="760" y="280" width="150" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 3 -->
+        <mxCell id="arr3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor:#333333;strokeWidth=2;" edge="1" parent="1" source="step2" target="step3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- DECISION: Watch/Blacklist -->
+        <mxCell id="dec1" value="Score&#10;Threshold" style="rhombus;whiteSpace=wrap;html=1;fillColor=white;strokeColor:#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="760" y="400" width="100" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 4 -->
+        <mxCell id="arr4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="step3" target="dec1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- THRESHOLD BOX -->
+        <mxCell id="thresh" value="Watch &lt;60% | Blacklist &lt;40%" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF8E1;strokeColor=#F9A825;strokeWidth=2;fontSize=9;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="345" y="410" width="150" height="60" as="geometry" />
+        </Cell>
+        
+        <!-- STEP 4: Portal Publish -->
+        <mxCell id="step4" value="Portal Publish&#10;Dashboard visibility&#10;Contractor access" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="760" y="520" width="150" height="80" as="geometry" />
+        </Cell>
+        
+        <!-- ARROW 5 -->
+        <mxCell id="arr5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="dec1" target="step4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 5: Quarterly Aggregate -->
+        <mxCell id="step5" value="Quarterly Aggregation&#10;Trend analysis&#10;Performance review" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="345" y="520" width="150" height="80" as="geometry" />
+        </Cell>
+        
+        <!-- ARROW 6 -->
+        <mxCell id="arr6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor:#333333;strokeWidth=2;" edge="1" parent="1" source="step4" target="step5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 6: Prequalification Feed -->
+        <mxCell id="step6" value="Prequalification Feed&#10;Database update&#10;Future project eligibility" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor:#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="75" y="520" width="150" height="80" as="geometry" />
+        </Cell>
+        
+        <!-- ARROW 7 -->
+        <mxCell id="arr7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="step5" target="step6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- ESCALATION BOX -->
+        <mxCell id="esc1" value="L1-L2 Escalation&#10;Underperformance review" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE5B4;strokeColor=#FF8C00;strokeWidth=2;fontSize=9;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="760" y="640" width="140" height="60" as="geometry" />
+        </Cell>
+        
+        <!-- END -->
+        <mxCell id="end" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#333333;strokeColor:#333333;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="135" y="650" width="30" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 8 -->
+        <mxCell id="arr8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="step6" target="end">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

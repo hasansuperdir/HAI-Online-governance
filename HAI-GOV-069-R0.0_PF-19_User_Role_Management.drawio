@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="draw.io" modified="2026-03-01T00:00:00Z" version="1.0" type="document">
+  <diagram id="PF-19" name="PF-19_User_Role_Mgmt">
+    <mxGraphModel dx="1500" dy="1500" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- TITLE BAR -->
+        <mxCell id="title_bg" value="" style="rectangle;fillColor=#1B2A4A;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1169" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="title_text" value="PF-19: User & Role Management" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=white;fontSize=28;fontStyle=bold;fontFamily=sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="20" y="0" width="450" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="module_text" value="Module: Integration | SOW: E.1-E.2 | RIBA: Access control and permissions" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#E8E8E8;fontSize=12;fontFamily=sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="20" y="40" width="500" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- SLA BAR -->
+        <mxCell id="sla_bg" value="" style="rectangle;fillColor=#F5F5F5;strokeColor=#CCCCCC;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="0" y="80" width="1169" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="sla_text" value="USER MANAGEMENT: Role library (Admin/PM/Dept Head/QS/Finance) | Project assignment | Authority levels | Delegation capability | Activity monitoring | SLA: 2-hour provisioning" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontFamily=sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="10" y="85" width="1149" height="70" as="geometry" />
+        </mxCell>
+        
+        <!-- SWIM LANE HEADERS -->
+        <mxCell id="lane_header_1" value="Administrator" style="rectangle;fillColor=#D6E4F0;strokeColor=#1B2A4A;strokeWidth=2;fontSize=12;fontStyle=bold;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="0" y="160" width="300" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_header_2" value="PM / Dept Head" style="rectangle;fillColor=#FFF8E1;strokeColor=#1B2A4A;strokeWidth=2;fontSize=12;fontStyle=bold;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="300" y="160" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_header_3" value="System & Audit" style="rectangle;fillColor=#E8F5E9;strokeColor=#1B2A4A;strokeWidth=2;fontSize=12;fontStyle=bold;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="730" y="160" width="439" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- SWIM LANE SEPARATORS -->
+        <mxCell id="sep1" value="" style="line;strokeColor=#CCCCCC;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="300" y="160" width="1" height="750" as="geometry" />
+        </mxCell>
+        <mxCell id="sep2" value="" style="line;strokeColor:#CCCCCC;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="730" y="160" width="1" height="750" as="geometry" />
+        </mxCell>
+        
+        <!-- START -->
+        <mxCell id="start" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#333333;strokeColor:#333333;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="135" y="220" width="30" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 1: Create User -->
+        <mxCell id="step1" value="Create User Account&#10;Collect information&#10;Validate details" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="75" y="280" width="150" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 1 -->
+        <mxCell id="arr1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor:#333333;strokeWidth=2;" edge="1" parent="1" source="start" target="step1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 2: Assign Role -->
+        <mxCell id="step2" value="Assign Role&#10;Select from library&#10;Define responsibilities" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor:#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="75" y="400" width="150" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 2 -->
+        <mxCell id="arr2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor:#333333;strokeWidth=2;" edge="1" parent="1" source="step1" target="step2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 3: Assign to Project -->
+        <mxCell id="step3" value="Assign to Project&#10;Select project&#10;Define scope" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor:#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="345" y="400" width="150" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 3 -->
+        <mxCell id="arr3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor:#333333;strokeWidth=2;" edge="1" parent="1" source="step2" target="step3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 4: Configure Authority -->
+        <mxCell id="step4" value="Configure Authority&#10;Approval limits&#10;Signing authority" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor:#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="345" y="280" width="150" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 4 -->
+        <mxCell id="arr4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor:#333333;strokeWidth=2;" edge="1" parent="1" source="step3" target="step4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 5: Configure Delegation -->
+        <mxCell id="step5" value="Configure Delegation&#10;Temporary substitutes&#10;Delegation periods" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor:#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="760" y="280" width="150" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 5 -->
+        <mxCell id="arr5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor:#333333;strokeWidth=2;" edge="1" parent="1" source="step4" target="step5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 6: Monitor Activity -->
+        <mxCell id="step6" value="Monitor Activity&#10;Login tracking&#10;Action logging" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor:#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="760" y="400" width="150" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 6 -->
+        <mxCell id="arr6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor:#333333;strokeWidth=2;" edge="1" parent="1" source="step5" target="step6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- AUDIT BOX -->
+        <mxCell id="audit" value="Audit Trail&#10;Non-repudiation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#2E7D32;strokeWidth=2;fontSize=9;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="760" y="520" width="140" height="60" as="geometry" />
+        </Cell>
+        
+        <!-- ARROW 7 -->
+        <mxCell id="arr7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor:#333333;strokeWidth=2;" edge="1" parent="1" source="step6" target="audit">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- END -->
+        <mxCell id="end" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#333333;strokeColor:#333333;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="135" y="640" width="30" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 8 -->
+        <mxCell id="arr8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor:#333333;strokeWidth=2;" edge="1" parent="1" source="audit" target="end">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

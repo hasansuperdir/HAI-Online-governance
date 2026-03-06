@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="draw.io" modified="2026-03-01T00:00:00Z" version="1.0" type="document">
+  <diagram id="PF-06" name="PF-06_Freeze_Exception">
+    <mxGraphModel dx="1500" dy="1500" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- TITLE BAR -->
+        <mxCell id="title_bg" value="" style="rectangle;fillColor=#1B2A4A;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1169" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="title_text" value="PF-06: Freeze Exception Workflow" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=white;fontSize=28;fontStyle=bold;fontFamily=sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="20" y="0" width="450" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="module_text" value="Module: Governance | SOW: SG.4, SG.5 | RIBA: Post-freeze stages" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#E8E8E8;fontSize=12;fontFamily=sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="20" y="40" width="500" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- SLA BAR -->
+        <mxCell id="sla_bg" value="" style="rectangle;fillColor=#F5F5F5;strokeColor=#CCCCCC;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="0" y="80" width="1169" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="sla_text" value="FREEZE TYPES: Spatial Coordination (SC 14.1) | Technical Design (SC 4.28.1) | Scope | Regulatory | Per-item exceptions only, NOT blanket lifts | Each exception audited and versioned" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontFamily=sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="10" y="85" width="1149" height="70" as="geometry" />
+        </mxCell>
+        
+        <!-- SWIM LANE HEADERS -->
+        <mxCell id="lane_header_req" value="Requester Side (Any PM/Reviewer)" style="rectangle;fillColor=#D6E4F0;strokeColor=#1B2A4A;strokeWidth=2;fontSize=12;fontStyle=bold;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="0" y="160" width="340" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_header_hai" value="HAI Assessment (PM + Finance)" style="rectangle;fillColor=#FFF8E1;strokeColor=#1B2A4A;strokeWidth=2;fontSize=12;fontStyle=bold;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="340" y="160" width="390" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_header_system" value="System Side (Authority, Audit)" style="rectangle;fillColor=#E8F5E9;strokeColor=#1B2A4A;strokeWidth=2;fontSize=12;fontStyle=bold;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="730" y="160" width="439" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- SWIM LANE SEPARATORS -->
+        <mxCell id="sep1" value="" style="line;strokeColor=#CCCCCC;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="340" y="160" width="1" height="850" as="geometry" />
+        </mxCell>
+        <mxCell id="sep2" value="" style="line;strokeColor=#CCCCCC;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="730" y="160" width="1" height="850" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 1: Requester Submit Exception -->
+        <mxCell id="step1" value="Requester: Submit Exception Request&#10;Which freeze, What change, Justification&#10;Cost/Time impact estimation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="20" y="220" width="300" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 1 -->
+        <mxCell id="arr1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="step1" target="step2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 2: HAI PM Technical Assessment -->
+        <mxCell id="step2" value="HAI PM: Technical Assessment&#10;Review justification, scope impact&#10;SLA: 2 WD" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="360" y="220" width="340" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- DECISION: PM Recommendation -->
+        <mxCell id="dec1" value="PM&#10;Recommend?" style="rhombus;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="400" y="350" width="120" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 2 -->
+        <mxCell id="arr2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="step2" target="dec1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 3: HAI Finance Impact -->
+        <mxCell id="step3" value="HAI Finance: Financial Impact&#10;Within budget OR Requires amendment&#10;SLA: 2 WD" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="360" y="480" width="340" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 3 (from dec1 YES) -->
+        <mxCell id="arr3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="dec1" target="step3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="edgeLabel" x="420" y="420" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- REJECT BOX 1: PM Not Recommend -->
+        <mxCell id="reject1" value="NOT RECOMMENDED&#10;Return to requester" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEBEE;strokeColor=#B71C1C;strokeWidth=2;fontSize=9;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="760" y="360" width="140" height="70" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 3b (from dec1 NO) -->
+        <mxCell id="arr3b" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#B71C1C;strokeWidth=2;" edge="1" parent="1" source="dec1" target="reject1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- DECISION: Finance Decision -->
+        <mxCell id="dec2" value="Within&#10;Spatial Coordination?" style="rhombus;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="400" y="610" width="120" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 4 -->
+        <mxCell id="arr4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="step3" target="dec2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- REJECT BOX 2: Requires Amendment -->
+        <mxCell id="reject2" value="REQUIRES BUDGET AMENDMENT&#10;Hold pending budget approval" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEBEE;strokeColor=#B71C1C;strokeWidth=2;fontSize=9;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="760" y="620" width="140" height="70" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 5 (from dec2 NO) -->
+        <mxCell id="arr5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#B71C1C;strokeWidth=2;" edge="1" parent="1" source="dec2" target="reject2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 4: Senior Authority Review -->
+        <mxCell id="step4" value="Senior Authority: Approve/Reject&#10;Review PM + Finance recommendations&#10;Document decision with notes&#10;SLA: 3 WD" style="rounded=1;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="750" y="480" width="330" height="90" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 6 (from dec2 YES) -->
+        <mxCell id="arr6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="dec2" target="step4">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="edgeLabel" x="600" y="650" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- DECISION: Authority Approve? -->
+        <mxCell id="dec3" value="Authority&#10;Approve?" style="rhombus;whiteSpace=wrap;html=1;fillColor=white;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="800" y="750" width="120" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 7 -->
+        <mxCell id="arr7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="step4" target="dec3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- REJECT BOX 3: Authority Reject -->
+        <mxCell id="reject3" value="REJECTED&#10;Archive exception request" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEBEE;strokeColor=#B71C1C;strokeWidth=2;fontSize=9;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="950" y="760" width="150" height="70" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 8 (from dec3 NO) -->
+        <mxCell id="arr8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#B71C1C;strokeWidth=2;" edge="1" parent="1" source="dec3" target="reject3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- STEP 5: System Lift Freeze -->
+        <mxCell id="step5" value="System: Lift Freeze for Specific Scope&#10;Create audit trail, version exception&#10;Log in freeze registry&#10;SLA: 1 WD" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#333333;strokeWidth=2;fontSize=10;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="750" y="890" width="330" height="90" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 9 (from dec3 YES) -->
+        <mxCell id="arr9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="dec3" target="step5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="edgeLabel" x="830" y="830" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- END ELLIPSE -->
+        <mxCell id="end" value="END: Exception Processed&#10;Freeze Lifted (if approved)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1B2A4A;strokeColor=#333333;strokeWidth=2;fontSize=11;fontColor=white;fontStyle=bold;fontFamily=sans-serif;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="750" y="1030" width="330" height="70" as="geometry" />
+        </mxCell>
+        
+        <!-- ARROW 10 -->
+        <mxCell id="arr10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="step5" target="end">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- KPI BOX -->
+        <mxCell id="kpi_box" value="KPIs: Exception frequency, Approval rate, Spatial Coordination impact, Cycle time" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1976D2;strokeWidth=1;fontSize=9;fontFamily=sans-serif;align=center;" vertex="1" parent="1">
+          <mxGeometry x="20" y="1030" width="300" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- BOUNDARY BOX -->
+        <mxCell id="boundary_box" value="Boundary: Active freeze rules only. Per-item exceptions only. Excludes blanket lifting." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F57F17;strokeWidth=1;fontSize=9;fontFamily=sans-serif;align=center;" vertex="1" parent="1">
+          <mxGeometry x="360" y="1030" width="340" height="50" as="geometry" />
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

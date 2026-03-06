@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hasansuperdir! — Governance Platform</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0a1628;color:#e0e0e0;overflow-x:hidden;font-size:14px;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(15px);}to{opacity:1;transform:translateY(0);}}
+@keyframes slideDown{from{opacity:0;max-height:0;}to{opacity:1;max-height:600px;}}
+@keyframes pulse{0%,100%{box-shadow:0 0 8px rgba(243,156,18,0.4);}50%{box-shadow:0 0 20px rgba(243,156,18,0.7);}}
+@keyframes pulseBorder{0%,100%{border-color:#e74c3c;}50%{border-color:#8b0000;}}
+@keyframes lineAnim{from{stroke-dashoffset:600;}to{stroke-dashoffset:0;}}
+.header{padding:12px 20px 8px;}
+.header h1{font-size:22px;letter-spacing:1px;}.header h1 .w{color:#fff;}.header h1 .o{color:#f39c12;}.header h1 .r{color:#e74c3c;font-size:24px;}
+.tabs{display:flex;justify-content:center;gap:4px;margin:14px auto;max-width:1100px;flex-wrap:wrap;}
+.tab{padding:7px 14px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600;border:1px solid #2a3a5a;background:#111d33;color:#7a8a9e;transition:all .3s;white-space:nowrap;}
+.tab:hover{border-color:#4da6ff;color:#b0c4de;}
+.tab.active{background:#1a3a6a;border-color:#4da6ff;color:#fff;box-shadow:0 0 12px rgba(77,166,255,0.2);}
+.view{display:none;padding:16px 24px 40px;max-width:1400px;margin:0 auto;}
+.view.active{display:block;animation:fadeIn .5s ease;}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0;}
+.stat-box{background:#111d33;border:1px solid #2a3a5a;border-radius:8px;padding:18px;text-align:center;opacity:0;transform:translateY(15px);transition:all .4s;cursor:pointer;}
+.stat-box.visible{opacity:1;transform:translateY(0);}
+.stat-box:hover{border-color:#4da6ff;transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,.3);}
+.stat-num{font-size:32px;font-weight:800;}.stat-label{font-size:10px;color:#7a8a9e;margin-top:4px;text-transform:uppercase;letter-spacing:.5px;}
+.c-green{color:#2ecc71;}.c-orange{color:#f39c12;}.c-red{color:#e74c3c;}.c-blue{color:#4da6ff;}.c-teal{color:#007B83;}
+.card{background:#111d33;border:1px solid #2a3a5a;border-radius:8px;padding:16px;margin-bottom:14px;transition:all .3s;}
+.card:hover{border-color:#4da6ff;box-shadow:0 4px 16px rgba(77,166,255,.1);}
+.card-title{font-size:13px;color:#4da6ff;font-weight:600;margin-bottom:10px;border-bottom:1px solid #1a2a44;padding-bottom:6px;}
+.timeline{position:relative;margin:20px 0;}
+.timeline::before{content:'';position:absolute;top:30px;left:0;right:0;height:4px;background:linear-gradient(90deg,#2ecc71,#4da6ff 40%,#1a3a6a);border-radius:2px;}
+.gates{display:flex;justify-content:space-between;position:relative;}
+.gate{text-align:center;flex:1;cursor:pointer;transition:all .2s;}
+.gate:hover .gate-dot{transform:scale(1.2);}
+.gate-dot{width:22px;height:22px;border-radius:50%;margin:20px auto 8px;border:3px solid #4da6ff;background:#0a1628;transition:all .4s;position:relative;z-index:2;}
+.gate.completed .gate-dot{background:#2ecc71;border-color:#2ecc71;box-shadow:0 0 10px rgba(46,204,113,.4);}
+.gate.current .gate-dot{background:#f39c12;border-color:#f39c12;animation:pulse 1.5s infinite;}
+.gate-lbl{font-size:10px;font-weight:700;color:#4da6ff;}.gate-name{font-size:9px;color:#7a8a9e;margin-top:2px;}
+.substage-panel{background:#111d33;border:1px solid #2a3a5a;border-radius:8px;padding:0;margin:12px 0;max-height:0;overflow:hidden;transition:all .4s ease;opacity:0;}
+.substage-panel.open{max-height:300px;padding:16px;opacity:1;}
+.substage-panel h3{color:#4da6ff;font-size:13px;margin-bottom:10px;}
+.substage-chips{display:flex;flex-wrap:wrap;gap:8px;}
+.sub-chip{padding:6px 14px;background:#0a1628;border:1px solid #2a3a5a;border-radius:4px;font-size:11px;color:#b0c4de;cursor:pointer;transition:all .2s;}
+.sub-chip:hover{border-color:#4da6ff;color:#4da6ff;}
+.sub-chip.done{border-color:#2ecc71;color:#2ecc71;}.sub-chip.active{border-color:#f39c12;color:#f39c12;}
+.sub-chip.report{border-color:#9b59b6;color:#9b59b6;}.sub-chip.mom{border-color:#1abc9c;color:#1abc9c;}
+.three-col{display:grid;grid-template-columns:280px 1fr 280px;gap:16px;margin-top:16px;}
+.panel-title{font-size:12px;font-weight:700;color:#4da6ff;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;border-bottom:1px solid #1a2a44;padding-bottom:6px;}
+.task-item{padding:10px;background:#0a1628;border-left:3px solid #4da6ff;border-radius:2px;margin-bottom:8px;font-size:12px;transition:all .2s;}
+.task-item:hover{background:#111d33;border-left-color:#f39c12;}.task-item.overdue{border-left-color:#e74c3c;}
+.task-title{font-weight:600;color:#e0e0e0;margin-bottom:4px;}.task-meta{color:#7a8a9e;font-size:10px;}
+.sla-bar{height:4px;background:#1a2a44;border-radius:2px;overflow:hidden;margin-top:6px;}
+.sla-fill{height:100%;border-radius:2px;transition:width 1.5s ease;}
+.sla-green{background:#2ecc71;}.sla-orange{background:#f39c12;}.sla-red{background:#e74c3c;}
+.dtable{width:100%;border-collapse:collapse;background:#111d33;border-radius:8px;overflow:hidden;border:1px solid #2a3a5a;}
+.dtable th{background:#0a1628;padding:10px 12px;text-align:left;font-size:11px;color:#7a8a9e;text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid #2a3a5a;}
+.dtable td{padding:10px 12px;border-bottom:1px solid #1a2a44;font-size:12px;color:#b0c4de;}
+.dtable tr:hover{background:#1a3a6a;cursor:pointer;}
+.badge{display:inline-block;padding:3px 8px;border-radius:4px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.3px;}
+.b-approved{background:rgba(46,204,113,.15);color:#2ecc71;border:1px solid rgba(46,204,113,.3);}
+.b-review{background:rgba(243,156,18,.15);color:#f39c12;border:1px solid rgba(243,156,18,.3);}
+.b-submitted{background:rgba(77,166,255,.15);color:#4da6ff;border:1px solid rgba(77,166,255,.3);}
+.b-rejected{background:rgba(231,76,60,.15);color:#e74c3c;border:1px solid rgba(231,76,60,.3);}
+.b-type{background:rgba(77,166,255,.1);color:#4da6ff;border:1px solid rgba(77,166,255,.2);}
+.resp-code{display:inline-block;width:22px;height:22px;border-radius:4px;text-align:center;line-height:22px;font-size:10px;font-weight:700;}
+.rc-A{background:rgba(46,204,113,.2);color:#2ecc71;}.rc-B{background:rgba(77,166,255,.2);color:#4da6ff;}
+.rc-C{background:rgba(243,156,18,.2);color:#f39c12;}.rc-D{background:rgba(231,76,60,.2);color:#e74c3c;}.rc-E{background:rgba(149,165,166,.2);color:#95a5a6;}
+.hbar-row{display:flex;align-items:center;margin-bottom:10px;opacity:0;transform:translateX(-20px);transition:all .5s;}
+.hbar-row.visible{opacity:1;transform:translateX(0);}
+.hbar-label{width:140px;font-size:12px;font-weight:600;color:#b0c4de;flex-shrink:0;}
+.hbar-track{flex:1;height:26px;background:#1a2a44;border-radius:4px;overflow:hidden;}
+.hbar-fill{height:100%;border-radius:4px;transition:width 1.5s ease;width:0;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;font-size:10px;font-weight:700;color:#fff;}
+.hbar-fill.green{background:linear-gradient(90deg,#1e8449,#2ecc71);}
+.hbar-fill.orange{background:linear-gradient(90deg,#d68910,#f39c12);}
+.hbar-fill.red{background:linear-gradient(90deg,#8b0000,#c0392b);}
+.hbar-fill.blue{background:linear-gradient(90deg,#1a3a6a,#4da6ff);}
+.hbar-fill.purple{background:linear-gradient(90deg,#6c3483,#9b59b6);}
+.hbar-value{width:60px;font-size:11px;text-align:right;color:#7a8a9e;margin-left:8px;flex-shrink:0;}
+.vbar-chart{display:flex;align-items:flex-end;justify-content:space-around;gap:8px;min-height:220px;padding-top:20px;}
+.vbar{display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;}
+.vbar-fill{width:100%;min-width:36px;border-radius:4px 4px 0 0;transition:height 1.5s cubic-bezier(.4,0,.2,1);background:linear-gradient(180deg,#4da6ff,#007B83);}
+.vbar-val{font-size:12px;font-weight:700;color:#4da6ff;}.vbar-lbl{font-size:10px;color:#7a8a9e;text-align:center;}
+.donut-wrap{display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap;padding:16px 0;}
+.donut-legend{display:flex;flex-direction:column;gap:10px;}
+.leg-item{display:flex;align-items:center;gap:8px;font-size:12px;color:#b0c4de;}
+.leg-dot{width:12px;height:12px;border-radius:2px;}
+.gate-grid{display:flex;flex-direction:column;gap:10px;}
+.gate-row{display:grid;grid-template-columns:140px repeat(9,1fr);gap:6px;align-items:center;padding:10px;background:#111d33;border:1px solid #2a3a5a;border-radius:6px;cursor:pointer;transition:all .3s;opacity:0;transform:translateX(-10px);}
+.gate-row.visible{opacity:1;transform:translateX(0);}.gate-row:hover{border-color:#4da6ff;background:#1a3a6a;}
+.gate-proj{font-size:12px;font-weight:600;color:#b0c4de;}
+.gdot{width:18px;height:18px;border-radius:50%;border:2px solid #2a3a5a;margin:0 auto;background:#0a1628;transition:all .3s;}
+.gdot.gd-done{background:#2ecc71;border-color:#2ecc71;box-shadow:0 0 6px rgba(46,204,113,.3);}
+.gdot.gd-now{background:#f39c12;border-color:#f39c12;animation:pulse 1.5s infinite;}
+.act-item{padding:10px;padding-left:20px;border-left:2px solid #2a3a5a;margin-bottom:8px;position:relative;}
+.act-item::before{content:'';position:absolute;left:-6px;top:14px;width:10px;height:10px;border-radius:50%;background:#4da6ff;}
+.act-time{font-size:10px;color:#7a8a9e;}.act-text{font-size:12px;color:#b0c4de;margin-top:2px;}
+.alert-item{padding:10px;border-left:3px solid;border-radius:4px;background:#0a1628;font-size:12px;margin-bottom:8px;}
+.alert-item.l1{border-left-color:#f39c12;background:rgba(243,156,18,.05);}
+.alert-item.l2{border-left-color:#e74c3c;background:rgba(231,76,60,.05);}
+.alert-level{font-weight:700;margin-bottom:4px;}.alert-desc{color:#b0c4de;}
+.chart-box{background:#111d33;border:1px solid #2a3a5a;border-radius:8px;padding:16px;margin-bottom:16px;transition:all .3s;}
+.chart-box:hover{border-color:#4da6ff;}
+.chart-title{font-size:13px;font-weight:600;color:#4da6ff;margin-bottom:14px;border-bottom:1px solid #1a2a44;padding-bottom:6px;}
+.ana-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.ana-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;}
+.doc-tabs{display:flex;gap:0;margin-bottom:16px;border-bottom:1px solid #2a3a5a;flex-wrap:wrap;}
+.doc-tab{padding:10px 16px;background:none;border:none;border-bottom:3px solid transparent;color:#7a8a9e;cursor:pointer;font-size:12px;font-weight:600;transition:all .3s;}
+.doc-tab:hover{color:#b0c4de;}
+.doc-tab.active{color:#4da6ff;border-bottom-color:#4da6ff;}
+.doc-content{display:none;animation:fadeIn .3s ease;}.doc-content.active{display:block;}
+.tpl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;}
+.tpl-card{background:#111d33;border:1px solid #2a3a5a;border-radius:6px;padding:14px;cursor:pointer;transition:all .3s;}
+.tpl-card:hover{border-color:#4da6ff;transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,.3);}
+.tpl-cat{font-size:10px;color:#f39c12;font-weight:600;margin-bottom:4px;}
+.tpl-name{font-size:12px;color:#e0e0e0;font-weight:600;}.tpl-file{font-size:10px;color:#7a8a9e;margin-top:4px;}
+.form-grid{display:grid;grid-template-columns:1fr 280px;gap:16px;}
+.form-section{margin-bottom:20px;}
+.form-section-title{font-size:13px;font-weight:600;color:#4da6ff;margin-bottom:12px;border-bottom:1px solid #1a2a44;padding-bottom:6px;}
+.form-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:12px;}
+.form-group{display:flex;flex-direction:column;gap:4px;}
+.form-label{font-size:11px;color:#7a8a9e;text-transform:uppercase;letter-spacing:.5px;font-weight:600;}
+.form-label .req{color:#e74c3c;}
+input,select,textarea{padding:8px 12px;background:#0a1628;border:1px solid #2a3a5a;border-radius:4px;color:#e0e0e0;font-size:13px;font-family:inherit;transition:all .2s;}
+input:focus,select:focus,textarea:focus{outline:none;border-color:#4da6ff;box-shadow:0 0 8px rgba(77,166,255,.15);}
+select option{background:#111d33;color:#e0e0e0;}
+textarea{resize:vertical;min-height:80px;}
+.upload-area{border:2px dashed #2a3a5a;border-radius:8px;padding:30px;text-align:center;cursor:pointer;transition:all .3s;background:#0a1628;}
+.upload-area:hover{border-color:#4da6ff;background:rgba(77,166,255,.03);}
+.btn{padding:10px 20px;border:1px solid #2a3a5a;border-radius:6px;background:#111d33;color:#e0e0e0;cursor:pointer;font-size:13px;font-weight:600;transition:all .3s;}
+.btn:hover{border-color:#4da6ff;color:#4da6ff;box-shadow:0 0 15px rgba(77,166,255,.2);}
+.btn-primary{background:#1a3a6a;border-color:#4da6ff;color:#4da6ff;}
+.btn-success{background:rgba(46,204,113,.15);border-color:#2ecc71;color:#2ecc71;}
+.approval-chain{display:flex;align-items:center;justify-content:space-around;padding:16px;background:#0a1628;border-radius:8px;flex-wrap:wrap;gap:12px;}
+.appr-step{display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;min-width:80px;}
+.appr-avatar{width:44px;height:44px;border-radius:50%;border:2px solid #2a3a5a;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:600;background:#111d33;color:#4da6ff;}
+.appr-name{font-size:10px;color:#b0c4de;text-align:center;}.appr-role{font-size:9px;color:#7a8a9e;}.appr-arrow{color:#2a3a5a;font-size:16px;}
+.modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(10,22,40,.85);z-index:1000;align-items:center;justify-content:center;}
+.modal-overlay.show{display:flex;animation:fadeIn .3s ease;}
+.modal-box{background:#111d33;border:1px solid #2a3a5a;border-radius:8px;padding:40px;max-width:500px;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,.5);}
+.modal-ref{font-size:16px;font-weight:600;color:#4da6ff;padding:10px;background:#0a1628;border-radius:6px;margin:12px 0 20px;}
+.toast{position:fixed;bottom:24px;right:24px;padding:12px 24px;background:#1a3a6a;border:1px solid #4da6ff;border-radius:6px;color:#fff;font-size:13px;z-index:2000;transform:translateY(80px);opacity:0;transition:all .3s;}
+.toast.show{transform:translateY(0);opacity:1;}
+.proj-banner{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;}
+.proj-info-card{background:#111d33;border:1px solid #2a3a5a;border-radius:8px;padding:14px;transition:all .3s;}
+.proj-info-card:hover{border-color:#4da6ff;}
+.proj-info-card .info-val{font-size:20px;font-weight:800;margin-bottom:2px;}
+.proj-info-card .info-lbl{font-size:10px;color:#7a8a9e;text-transform:uppercase;letter-spacing:.5px;}
+.proj-team{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:12px;}
+.team-member{background:#0a1628;border:1px solid #2a3a5a;border-radius:6px;padding:10px;font-size:11px;}
+.team-member .tm-role{color:#4da6ff;font-weight:600;font-size:10px;text-transform:uppercase;margin-bottom:4px;}
+.team-member .tm-name{color:#e0e0e0;font-weight:600;}
+.progress-compare{display:flex;gap:16px;align-items:center;margin-top:6px;}
+.progress-compare .prog-bar{flex:1;height:8px;background:#1a2a44;border-radius:4px;overflow:hidden;position:relative;}
+.progress-compare .prog-fill-planned{height:100%;background:#4da6ff;border-radius:4px;position:absolute;top:0;left:0;opacity:.3;}
+.progress-compare .prog-fill-actual{height:100%;border-radius:4px;position:absolute;top:0;left:0;}
+.site-cam-btn{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:rgba(77,166,255,.1);border:1px solid #4da6ff;border-radius:4px;color:#4da6ff;font-size:11px;font-weight:600;cursor:pointer;transition:all .2s;text-decoration:none;}
+.site-cam-btn:hover{background:rgba(77,166,255,.2);box-shadow:0 0 10px rgba(77,166,255,.2);}
+.ai-insight{padding:10px 12px;border-left:3px solid;border-radius:4px;margin-bottom:8px;font-size:12px;background:#0a1628;}
+.ai-insight.ai-warning{border-left-color:#f39c12;background:rgba(243,156,18,.05);}
+.ai-insight.ai-alert{border-left-color:#e74c3c;background:rgba(231,76,60,.05);}
+.ai-insight.ai-positive{border-left-color:#2ecc71;background:rgba(46,204,113,.05);}
+.ai-insight.ai-insight-type{border-left-color:#4da6ff;background:rgba(77,166,255,.05);}
+.ai-tag{display:inline-block;padding:2px 6px;border-radius:3px;font-size:9px;font-weight:700;text-transform:uppercase;margin-right:6px;}
+.ai-tag.t-warning{background:rgba(243,156,18,.2);color:#f39c12;}
+.ai-tag.t-alert{background:rgba(231,76,60,.2);color:#e74c3c;}
+.ai-tag.t-positive{background:rgba(46,204,113,.2);color:#2ecc71;}
+.ai-tag.t-insight{background:rgba(77,166,255,.2);color:#4da6ff;}
+.letter-row{display:grid;grid-template-columns:120px 1fr 100px 90px 80px;gap:8px;padding:8px 0;border-bottom:1px solid #1a2a44;font-size:12px;align-items:center;}
+.letter-row:hover{background:#111d33;}
+.letter-status{display:inline-block;padding:3px 8px;border-radius:3px;font-size:10px;font-weight:600;}
+.ls-unanswered{background:rgba(231,76,60,.15);color:#e74c3c;border:1px solid rgba(231,76,60,.3);}
+.ls-answered{background:rgba(46,204,113,.15);color:#2ecc71;border:1px solid rgba(46,204,113,.3);}
+/* Risk Matrix */
+.risk-grid{display:grid;grid-template-columns:80px repeat(5,1fr);gap:2px;margin:20px 0;}
+.risk-cell{padding:12px 8px;text-align:center;border-radius:4px;font-size:11px;font-weight:600;cursor:pointer;transition:all .2s;min-height:50px;display:flex;align-items:center;justify-content:center;}
+.risk-cell:hover{transform:scale(1.05);z-index:2;}
+.risk-header{background:#0a1628;color:#7a8a9e;font-size:10px;font-weight:700;text-transform:uppercase;display:flex;align-items:center;justify-content:center;}
+.risk-low{background:rgba(46,204,113,.15);color:#2ecc71;border:1px solid rgba(46,204,113,.2);}
+.risk-med{background:rgba(243,156,18,.15);color:#f39c12;border:1px solid rgba(243,156,18,.2);}
+.risk-high{background:rgba(231,76,60,.15);color:#e74c3c;border:1px solid rgba(231,76,60,.2);}
+.risk-extreme{background:rgba(142,68,173,.15);color:#8e44ad;border:1px solid rgba(142,68,173,.2);}
+/* Process Flow */
+.flow-container{display:flex;align-items:center;gap:0;flex-wrap:wrap;margin:16px 0;padding:16px;}
+.flow-step{background:#111d33;border:1px solid #2a3a5a;border-radius:8px;padding:14px 18px;text-align:center;min-width:120px;transition:all .3s;position:relative;}
+.flow-step:hover{border-color:#4da6ff;transform:translateY(-3px);box-shadow:0 4px 12px rgba(77,166,255,.2);}
+.flow-step .fs-title{font-size:12px;font-weight:600;color:#e0e0e0;margin-bottom:4px;}
+.flow-step .fs-role{font-size:10px;color:#7a8a9e;}
+.flow-step .fs-sla{font-size:9px;color:#f39c12;margin-top:4px;}
+.flow-arrow{color:#4da6ff;font-size:20px;padding:0 8px;flex-shrink:0;}
+.flow-decision{background:#1a3a6a;border:2px solid #4da6ff;border-radius:8px;padding:14px;transform:rotate(0deg);text-align:center;min-width:100px;}
+.flow-decision .fs-title{color:#4da6ff;}
+@media(max-width:1200px){.three-col{grid-template-columns:1fr;}.ana-grid-2,.ana-grid-3{grid-template-columns:1fr;}.stat-grid{grid-template-columns:repeat(2,1fr);}.form-grid{grid-template-columns:1fr;}.risk-grid{grid-template-columns:60px repeat(5,1fr);}}
+</style>
+</head>
+<body>
+
+<div class="header" style="text-align:center;">
+  <h1><span class="w">Hasan</span><span class="o">superdir</span><span class="r">!</span></h1>
+  <h2 style="font-size:13px;color:#7a8a9e;font-weight:400;margin-top:4px;">Construction Governance Platform — ARADA Programme</h2>
+  <div style="font-size:11px;color:#556;margin-top:4px;">5 March 2026 — Confidential</div>
+</div>
+
+<div class="tabs" id="mainTabs">
+  <div class="tab active" onclick="switchView('submittals',this)">Submittals</div>
+  <div class="tab" onclick="switchView('dashboards',this)">Dashboards</div>
+  <div class="tab" onclick="switchView('analytics',this)">Analytics</div>
+  <div class="tab" onclick="switchView('documents',this)">Documents</div>
+  <div class="tab" onclick="switchView('riskmatrix',this)">Risk Matrix</div>
+  <div class="tab" onclick="switchView('templates',this)">Templates</div>
+  <div class="tab" onclick="switchView('processflows',this)">Process Flows</div>
+  <div class="tab" onclick="switchView('newsubmittal',this)">+ New Submittal</div>
+</div>
+
+<!-- ═══ VIEW 1: SUBMITTALS ═══ -->
+<div id="submittals" class="view active">
+  <div style="display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap;align-items:flex-end;">
+    <div><div class="form-label">Size Filter</div><select id="sizeFilter" onchange="filterProjects()"><option value="all">All Sizes</option><option value="mega">Mega (&gt;1B)</option><option value="large">Large (500M-1B)</option><option value="medium">Medium (&lt;500M)</option></select></div>
+    <div><div class="form-label">Project</div><select id="projectSelect" onchange="selectProject()" style="min-width:280px;"></select></div>
+  </div>
+  <div class="timeline"><div class="gates" id="stageGates"></div></div>
+  <div class="substage-panel" id="substagePanel">
+    <h3 id="substageTitle">Sub-Stages</h3>
+    <div class="substage-chips" id="substageChips"></div>
+  </div>
+  <div id="projectInfoBanner" style="display:none;margin-bottom:16px;"></div>
+  <div id="lettersPanel" style="display:none;margin-bottom:16px;"></div>
+  <div id="aiPanel" style="display:none;margin-bottom:16px;"></div>
+  <div class="three-col">
+    <div>
+      <div class="panel-title">Pending Tasks <span id="pendingCount" style="color:#f39c12;"></span></div>
+      <div id="pendingTasks"></div>
+      <div class="panel-title" style="margin-top:16px;">Overdue <span id="overdueCount" style="color:#e74c3c;"></span></div>
+      <div id="overdueTasks"></div>
+    </div>
+    <div>
+      <div id="welcomeCard" class="card" style="text-align:center;padding:40px;">
+        <div style="font-size:28px;margin-bottom:8px;">&#128640;</div>
+        <div style="font-size:16px;font-weight:600;color:#4da6ff;margin-bottom:8px;">Select a Project & Stage</div>
+        <div style="font-size:12px;color:#7a8a9e;">Choose a project from the dropdown, then click a stage to drill down.</div>
+      </div>
+      <div id="contentArea"></div>
+    </div>
+    <div>
+      <div class="panel-title">Context</div>
+      <div class="card" id="contextCard"><div style="font-size:12px;color:#b0c4de;">Select a project to see details.</div></div>
+      <div class="panel-title" style="margin-top:16px;">Response Codes</div>
+      <div class="card"><div style="font-size:11px;line-height:2;color:#b0c4de;">
+        <span class="resp-code rc-A">A</span> Approved<br><span class="resp-code rc-B">B</span> Approved w/ Comments<br><span class="resp-code rc-C">C</span> Revise & Resubmit<br><span class="resp-code rc-D">D</span> Rejected<br><span class="resp-code rc-E">E</span> Not Reviewed
+      </div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ VIEW 2: DASHBOARDS (6 sub-tabs) ═══ -->
+<div id="dashboards" class="view">
+  <div class="doc-tabs" id="dashTabs">
+    <div class="doc-tab active" onclick="switchDashTab('erDash',this)">ER Dashboard</div>
+    <div class="doc-tab" onclick="switchDashTab('costDash',this)">Cost</div>
+    <div class="doc-tab" onclick="switchDashTab('qualityDash',this)">Quality</div>
+    <div class="doc-tab" onclick="switchDashTab('contractorDash',this)">Contractor</div>
+    <div class="doc-tab" onclick="switchDashTab('consultantDash',this)">Consultant</div>
+    <div class="doc-tab" onclick="switchDashTab('govDash',this)">Governance</div>
+  </div>
+  <div class="doc-content active" id="erDash"></div>
+  <div class="doc-content" id="costDash"></div>
+  <div class="doc-content" id="qualityDash"></div>
+  <div class="doc-content" id="contractorDash"></div>
+  <div class="doc-content" id="consultantDash"></div>
+  <div class="doc-content" id="govDash"></div>
+</div>
+
+<!-- ═══ VIEW 3: ANALYTICS ═══ -->
+<div id="analytics" class="view">
+  <div class="ana-grid-2">
+    <div class="chart-box"><div class="chart-title">Submittal Volume by Month</div><div class="vbar-chart" id="volumeChart"></div></div>
+    <div class="chart-box"><div class="chart-title">Approval Rate by Discipline</div><div id="approvalBars"></div></div>
+  </div>
+  <div class="ana-grid-2">
+    <div class="chart-box"><div class="chart-title">Response Code Distribution</div><div class="donut-wrap" id="donutChart"></div></div>
+    <div class="chart-box"><div class="chart-title">Overdue Items by Contractor</div><div id="overdueBars"></div></div>
+  </div>
+  <div class="ana-grid-2">
+    <div class="chart-box"><div class="chart-title">Turnaround Time Distribution</div><div id="turnaroundBars"></div></div>
+    <div class="chart-box"><div class="chart-title">SLA Breach Trend (6 Months)</div><svg width="100%" height="180" viewBox="0 0 500 160" id="trendChart"></svg><div style="font-size:11px;color:#2ecc71;text-align:center;margin-top:6px;">Improving trend — breaches down 75%</div></div>
+  </div>
+  <div class="chart-box"><div class="chart-title">Stage Gate Progress — All Projects</div><div class="gate-grid" id="gateGrid"></div></div>
+  <div class="stat-grid" id="costStats"></div>
+</div>
+
+<!-- ═══ VIEW 4: DOCUMENTS ═══ -->
+<div id="documents" class="view">
+  <div class="chart-box"><div class="chart-title">Governance Documents Register</div>
+    <table class="dtable"><thead><tr><th>Ref</th><th>Title</th><th>Type</th><th>Category</th><th>Action</th></tr></thead><tbody id="govDocsBody"></tbody></table>
+  </div>
+</div>
+
+<!-- ═══ VIEW 5: RISK MATRIX ═══ -->
+<div id="riskmatrix" class="view">
+  <div class="ana-grid-2">
+    <div class="chart-box">
+      <div class="chart-title">Risk Assessment Matrix (5x5)</div>
+      <div class="risk-grid" id="riskGrid"></div>
+      <div style="display:flex;gap:16px;margin-top:12px;font-size:10px;flex-wrap:wrap;">
+        <span><span class="leg-dot" style="display:inline-block;width:10px;height:10px;background:#2ecc71;border-radius:2px;margin-right:4px;vertical-align:middle;"></span>Low (1-4)</span>
+        <span><span class="leg-dot" style="display:inline-block;width:10px;height:10px;background:#f39c12;border-radius:2px;margin-right:4px;vertical-align:middle;"></span>Medium (5-9)</span>
+        <span><span class="leg-dot" style="display:inline-block;width:10px;height:10px;background:#e74c3c;border-radius:2px;margin-right:4px;vertical-align:middle;"></span>High (10-15)</span>
+        <span><span class="leg-dot" style="display:inline-block;width:10px;height:10px;background:#8e44ad;border-radius:2px;margin-right:4px;vertical-align:middle;"></span>Extreme (16-25)</span>
+      </div>
+    </div>
+    <div class="chart-box">
+      <div class="chart-title">Risk Summary</div>
+      <div class="stat-grid" style="grid-template-columns:repeat(2,1fr);" id="riskStats"></div>
+      <div id="riskByCategory" style="margin-top:16px;"></div>
+    </div>
+  </div>
+  <div class="chart-box"><div class="chart-title">Risk Register</div>
+    <table class="dtable"><thead><tr><th>ID</th><th>Risk</th><th>Category</th><th>P</th><th>I</th><th>Score</th><th>Owner</th><th>Mitigation</th><th>Status</th></tr></thead><tbody id="riskRegBody"></tbody></table>
+  </div>
+</div>
+
+<!-- ═══ VIEW 6: TEMPLATES ═══ -->
+<div id="templates" class="view">
+  <div class="chart-box"><div class="chart-title">Template Library — HAI Starter Pack</div><div id="templatesContainer"></div></div>
+</div>
+
+<!-- ═══ VIEW 7: PROCESS FLOWS ═══ -->
+<div id="processflows" class="view">
+  <div class="doc-tabs" id="flowTabs">
+    <div class="doc-tab active" onclick="switchFlowTab('flowRegister',this)">PF Register (PF-01 to PF-31)</div>
+    <div class="doc-tab" onclick="switchFlowTab('flowVisual',this)">Visual Flows</div>
+    <div class="doc-tab" onclick="switchFlowTab('flowEscalation',this)">Escalation Matrix</div>
+  </div>
+  <div class="doc-content active" id="flowRegister"></div>
+  <div class="doc-content" id="flowVisual"></div>
+  <div class="doc-content" id="flowEscalation"></div>
+</div>
+
+<!-- ═══ VIEW 8: NEW SUBMITTAL ═══ -->
+<div id="newsubmittal" class="view">
+  <div class="form-grid">
+    <div>
+      <div class="card"><div class="card-title">1 — Document Information</div>
+        <div class="form-row"><div class="form-group"><div class="form-label">Reference</div><input type="text" id="nsRef" value="AHQ-A-2026-0151" readonly style="opacity:.7;"></div><div class="form-group"><div class="form-label">Revision</div><input type="text" value="0" readonly style="opacity:.7;"></div></div>
+        <div class="form-row"><div class="form-group"><div class="form-label">Title <span class="req">*</span></div><input type="text" placeholder="Enter document title" id="nsTitle" oninput="validateNS()"></div></div>
+        <div class="form-row">
+          <div class="form-group"><div class="form-label">Category <span class="req">*</span></div><select id="nsCat" onchange="validateNS()"><option value="">— Select —</option><option value="A">A — Design</option><option value="B">B — Material</option><option value="C">C — Method Statements</option><option value="D">D — QA/QC</option><option value="E">E — HSE</option><option value="F">F — Progress</option><option value="G">G — Contractual</option><option value="H">H — Handover</option><option value="J">J — Specialist</option></select></div>
+          <div class="form-group"><div class="form-label">Discipline <span class="req">*</span></div><select id="nsDisc" onchange="validateNS()"><option value="">— Select —</option><option>Architectural</option><option>Structural</option><option>MEP — Electrical</option><option>MEP — Mechanical</option><option>Fire</option><option>Civil</option><option>Interior</option><option>Landscape</option></select></div>
+          <div class="form-group"><div class="form-label">Document Type <span class="req">*</span></div><select id="nsType" onchange="validateNS()"><option value="">— Select —</option><option>Drawing</option><option>Specification</option><option>Report</option><option>Calculation</option><option>Method Statement</option></select></div>
+        </div>
+      </div>
+      <div class="card"><div class="card-title">2 — Attachments</div>
+        <div class="upload-area" onclick="document.getElementById('fileInput').click()"><div style="font-size:28px;color:#4da6ff;margin-bottom:6px;">&#128206;</div><div style="color:#b0c4de;font-size:12px;">Drag files here or <strong style="color:#4da6ff;">click to browse</strong></div><div style="font-size:10px;color:#556;margin-top:4px;">PDF, DOCX, XLSX, DWG — Max 50MB</div></div>
+        <input type="file" id="fileInput" multiple style="display:none" onchange="addFiles(this.files)"><div id="fileList" style="margin-top:10px;"></div>
+      </div>
+      <div class="card"><div class="card-title">3 — Remarks & Cover Note</div>
+        <div class="form-row"><div class="form-group"><div class="form-label">Purpose</div><select><option>For Review & Approval</option><option>For Information</option><option>For Construction</option><option>Resubmission</option></select></div><div class="form-group"><div class="form-label">Priority</div><select><option>Normal</option><option>Urgent (SLA halved)</option><option>Critical</option></select></div></div>
+        <div class="form-group"><div class="form-label">Cover Note</div><textarea placeholder="Notes for reviewer (FIDIC clause references, QCS section...)"></textarea></div>
+      </div>
+      <div class="card"><div class="card-title">4 — Approval Chain Preview</div>
+        <div class="approval-chain">
+          <div class="appr-step"><div class="appr-avatar">C</div><div class="appr-name">Contractor</div><div class="appr-role">Submitter</div></div><div class="appr-arrow">&#9656;</div>
+          <div class="appr-step"><div class="appr-avatar">DC</div><div class="appr-name">Doc Controller</div><div class="appr-role">7 days SLA</div></div><div class="appr-arrow">&#9656;</div>
+          <div class="appr-step"><div class="appr-avatar">LC</div><div class="appr-name">Lead Consultant</div><div class="appr-role">14 days SLA</div></div><div class="appr-arrow">&#9656;</div>
+          <div class="appr-step"><div class="appr-avatar" style="border-color:#2ecc71;color:#2ecc71;">PM</div><div class="appr-name">Design Mgr / PM</div><div class="appr-role">Final Decision</div></div>
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;"><button class="btn" onclick="showToast('Draft saved')">Save Draft</button><button class="btn btn-success" id="btnSubmit" onclick="submitNS()" style="flex:1;">Submit Submittal</button></div>
+    </div>
+    <div>
+      <div class="card"><div class="card-title">Checklist</div><div style="font-size:12px;line-height:2.2;color:#b0c4de;" id="nsChecklist"><div id="chk1">&#9744; Document title</div><div id="chk2">&#9744; Category selected</div><div id="chk3">&#9744; Discipline selected</div><div id="chk4">&#9744; Document type</div><div id="chk5">&#9744; File(s) attached</div></div></div>
+      <div class="card"><div class="card-title">SLA Information</div><div style="font-size:12px;color:#b0c4de;line-height:1.8;"><strong>Doc Controller:</strong> 7 days<br><strong>Lead Consultant:</strong> 14 days<br><strong>Design Manager:</strong> 7 days<br><strong>Total max:</strong> 28 days<br><span style="color:#f39c12;font-size:11px;">FIDIC Sub-Clause 20.1 time-bar enforced</span></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal + Toast -->
+<div class="modal-overlay" id="successModal"><div class="modal-box"><div style="font-size:48px;">&#9989;</div><div style="font-size:18px;font-weight:600;color:#2ecc71;margin:12px 0 8px;">Submittal Created</div><div class="modal-ref" id="modalRef">AHQ-A-2026-0151</div><button class="btn btn-primary" onclick="closeModal()">View Submittals</button></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+// ══════════════════════════════════════════════
+// DATA
+// ══════════════════════════════════════════════
+const PROJECTS=[
+  {id:'AHQ',code:'AHQ',name:'Al Hamra HQ',stage:4,progress:65,value:850e6,size:'large'},
+  {id:'MTC',code:'MTC',name:'Marina Tower Complex',stage:3,progress:45,value:1200e6,size:'mega'},
+  {id:'PRV',code:'PRV',name:'Pearl Residences Villas',stage:5,progress:78,value:320e6,size:'medium'},
+  {id:'LBP',code:'LBP',name:'Lusail Business Park',stage:2,progress:30,value:2100e6,size:'mega'},
+  {id:'WBR',code:'WBR',name:'West Bay Residences',stage:6,progress:92,value:450e6,size:'large'},
+  {id:'DPM',code:'DPM',name:'Doha Port Marina',stage:1,progress:15,value:680e6,size:'large'},
+];
+const STAGES=[
+  {n:0,name:'Strategic Definition'},{n:1,name:'Preparation & Briefing'},{n:2,name:'Concept Design'},
+  {n:3,name:'Spatial Coordination'},{n:4,name:'Technical Design'},{n:5,name:'Manufacturing & Construction'},
+  {n:6,name:'Handover'},{n:7,name:'Use'},{n:8,name:'End of Life'}
+];
+const SUBSTAGES={
+  0:['Strategic Brief','Business Case','Feasibility Study','Monthly Report','MOM'],
+  1:['Employer Requirements','Procurement Strategy','Design Programme','Risk Register','Monthly Report','MOM'],
+  2:['Concept Drawings','Outline Spec','Cost Plan 1','Sustainability Strategy','Monthly Report','MOM'],
+  3:['Spatial Coordination','Updated Cost Plan','Design Freeze Check','Building Systems','Monthly Report','MOM'],
+  4:['Technical Drawings','Specifications','Cost Plan 3','Construction Strategy','Fire Strategy','Monthly Report','MOM'],
+  5:['Manufacturing Info','Construction Programme','Site Logistics','Quality Plan','HSE Plan','Monthly Report','MOM'],
+  6:['Practical Completion','Handover Strategy','O&M Manuals','As-Built Drawings','Training','Monthly Report','MOM'],
+  7:['Post-Occupancy Eval','FM Strategy','Warranty Management','Energy Performance','Monthly Report','MOM'],
+  8:['Decommission Plan','Asset Disposal','End of Life Assessment','Monthly Report','MOM']
+};
+const SUBMITTALS=[
+  {ref:'AHQ-A-2026-0147',title:'Architectural GA Floor Plans',disc:'Architectural',status:'approved',code:'A',date:'2026-02-15',proj:'AHQ',stage:4},
+  {ref:'AHQ-A-2026-0148',title:'Structural Calculations Rev.2',disc:'Structural',status:'under-review',code:'',date:'2026-03-01',proj:'AHQ',stage:4},
+  {ref:'MTC-B-2026-0089',title:'MEP Coordination Drawings',disc:'MEP-Electrical',status:'submitted',code:'',date:'2026-03-02',proj:'MTC',stage:3},
+  {ref:'PRV-A-2026-0051',title:'Fire Safety Strategy',disc:'Fire',status:'approved',code:'A',date:'2026-02-20',proj:'PRV',stage:5},
+  {ref:'LBP-A-2026-0012',title:'Preliminary Site Layout',disc:'Architectural',status:'rejected',code:'D',date:'2026-02-28',proj:'LBP',stage:2},
+  {ref:'WBR-D-2026-0033',title:'QA/QC Inspection Reports',disc:'QA/QC',status:'approved',code:'B',date:'2026-03-01',proj:'WBR',stage:6},
+  {ref:'DPM-C-2026-0008',title:'Piling Method Statement',disc:'Civil',status:'under-review',code:'',date:'2026-03-03',proj:'DPM',stage:1},
+  {ref:'AHQ-B-2026-0149',title:'Interior Finishes Schedule',disc:'Interior',status:'submitted',code:'',date:'2026-03-04',proj:'AHQ',stage:4},
+];
+const PENDING=[
+  {title:'Review MEP Layout — AHQ',type:'Design Review',due:'Due in 2 days',sla:65,color:'sla-orange'},
+  {title:'Structural Analysis — MTC',type:'Calculation Check',due:'Due in 5 days',sla:40,color:'sla-green'},
+  {title:'Fire Strategy — PRV',type:'Compliance',due:'Due in 1 day',sla:85,color:'sla-orange'},
+  {title:'Site Layout Review — LBP',type:'Design Review',due:'Due in 3 days',sla:55,color:'sla-green'},
+  {title:'QC Forms Sign-off — WBR',type:'QA/QC',due:'Due today',sla:95,color:'sla-red'},
+];
+const OVERDUE=[
+  {title:'VO-003 Assessment — AHQ',type:'Variation',due:'3 days overdue',sla:100,color:'sla-red'},
+  {title:'IPC #7 Certification — MTC',type:'Payment',due:'5 days overdue',sla:100,color:'sla-red'},
+  {title:'NCR-012 Closeout — PRV',type:'NCR',due:'2 days overdue',sla:100,color:'sla-red'},
+];
+const GOV_DOCS=[
+  {ref:'GOV-000',title:'Document Register',type:'xlsx',cat:'Governance'},
+  {ref:'GOV-001',title:'Implementation Guidebook',type:'docx',cat:'Governance'},
+  {ref:'GOV-002',title:'Implementation WBS & Schedule',type:'xlsx',cat:'Planning'},
+  {ref:'GOV-003',title:'Process Flow Register',type:'xlsx',cat:'Process'},
+  {ref:'GOV-004',title:'Cross Link Index',type:'xlsx',cat:'Reference'},
+  {ref:'GOV-005',title:'Stage Based Organization',type:'xlsx',cat:'Organization'},
+  {ref:'GOV-006',title:'Project Mind Map',type:'html',cat:'Reference'},
+  {ref:'GOV-007',title:'Implementation Roadmap',type:'docx',cat:'Planning'},
+  {ref:'GOV-008',title:'SkyStruct SOW',type:'docx',cat:'Contracts'},
+  {ref:'GOV-009',title:'CEO Presentation',type:'pptx',cat:'Communications'},
+  {ref:'GOV-010',title:'End User Training Manual',type:'docx',cat:'Training'},
+  {ref:'GOV-045',title:'Technical Architecture Document',type:'docx',cat:'Technical'},
+  {ref:'GOV-046',title:'UI Prototype',type:'html',cat:'Technical'},
+];
+const TEMPLATES={
+  'A-Design':[{n:'Design Submittal Cover',f:'DES-A00_Design_Submittal_Cover.docx'}],
+  'B-Material':[{n:'Material Submittal Cover',f:'MAT-B00_Material_Submittal_Cover.docx'},{n:'Mock Up',f:'MAT-B06_Mock_Up.xlsx'},{n:'Colour Finish Schedule',f:'MAT-B07_Colour_Finish_Schedule.xlsx'},{n:'Equipment Data Sheet',f:'MAT-B08_Equipment_Data_Sheet.xlsx'},{n:'Concrete Mix Design',f:'MAT-B11_Concrete_Mix_Design.xlsx'}],
+  'C-Method_Statements':[{n:'Excavation & Earthworks',f:'MS-C01_Excavation_Earthworks.docx'},{n:'Piling & Foundation',f:'MS-C02_Piling_Foundation.docx'},{n:'Concrete Works',f:'MS-C03_Concrete_Works.docx'},{n:'Structural Steel',f:'MS-C04_Structural_Steel.docx'},{n:'Waterproofing',f:'MS-C05_Waterproofing.docx'},{n:'MEP Installation',f:'MS-C06_MEP_Installation.docx'},{n:'Facade Installation',f:'MS-C07_Facade_Installation.docx'},{n:'Road & Infrastructure',f:'MS-C08_Road_Infrastructure.docx'},{n:'Demolition',f:'MS-C09_Demolition.docx'},{n:'Temporary Works',f:'MS-C10_Temporary_Works.docx'},{n:'Lifting & Crane',f:'MS-C11_Lifting_Crane.docx'},{n:'Hot Works',f:'MS-C12_Hot_Works.docx'},{n:'Hot Weather Concreting',f:'MS-C13_Hot_Weather_Concreting.docx'},{n:'Traffic Management',f:'MS-C14_Traffic_Management.docx'}],
+  'D-QAQC':[{n:'NCR Register',f:'QA-D00_NCR_Register.xlsx'},{n:'Project Quality Plan',f:'QA-D01_Project_Quality_Plan.docx'},{n:'ITP Template',f:'QA-D02_ITP_Template.xlsx'},{n:'Material Inspection',f:'QA-D03_Material_Inspection.xlsx'},{n:'Concrete Test',f:'QA-D04_Concrete_Test.xlsx'},{n:'Welding Inspection',f:'QA-D05_Welding_Inspection.xlsx'},{n:'Pressure Test',f:'QA-D06_Pressure_Test.xlsx'},{n:'Commissioning Procedure',f:'QA-D07_Commissioning_Procedure.xlsx'},{n:'NCR Template',f:'QA-D08_NCR_Template.xlsx'},{n:'WPS',f:'QA-D08_WPS.xlsx'},{n:'CAR Template',f:'QA-D09_CAR_Template.xlsx'},{n:'Calibration Register',f:'QA-D10_Calibration_Register.xlsx'},{n:'Survey Report',f:'QA-D11_Survey_Report.xlsx'},{n:'TPI Register',f:'QA-D11_TPI_Register.xlsx'},{n:'Inspection Request',f:'QA-D12_Inspection_Request.xlsx'},{n:'Snag List',f:'QA-D12_Snag_List.xlsx'}],
+  'E-HSE':[{n:'Project HSE Plan',f:'HSE-E01_Project_HSE_Plan.docx'},{n:'Risk Assessment',f:'HSE-E02_Risk_Assessment.xlsx'},{n:'Permit to Work',f:'HSE-E03_Permit_to_Work.xlsx'},{n:'Toolbox Talk',f:'HSE-E04_Toolbox_Talk.xlsx'},{n:'Incident Report',f:'HSE-E05_Incident_Report.xlsx'},{n:'Near Miss',f:'HSE-E06_Near_Miss.xlsx'},{n:'Emergency Response Plan',f:'HSE-E07_Emergency_Response_Plan.docx'},{n:'Environmental Mgmt Plan',f:'HSE-E08_Environmental_Management_Plan.docx'},{n:'Waste Management Plan',f:'HSE-E09_Waste_Management_Plan.docx'},{n:'Noise & Dust Monitoring',f:'HSE-E10_Noise_Dust_Monitoring.xlsx'},{n:'HSE Statistics',f:'HSE-E11_Statistics.xlsx'},{n:'COSHH Assessment',f:'HSE-E12_COSHH_Assessment.xlsx'},{n:'Hazardous Material Register',f:'HSE-E13_Hazardous_Material_Register.xlsx'},{n:'Training Record',f:'HSE-E14_Training_Record.xlsx'}],
+  'F-Progress':[{n:'Mobilisation Plan',f:'PRG-F01_Mobilisation_Plan.docx'},{n:'Recovery Programme',f:'PRG-F03_Recovery_Programme.docx'},{n:'Resource Histogram',f:'PRG-F04_Resource_Histogram.xlsx'},{n:'Cash Flow',f:'PRG-F05_Cash_Flow.xlsx'},{n:'Look Ahead',f:'PRG-F07_Look_Ahead.xlsx'},{n:'S-Curve',f:'PRG-F08_S_Curve.xlsx'},{n:'Procurement Schedule',f:'PRG-F09_Procurement_Schedule.xlsx'},{n:'Delay Analysis',f:'PRG-F10_Delay_Analysis.docx'},{n:'Milestone Certificate',f:'PRG-F10_Milestone_Certificate.xlsx'},{n:'Weather Record',f:'PRG-F11_Weather_Record.xlsx'},{n:'Manpower Return',f:'PRG-F12_Manpower_Return.xlsx'}],
+  'G-Contractual':[{n:'Claims Register',f:'CON-G00_Claims_Register.xlsx'},{n:'Variation Register',f:'CON-G00_Variation_Register.xlsx'},{n:'Payment Application',f:'CON-G01_Payment_Application.docx'},{n:'Variation Proposal',f:'CON-G02_Variation_Proposal.docx'},{n:'Claim Submission',f:'CON-G03_Claim_Submission.docx'},{n:'EOT Application',f:'CON-G04_EOT_Application.docx'},{n:'Bond Register',f:'CON-G05_Bond_Register.xlsx'},{n:'Notice of Delay',f:'CON-G05_Notice_of_Delay.docx'},{n:'Insurance Register',f:'CON-G07_Insurance_Register.xlsx'},{n:'Retention Release',f:'CON-G08_Retention_Release.docx'},{n:'Subcontractor Approval',f:'CON-G08_Subcontractor_Approval.xlsx'},{n:'Daywork Sheet',f:'CON-G09_Daywork_Sheet.xlsx'},{n:'Contractual Notice',f:'CON-G11_Contractual_Notice.docx'},{n:'Dispute Notice',f:'CON-G12_Dispute_Notice.docx'},{n:'Final Account',f:'CON-G12_Final_Account.xlsx'}],
+  'H-Handover':[{n:'Handover Cover',f:'HOV-H00_Handover_Cover.docx'},{n:'As-Built Register',f:'HOV-H01_As_Built_Register.xlsx'},{n:'Demobilisation Plan',f:'HOV-H01_Demobilisation_Plan.docx'},{n:'O&M Manual Template',f:'HOV-H02_OM_Manual_Template.docx'},{n:'Spare Parts',f:'HOV-H04_Spare_Parts.xlsx'},{n:'Pre-Commissioning',f:'HOV-H05_Pre_Commissioning.xlsx'},{n:'Testing & Commissioning',f:'HOV-H05_Testing_Commissioning.xlsx'},{n:'Training Record',f:'HOV-H07_Training_Record.xlsx'},{n:'Building User Guide',f:'HOV-H10_Building_User_Guide.docx'},{n:'Defects Tracker',f:'HOV-H11_Defects_Tracker.xlsx'}],
+  'J-Specialist':[{n:'Regulatory Submittal Cover',f:'REG-J00_Regulatory_Submittal_Cover.docx'},{n:'Civil Defence',f:'REG-J01_Civil_Defence.xlsx'},{n:'Ashghal NOC',f:'REG-J03_Ashghal_NOC.xlsx'},{n:'Municipality',f:'REG-J04_Municipality.xlsx'},{n:'Kahramaa',f:'REG-J05_Kahramaa.xlsx'},{n:'GSAS',f:'REG-J07_GSAS.xlsx'}],
+  'Reports':[{n:'Daily Site Report',f:'RPT-F01_Daily_Site_Report.xlsx'},{n:'Weekly Report',f:'RPT-F02_Weekly_Report.xlsx'},{n:'Monthly Report',f:'RPT-F04_Monthly_Report.xlsx'}],
+  'General':[{n:'Action Item Tracker',f:'Action_Item_Tracker.xlsx'},{n:'Correspondence Log',f:'Correspondence_Log.xlsx'},{n:'Document Transmittal Log',f:'Document_Transmittal_Log.xlsx'},{n:'Drawing Register',f:'Drawing_Register.xlsx'},{n:'MOM Template',f:'MOM_Template.docx'},{n:'RFI Register',f:'RFI_Register.xlsx'},{n:'RFI Template',f:'RFI_Template.docx'},{n:'Site Diary',f:'Site_Diary.xlsx'},{n:'Submittal Status Register',f:'Submittal_Status_Register.xlsx'},{n:'Submittal Transmittal Letter',f:'Submittal_Transmittal_Letter.docx'}],
+};
+const PROJECT_INFO={
+  AHQ:{temp:'38°C',manpower:245,planned:68,actual:65,contractor:'AA Engineering',contractorPM:'BBB',consultant:'CCC International',consultantPM:'XXX',haiRep:'Hasansuperdir',photo:'Site Cam A — Tower Core',cam:'https://site-cam.ahq.local/live',
+    letters:[{ref:'AHQ-LTR-2026-041',from:'AA Eng.',to:'HAI',subject:'Extension of Time Claim — Piling Delay',date:'2026-03-01',status:'unanswered',days:4},{ref:'AHQ-LTR-2026-040',from:'HAI',to:'CCC',subject:'Design Coordination Meeting Minutes',date:'2026-02-28',status:'answered',days:0},{ref:'AHQ-LTR-2026-038',from:'AA Eng.',to:'HAI',subject:'VO-003 Cost Breakdown',date:'2026-02-22',status:'unanswered',days:11}],
+    ai:[{type:'warning',text:'VO-003 response overdue by 11 days — FIDIC Sub-Clause 20.1 time-bar risk.'},{type:'insight',text:'Approval rate trending down 7%. MEP-Electrical causing 60% of rejections.'},{type:'positive',text:'Structural submittals: 100% first-time approval rate.'},{type:'alert',text:'IPC #7 certification stalled — payment delay risk within 5 days.'}]},
+  MTC:{temp:'37°C',manpower:412,planned:50,actual:45,contractor:'AA Engineering',contractorPM:'BBB',consultant:'CCC International',consultantPM:'XXX',haiRep:'Hasansuperdir',photo:'Site Cam B — Marina',cam:'https://site-cam.mtc.local/live',
+    letters:[{ref:'MTC-LTR-2026-078',from:'AA Eng.',to:'HAI',subject:'Revised Construction Programme Rev.3',date:'2026-03-02',status:'unanswered',days:3}],
+    ai:[{type:'warning',text:'5 overdue items from AA Eng. — contractor scoring dropped to 72/100.'},{type:'insight',text:'MEP coordination drawings submitted 3 times without approval.'}]},
+  PRV:{temp:'36°C',manpower:178,planned:80,actual:78,contractor:'AA Engineering',contractorPM:'BBB',consultant:'CCC International',consultantPM:'XXX',haiRep:'Hasansuperdir',photo:'Site Cam C — Villas',cam:'https://site-cam.prv.local/live',
+    letters:[{ref:'PRV-LTR-2026-032',from:'AA Eng.',to:'HAI',subject:'Handover Schedule Proposal',date:'2026-03-03',status:'unanswered',days:2}],
+    ai:[{type:'positive',text:'Project 2% ahead of schedule. Handover on track for Q3 2026.'},{type:'insight',text:'NCR-012 closeout pending — 3 defects require remediation.'}]},
+  LBP:{temp:'39°C',manpower:89,planned:35,actual:30,contractor:'AA Engineering',contractorPM:'BBB',consultant:'CCC International',consultantPM:'XXX',haiRep:'Hasansuperdir',photo:'Site Cam D — Business Park',cam:'https://site-cam.lbp.local/live',letters:[],ai:[{type:'warning',text:'Project 5% behind schedule. Concept design review delayed.'}]},
+  WBR:{temp:'37°C',manpower:156,planned:90,actual:92,contractor:'AA Engineering',contractorPM:'BBB',consultant:'CCC International',consultantPM:'XXX',haiRep:'Hasansuperdir',photo:'Site Cam E — West Bay',cam:'https://site-cam.wbr.local/live',letters:[],ai:[{type:'positive',text:'2% ahead of schedule. Handover package preparation underway.'}]},
+  DPM:{temp:'38°C',manpower:62,planned:18,actual:15,contractor:'AA Engineering',contractorPM:'BBB',consultant:'CCC International',consultantPM:'XXX',haiRep:'Hasansuperdir',photo:'Site Cam F — Port',cam:'https://site-cam.dpm.local/live',
+    letters:[{ref:'DPM-LTR-2026-011',from:'AA Eng.',to:'HAI',subject:'Site Access Delay Notification',date:'2026-03-04',status:'unanswered',days:1}],
+    ai:[{type:'warning',text:'3% behind schedule. Piling method statement under review — critical path.'}]},
+};
+const RISKS=[
+  {id:'R-001',risk:'Piling delay due to unexpected ground conditions',cat:'Technical',p:4,i:5,owner:'PM',mit:'Geotechnical survey revision',status:'Open'},
+  {id:'R-002',risk:'MEP coordination clash causing rework',cat:'Design',p:3,i:4,owner:'Design Mgr',mit:'BIM clash detection weekly',status:'Open'},
+  {id:'R-003',risk:'Contractor insolvency risk',cat:'Commercial',p:2,i:5,owner:'Contract Admin',mit:'Financial health monitoring',status:'Monitoring'},
+  {id:'R-004',risk:'FIDIC time-bar expiry on VO-003',cat:'Contractual',p:5,i:4,owner:'Contract Admin',mit:'Immediate response required',status:'Critical'},
+  {id:'R-005',risk:'Material supply chain delay — steel',cat:'Supply Chain',p:3,i:3,owner:'Procurement',mit:'Alternative supplier pre-qualified',status:'Mitigated'},
+  {id:'R-006',risk:'HSE incident during piling works',cat:'HSE',p:2,i:5,owner:'HSE Mgr',mit:'Enhanced safety protocols',status:'Open'},
+  {id:'R-007',risk:'Scope creep on interior finishes',cat:'Design',p:4,i:3,owner:'Design Mgr',mit:'Change freeze after Stage 4',status:'Open'},
+  {id:'R-008',risk:'QCS 2014 non-compliance on concrete mix',cat:'Quality',p:3,i:4,owner:'QA/QC Mgr',mit:'Third-party testing regime',status:'Open'},
+  {id:'R-009',risk:'Delayed regulatory approvals — Civil Defence',cat:'Regulatory',p:3,i:4,owner:'PM',mit:'Early engagement with authorities',status:'Monitoring'},
+  {id:'R-010',risk:'Budget overrun on MTC foundation works',cat:'Commercial',p:4,i:4,owner:'Cost Mgr',mit:'Value engineering exercise',status:'Open'},
+];
+
+let state={project:null,stage:null,substage:null};
+let uploadedFiles=[];
+
+// ══════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════
+function init(){
+  filterProjects();renderPending();renderOverdue();renderStages(null);
+  renderGovDocs();renderTemplates();renderRiskMatrix();renderRiskRegister();
+  renderProcessFlows();loadErDash();
+}
+
+// ══════════════════════════════════════════════
+// NAV
+// ══════════════════════════════════════════════
+function switchView(id,btn){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('#mainTabs .tab').forEach(t=>t.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  setTimeout(()=>animateView(id),50);
+}
+function animateView(id){
+  if(id==='dashboards'){
+    const active=document.querySelector('#dashTabs .doc-tab.active');
+    if(active)active.click();
+  }
+  if(id==='analytics')animateAnalytics();
+  document.querySelectorAll('#'+id+' .stat-box').forEach((b,i)=>{b.classList.remove('visible');setTimeout(()=>b.classList.add('visible'),i*100);});
+  document.querySelectorAll('#'+id+' .hbar-row').forEach((r,i)=>{r.classList.remove('visible');const f=r.querySelector('.hbar-fill');if(f)f.style.width='0';setTimeout(()=>{r.classList.add('visible');if(f)f.style.width=f.dataset.w;},i*120);});
+  document.querySelectorAll('#'+id+' .gate-row').forEach((r,i)=>{r.classList.remove('visible');setTimeout(()=>r.classList.add('visible'),i*100);});
+}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
+
+// ══════════════════════════════════════════════
+// DASHBOARD TABS
+// ══════════════════════════════════════════════
+function switchDashTab(tabId,btn){
+  document.querySelectorAll('#dashboards .doc-content').forEach(c=>c.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+  document.querySelectorAll('#dashTabs .doc-tab').forEach(t=>t.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  const loaders={erDash:loadErDash,costDash:loadCostDash,qualityDash:loadQualityDash,contractorDash:loadContractorDash,consultantDash:loadConsultantDash,govDash:loadGovDash};
+  if(loaders[tabId])loaders[tabId]();
+  setTimeout(()=>{
+    document.querySelectorAll('#'+tabId+' .stat-box').forEach((b,i)=>{b.classList.remove('visible');setTimeout(()=>b.classList.add('visible'),i*100);});
+    document.querySelectorAll('#'+tabId+' .hbar-row').forEach((r,i)=>{r.classList.remove('visible');const f=r.querySelector('.hbar-fill');if(f)f.style.width='0';setTimeout(()=>{r.classList.add('visible');if(f)f.style.width=f.dataset.w;},i*120);});
+  },100);
+}
+
+// ═══ ER DASHBOARD ═══
+function loadErDash(){
+  document.getElementById('erDash').innerHTML=`
+    <div class="stat-grid">
+      <div class="stat-box"><div class="stat-num c-green">6</div><div class="stat-label">Active Projects</div></div>
+      <div class="stat-box"><div class="stat-num c-blue">432</div><div class="stat-label">Total Submittals</div></div>
+      <div class="stat-box"><div class="stat-num c-green">92%</div><div class="stat-label">SLA Compliance</div></div>
+      <div class="stat-box"><div class="stat-num c-red">3</div><div class="stat-label">Overdue Items</div></div>
+    </div>
+    <div class="ana-grid-2">
+      <div class="chart-box"><div class="chart-title">Pending Actions Queue</div>
+        ${PENDING.map(t=>'<div class="task-item"><div class="task-title">'+t.title+'</div><div class="task-meta">'+t.type+' — <span style="color:#f39c12;">'+t.due+'</span></div><div class="sla-bar"><div class="sla-fill '+t.color+'" style="width:'+t.sla+'%"></div></div></div>').join('')}
+      </div>
+      <div class="chart-box"><div class="chart-title">Submittal Status Distribution</div>
+        <div>${mkBars([{l:'Approved',p:42,c:'green',v:'181'},{l:'Under Review',p:28,c:'orange',v:'121'},{l:'Submitted',p:18,c:'blue',v:'78'},{l:'Rejected',p:8,c:'red',v:'34'}])}</div>
+      </div>
+    </div>
+    <div class="ana-grid-3">
+      <div class="chart-box" style="text-align:center;"><div class="chart-title">SLA Compliance</div><div id="erGauge"></div></div>
+      <div class="chart-box"><div class="chart-title">Escalation Alerts</div>
+        <div class="alert-item l2"><div class="alert-level" style="color:#e74c3c;">L2 Escalation</div><div class="alert-desc">AHQ VO-003 — SLA exceeded by 3 days</div></div>
+        <div class="alert-item l1"><div class="alert-level" style="color:#f39c12;">L1 Escalation</div><div class="alert-desc">MTC-B-2026-0089 — 80% SLA used</div></div>
+        <div class="alert-item l1"><div class="alert-level" style="color:#f39c12;">L1 Escalation</div><div class="alert-desc">DPM-C-2026-0008 — approaching limit</div></div>
+      </div>
+      <div class="chart-box"><div class="chart-title">Upcoming Gate Milestones</div>
+        ${PROJECTS.slice(0,4).map(p=>'<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #1a2a44;font-size:12px;"><span style="color:#4da6ff;font-weight:600;">'+p.code+'</span><span style="color:#b0c4de;">Stage '+p.stage+' → '+(p.stage+1)+'</span><span class="badge '+(p.progress>=70?'b-approved':'b-review')+'">'+(p.progress>=70?'On Track':'At Risk')+'</span></div>').join('')}
+      </div>
+    </div>
+    <div class="chart-box"><div class="chart-title">Projects Overview</div>
+      <table class="dtable"><thead><tr><th>Code</th><th>Project</th><th>Stage</th><th>Progress</th><th>Status</th></tr></thead>
+      <tbody>${PROJECTS.map(p=>{const c=p.progress>=80?'#2ecc71':p.progress>=50?'#f39c12':'#e74c3c';return '<tr><td><strong style="color:#4da6ff;">'+p.code+'</strong></td><td>'+p.name+'</td><td style="color:#7a8a9e;">'+p.stage+' — '+STAGES[p.stage].name+'</td><td><div style="background:#1a2a44;height:22px;border-radius:4px;overflow:hidden;"><div style="background:'+c+';height:100%;width:'+p.progress+'%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;">'+p.progress+'%</div></div></td><td><span class="badge '+(p.progress>=80?'b-approved':p.progress>=50?'b-review':'b-rejected')+'">'+(p.progress>=80?'On Track':p.progress>=50?'At Risk':'Critical')+'</span></td></tr>';}).join('')}</tbody></table>
+    </div>`;
+  renderGaugeTo('erGauge',92);
+}
+
+// ═══ COST DASHBOARD ═══
+function loadCostDash(){
+  document.getElementById('costDash').innerHTML=`
+    <div class="stat-grid">
+      <div class="stat-box"><div class="stat-num c-blue">5.62B</div><div class="stat-label">Total Portfolio (QAR)</div></div>
+      <div class="stat-box"><div class="stat-num c-green">45.2M</div><div class="stat-label">Approved VOs</div></div>
+      <div class="stat-box"><div class="stat-num c-orange">8.7M</div><div class="stat-label">Pending VOs</div></div>
+      <div class="stat-box"><div class="stat-num c-red">+2.3%</div><div class="stat-label">Budget Variance</div></div>
+    </div>
+    <div class="ana-grid-2">
+      <div class="chart-box"><div class="chart-title">Budget by Project</div>
+        <div>${mkBars([{l:'MTC',p:85,c:'blue',v:'1.2B'},{l:'LBP',p:70,c:'blue',v:'2.1B'},{l:'AHQ',p:60,c:'green',v:'850M'},{l:'DPM',p:48,c:'orange',v:'680M'},{l:'WBR',p:32,c:'green',v:'450M'},{l:'PRV',p:23,c:'green',v:'320M'}])}</div>
+      </div>
+      <div class="chart-box"><div class="chart-title">Variation Order Register</div>
+        <table class="dtable"><thead><tr><th>VO</th><th>Project</th><th>Value</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td style="color:#4da6ff;">VO-001</td><td>AHQ</td><td>12.5M</td><td><span class="badge b-approved">Approved</span></td></tr>
+          <tr><td style="color:#4da6ff;">VO-002</td><td>MTC</td><td>8.3M</td><td><span class="badge b-approved">Approved</span></td></tr>
+          <tr><td style="color:#4da6ff;">VO-003</td><td>AHQ</td><td>4.7M</td><td><span class="badge b-review">Pending</span></td></tr>
+          <tr><td style="color:#4da6ff;">VO-004</td><td>LBP</td><td>2.1M</td><td><span class="badge b-rejected">Rejected</span></td></tr>
+          <tr><td style="color:#4da6ff;">VO-005</td><td>MTC</td><td>6.2M</td><td><span class="badge b-review">Under Review</span></td></tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="chart-box"><div class="chart-title">IPC (Interim Payment Certificate) Status</div>
+      <table class="dtable"><thead><tr><th>Project</th><th>Last IPC</th><th>Value</th><th>Certified</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td><strong style="color:#4da6ff;">AHQ</strong></td><td>IPC #6</td><td>42.3M</td><td>41.8M</td><td><span class="badge b-approved">Paid</span></td></tr>
+        <tr><td><strong style="color:#4da6ff;">MTC</strong></td><td>IPC #7</td><td>68.1M</td><td>—</td><td><span class="badge b-review">Pending</span></td></tr>
+        <tr><td><strong style="color:#4da6ff;">PRV</strong></td><td>IPC #9</td><td>28.4M</td><td>28.4M</td><td><span class="badge b-approved">Paid</span></td></tr>
+      </tbody></table>
+    </div>`;
+}
+
+// ═══ QUALITY DASHBOARD ═══
+function loadQualityDash(){
+  document.getElementById('qualityDash').innerHTML=`
+    <div class="stat-grid">
+      <div class="stat-box"><div class="stat-num c-red">5</div><div class="stat-label">Open NCRs</div></div>
+      <div class="stat-box"><div class="stat-num c-green">91%</div><div class="stat-label">Inspection Pass Rate</div></div>
+      <div class="stat-box"><div class="stat-num c-green">12</div><div class="stat-label">Defects Closed</div></div>
+      <div class="stat-box"><div class="stat-num c-blue">94%</div><div class="stat-label">QCS Compliance</div></div>
+    </div>
+    <div class="ana-grid-2">
+      <div class="chart-box"><div class="chart-title">NCRs by Project</div>
+        <div>${mkBars([{l:'AHQ',p:60,c:'red',v:'3'},{l:'MTC',p:80,c:'red',v:'4'},{l:'PRV',p:40,c:'orange',v:'2'},{l:'DPM',p:20,c:'green',v:'1'}])}</div>
+      </div>
+      <div class="chart-box"><div class="chart-title">Inspection Results — Last 30 Days</div>
+        <div>${mkBars([{l:'Concrete Works',p:95,c:'green',v:'95%'},{l:'Steel Fixing',p:88,c:'green',v:'88%'},{l:'MEP Rough-in',p:76,c:'orange',v:'76%'},{l:'Waterproofing',p:92,c:'green',v:'92%'},{l:'Formwork',p:84,c:'green',v:'84%'}])}</div>
+      </div>
+    </div>
+    <div class="chart-box"><div class="chart-title">NCR Register</div>
+      <table class="dtable"><thead><tr><th>NCR</th><th>Project</th><th>Description</th><th>Severity</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td style="color:#4da6ff;">NCR-010</td><td>AHQ</td><td>Concrete cover insufficient — Column C4</td><td><span class="badge b-rejected">Major</span></td><td><span class="badge b-review">Open</span></td></tr>
+        <tr><td style="color:#4da6ff;">NCR-011</td><td>MTC</td><td>MEP penetration not sealed — Level 12</td><td><span class="badge b-review">Minor</span></td><td><span class="badge b-review">Open</span></td></tr>
+        <tr><td style="color:#4da6ff;">NCR-012</td><td>PRV</td><td>Tile alignment defect — Villa 7</td><td><span class="badge b-review">Minor</span></td><td><span class="badge b-submitted">Remediation</span></td></tr>
+      </tbody></table>
+    </div>`;
+}
+
+// ═══ CONTRACTOR DASHBOARD ═══
+function loadContractorDash(){
+  document.getElementById('contractorDash').innerHTML=`
+    <div class="stat-grid">
+      <div class="stat-box"><div class="stat-num c-blue">18</div><div class="stat-label">My Submittals</div></div>
+      <div class="stat-box"><div class="stat-num c-orange">5</div><div class="stat-label">Pending Response</div></div>
+      <div class="stat-box"><div class="stat-num c-red">2</div><div class="stat-label">Overdue</div></div>
+      <div class="stat-box"><div class="stat-num c-green">85/100</div><div class="stat-label">Compliance Score</div></div>
+    </div>
+    <div class="ana-grid-2">
+      <div class="chart-box"><div class="chart-title">Contractor Compliance Scores</div>
+        <div>${mkBars([{l:'AA Eng. (AHQ)',p:85,c:'green',v:'85/100'},{l:'AA Eng. (MTC)',p:72,c:'orange',v:'72/100'},{l:'AA Eng. (PRV)',p:91,c:'green',v:'91/100'},{l:'AA Eng. (LBP)',p:78,c:'orange',v:'78/100'}])}</div>
+      </div>
+      <div class="chart-box"><div class="chart-title">Submittal Queue — Contractor View</div>
+        <table class="dtable"><thead><tr><th>Ref</th><th>Title</th><th>Submitted</th><th>SLA Status</th></tr></thead>
+        <tbody>
+          <tr><td style="color:#4da6ff;">AHQ-A-0148</td><td>Structural Calcs Rev.2</td><td>01 Mar</td><td><span class="badge b-review">Day 4/14</span></td></tr>
+          <tr><td style="color:#4da6ff;">MTC-B-0089</td><td>MEP Coordination</td><td>02 Mar</td><td><span class="badge b-submitted">Day 3/14</span></td></tr>
+          <tr><td style="color:#4da6ff;">AHQ-B-0149</td><td>Interior Finishes</td><td>04 Mar</td><td><span class="badge b-approved">Day 1/14</span></td></tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="chart-box"><div class="chart-title">Required Documents — Outstanding</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px;">
+        ${['Method Statement — Piling Works','HSE Plan Rev.3','Material Submittal — Rebar','QA/QC Plan — Concrete','ITP — Structural Steel'].map(d=>'<div class="task-item"><div class="task-title">'+d+'</div><div class="task-meta" style="color:#e74c3c;">Required before next stage gate</div></div>').join('')}
+      </div>
+    </div>`;
+}
+
+// ═══ CONSULTANT DASHBOARD ═══
+function loadConsultantDash(){
+  document.getElementById('consultantDash').innerHTML=`
+    <div class="stat-grid">
+      <div class="stat-box"><div class="stat-num c-orange">8</div><div class="stat-label">Review Queue</div></div>
+      <div class="stat-box"><div class="stat-num c-blue">6.2</div><div class="stat-label">Avg Days to Respond</div></div>
+      <div class="stat-box"><div class="stat-num c-green">3</div><div class="stat-label">Approved Today</div></div>
+      <div class="stat-box"><div class="stat-num c-green">87%</div><div class="stat-label">On-Time Response</div></div>
+    </div>
+    <div class="ana-grid-2">
+      <div class="chart-box"><div class="chart-title">Response Time by Discipline</div>
+        <div>${mkBars([{l:'Architectural',p:45,c:'green',v:'4.5 days'},{l:'Structural',p:55,c:'green',v:'5.5 days'},{l:'MEP-Electrical',p:85,c:'red',v:'8.5 days'},{l:'MEP-Mechanical',p:72,c:'orange',v:'7.2 days'},{l:'Fire',p:38,c:'green',v:'3.8 days'},{l:'Civil',p:62,c:'orange',v:'6.2 days'}])}</div>
+      </div>
+      <div class="chart-box"><div class="chart-title">Review Queue</div>
+        <table class="dtable"><thead><tr><th>Ref</th><th>Title</th><th>Days in Queue</th><th>SLA Remaining</th></tr></thead>
+        <tbody>
+          <tr><td style="color:#4da6ff;">AHQ-A-0148</td><td>Structural Calculations</td><td>4</td><td><span class="badge b-review">10 days</span></td></tr>
+          <tr><td style="color:#4da6ff;">DPM-C-0008</td><td>Piling Method Statement</td><td>2</td><td><span class="badge b-approved">12 days</span></td></tr>
+          <tr><td style="color:#4da6ff;">MTC-B-0089</td><td>MEP Coordination</td><td>3</td><td><span class="badge b-review">11 days</span></td></tr>
+        </tbody></table>
+      </div>
+    </div>`;
+}
+
+// ═══ GOVERNANCE DASHBOARD ═══
+function loadGovDash(){
+  document.getElementById('govDash').innerHTML=`
+    <div class="stat-grid">
+      <div class="stat-box"><div class="stat-num c-blue">46</div><div class="stat-label">GOV Documents</div></div>
+      <div class="stat-box"><div class="stat-num c-green">96%</div><div class="stat-label">Process Compliance</div></div>
+      <div class="stat-box"><div class="stat-num c-green">98</div><div class="stat-label">Audit Score</div></div>
+      <div class="stat-box"><div class="stat-num c-blue">15</div><div class="stat-label">Active Users</div></div>
+    </div>
+    <div class="ana-grid-2">
+      <div class="chart-box"><div class="chart-title">Document Control Stats</div>
+        <div>${mkBars([{l:'Submittals Issued',p:86,c:'blue',v:'432'},{l:'Responses Sent',p:78,c:'green',v:'389'},{l:'Overdue Responses',p:6,c:'red',v:'14'},{l:'Templates Used',p:65,c:'blue',v:'156'}])}</div>
+      </div>
+      <div class="chart-box"><div class="chart-title">Process Compliance by Stage</div>
+        <div>${mkBars([{l:'Stage 0-1',p:100,c:'green',v:'100%'},{l:'Stage 2',p:95,c:'green',v:'95%'},{l:'Stage 3',p:92,c:'green',v:'92%'},{l:'Stage 4',p:88,c:'green',v:'88%'},{l:'Stage 5-6',p:96,c:'green',v:'96%'}])}</div>
+      </div>
+    </div>
+    <div class="chart-box"><div class="chart-title">Recent Audit Trail</div>
+      <table class="dtable"><thead><tr><th>Time</th><th>User</th><th>Action</th><th>Document</th></tr></thead>
+      <tbody>
+        <tr><td style="color:#7a8a9e;">10:23</td><td>Sarah Mitchell</td><td><span class="badge b-approved">Approved</span></td><td>AHQ-A-2026-0147</td></tr>
+        <tr><td style="color:#7a8a9e;">09:45</td><td>Khalid Bashar</td><td><span class="badge b-submitted">Submitted</span></td><td>MTC-B-2026-0089</td></tr>
+        <tr><td style="color:#7a8a9e;">09:12</td><td>Doc Controller</td><td><span class="badge b-review">Registered</span></td><td>DPM-C-2026-0008</td></tr>
+        <tr><td style="color:#7a8a9e;">Yesterday</td><td>Hasan M.</td><td><span class="badge b-rejected">Rejected</span></td><td>LBP-A-2026-0012</td></tr>
+      </tbody></table>
+    </div>`;
+}
+
+// Helper: make horizontal bars
+function mkBars(arr){return arr.map(b=>'<div class="hbar-row"><span class="hbar-label">'+b.l+'</span><div class="hbar-track"><div class="hbar-fill '+b.c+'" data-w="'+b.p+'%" style="width:0">'+b.p+'%</div></div><span class="hbar-value">'+b.v+'</span></div>').join('');}
+
+// Helper: SVG gauge
+function renderGaugeTo(elId,pct){
+  const el=document.getElementById(elId);if(!el)return;
+  const r=70,cx=80,cy=80,circ=2*Math.PI*r,dash=(pct/100)*circ,color=pct>=90?'#2ecc71':pct>=75?'#f39c12':'#e74c3c';
+  el.innerHTML='<svg width="160" height="160" viewBox="0 0 160 160"><circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="#1a2a44" stroke-width="10"/><circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="'+color+'" stroke-width="10" stroke-dasharray="'+dash+' '+circ+'" stroke-linecap="round" transform="rotate(-90 '+cx+' '+cy+')" style="transition:stroke-dasharray 1.5s ease;"/><text x="'+cx+'" y="'+(cy-5)+'" text-anchor="middle" font-size="28" font-weight="800" fill="'+color+'">'+pct+'%</text><text x="'+cx+'" y="'+(cy+15)+'" text-anchor="middle" font-size="11" fill="#7a8a9e">SLA Compliance</text></svg>';
+}
+
+// ══════════════════════════════════════════════
+// SUBMITTALS
+// ══════════════════════════════════════════════
+function filterProjects(){
+  const size=document.getElementById('sizeFilter').value;
+  const sel=document.getElementById('projectSelect');
+  sel.innerHTML='<option value="">— Select Project —</option>';
+  PROJECTS.filter(p=>size==='all'||p.size===size).forEach(p=>{sel.innerHTML+='<option value="'+p.id+'">'+p.code+' — '+p.name+' ('+(p.value/1e6).toFixed(0)+'M QAR)</option>';});
+  state.project=null;state.stage=null;renderStages(null);
+  document.getElementById('substagePanel').classList.remove('open');
+}
+function selectProject(){
+  const id=document.getElementById('projectSelect').value;
+  state.project=PROJECTS.find(p=>p.id===id)||null;state.stage=null;state.substage=null;
+  document.getElementById('substagePanel').classList.remove('open');
+  const banner=document.getElementById('projectInfoBanner'),lp=document.getElementById('lettersPanel'),ap=document.getElementById('aiPanel');
+  if(state.project){
+    renderStages(state.project);
+    const info=PROJECT_INFO[state.project.id],p=state.project;
+    document.getElementById('contextCard').innerHTML='<div style="font-size:12px;color:#b0c4de;line-height:1.8;"><strong style="color:#4da6ff;">'+p.code+'</strong> — '+p.name+'<br><strong>Stage:</strong> '+p.stage+' — '+STAGES[p.stage].name+'<br><strong>Progress:</strong> '+p.progress+'%<br><strong>Value:</strong> '+(p.value/1e6).toFixed(0)+'M QAR</div>';
+    const diff=info.actual-info.planned,dc=diff>=0?'#2ecc71':diff>=-3?'#f39c12':'#e74c3c',ds=diff>=0?'+':'';
+    banner.style.display='block';
+    banner.innerHTML='<div class="proj-banner"><div class="proj-info-card"><div class="info-val c-orange">'+info.temp+'</div><div class="info-lbl">Site Temperature</div></div><div class="proj-info-card"><div class="info-val c-blue">'+info.manpower+'</div><div class="info-lbl">Manpower on Site</div></div><div class="proj-info-card"><div class="info-val" style="color:'+dc+';">'+info.actual+'% <span style="font-size:12px;color:#7a8a9e;">/ '+info.planned+'%</span></div><div class="info-lbl">Actual vs Planned ('+ds+diff+'%)</div><div class="progress-compare"><div class="prog-bar"><div class="prog-fill-planned" style="width:'+info.planned+'%;"></div><div class="prog-fill-actual" style="width:'+info.actual+'%;background:'+dc+';"></div></div></div></div><div class="proj-info-card"><div style="margin-bottom:6px;"><a href="'+info.cam+'" target="_blank" class="site-cam-btn">&#128247; '+info.photo+'</a></div><div class="info-lbl">Live Site Camera</div></div></div><div class="proj-team"><div class="team-member"><div class="tm-role">Contractor</div><div class="tm-name">'+info.contractor+'</div><div class="tm-company">PM: '+info.contractorPM+'</div></div><div class="team-member"><div class="tm-role">Lead Consultant</div><div class="tm-name">'+info.consultant+'</div><div class="tm-company">PM: '+info.consultantPM+'</div></div><div class="team-member"><div class="tm-role">HAI Representative</div><div class="tm-name">'+info.haiRep+'</div><div class="tm-company">Employer\'s Rep</div></div></div>';
+    if(info.letters.length>0){const un=info.letters.filter(l=>l.status==='unanswered').length;lp.style.display='block';lp.innerHTML='<div class="chart-box"><div class="chart-title">Correspondence'+(un>0?' <span style="color:#e74c3c;font-size:11px;margin-left:8px;">'+un+' UNANSWERED</span>':'')+'</div><div style="display:grid;grid-template-columns:120px 1fr 100px 90px 80px;gap:8px;padding:6px 0;border-bottom:1px solid #2a3a5a;font-size:10px;color:#7a8a9e;text-transform:uppercase;"><div>Reference</div><div>Subject</div><div>From/To</div><div>Date</div><div>Status</div></div>'+info.letters.map(l=>'<div class="letter-row"><div style="color:#4da6ff;font-weight:600;">'+l.ref+'</div><div style="color:#b0c4de;">'+l.subject+'</div><div style="color:#7a8a9e;">'+l.from+' → '+l.to+'</div><div style="color:#7a8a9e;">'+l.date+'</div><div><span class="letter-status '+(l.status==='unanswered'?'ls-unanswered':'ls-answered')+'">'+(l.status==='unanswered'?l.days+'d OVERDUE':'Answered')+'</span></div></div>').join('')+'</div>';}else{lp.style.display='none';}
+    if(info.ai.length>0){ap.style.display='block';ap.innerHTML='<div class="chart-box"><div class="chart-title">AI-Driven Insights</div>'+info.ai.map(a=>'<div class="ai-insight ai-'+a.type+'"><span class="ai-tag t-'+a.type+'">'+a.type+'</span>'+a.text+'</div>').join('')+'</div>';}else{ap.style.display='none';}
+    showToast('Loaded: '+p.name);
+  }else{renderStages(null);document.getElementById('contextCard').innerHTML='<div style="font-size:12px;color:#b0c4de;">Select a project.</div>';banner.style.display='none';lp.style.display='none';ap.style.display='none';}
+}
+function renderStages(proj){
+  document.getElementById('stageGates').innerHTML=STAGES.map(s=>{let cls='';if(proj){if(s.n<proj.stage)cls='completed';else if(s.n===proj.stage)cls='current';}return '<div class="gate '+cls+'" onclick="selectStage('+s.n+')"><div class="gate-dot"></div><div class="gate-lbl">'+s.n+'</div><div class="gate-name">'+s.name+'</div></div>';}).join('');
+}
+function selectStage(n){
+  state.stage=n;const panel=document.getElementById('substagePanel'),subs=SUBSTAGES[n]||[];
+  document.getElementById('substageTitle').textContent='Stage '+n+' — '+STAGES[n].name+' — Sub-Stages & Deliverables';
+  document.getElementById('substageChips').innerHTML=subs.map((s,i)=>{
+    let cls='';if(state.project){const ps=state.project.stage;if(n<ps)cls='done';else if(n===ps&&i<subs.length-2)cls='done';else if(n===ps&&i===subs.length-3)cls='active';}
+    if(s==='Monthly Report')cls='report';if(s==='MOM')cls='mom';
+    return '<div class="sub-chip '+cls+'" onclick="selectSubstage(\''+s.replace(/'/g,"\\'")+'\')">'+(s==='MOM'?'&#128221; ':'')+(s==='Monthly Report'?'&#128202; ':'')+s+'</div>';
+  }).join('');
+  panel.classList.add('open');renderContent();
+}
+function selectSubstage(name){
+  state.substage=name;
+  document.querySelectorAll('.sub-chip').forEach(c=>{if(c.textContent.includes(name)){c.style.borderColor='#4da6ff';c.style.color='#4da6ff';c.style.background='rgba(77,166,255,.1)';}else{c.style.borderColor='';c.style.color='';c.style.background='';}});
+  renderContent();showToast('Selected: '+name);
+}
+function renderContent(){
+  if(!state.project||state.stage===null)return;
+  document.getElementById('welcomeCard').style.display='none';
+  const filtered=SUBMITTALS.filter(s=>s.proj===state.project.id);
+  document.getElementById('contentArea').innerHTML='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;"><span style="font-size:14px;font-weight:600;color:#4da6ff;">Stage '+state.stage+' — '+STAGES[state.stage].name+(state.substage?' — '+state.substage:'')+'</span><div style="display:flex;gap:8px;"><button class="btn" onclick="showToast(\'Export\')">Export</button><button class="btn btn-primary" onclick="switchView(\'newsubmittal\',document.querySelectorAll(\'#mainTabs .tab\')[7])">+ New</button></div></div>'+(filtered.length>0?'<table class="dtable"><thead><tr><th>Reference</th><th>Title</th><th>Discipline</th><th>Status</th><th>Code</th><th>Date</th></tr></thead><tbody>'+filtered.map(s=>'<tr><td><strong style="color:#4da6ff;">'+s.ref+'</strong></td><td>'+s.title+'</td><td>'+s.disc+'</td><td><span class="badge b-'+(s.status==='under-review'?'review':s.status)+'">'+s.status.replace(/-/g,' ')+'</span></td><td>'+(s.code?'<span class="resp-code rc-'+s.code+'">'+s.code+'</span>':'—')+'</td><td style="color:#7a8a9e;">'+s.date+'</td></tr>').join('')+'</tbody></table>':'<div class="card" style="text-align:center;padding:30px;color:#7a8a9e;">No submittals for this project/stage combination yet.</div>');
+}
+function renderPending(){
+  document.getElementById('pendingCount').textContent='('+PENDING.length+')';
+  document.getElementById('pendingTasks').innerHTML=PENDING.map(t=>'<div class="task-item"><div class="task-title">'+t.title+'</div><div class="task-meta">'+t.type+' — <span style="color:#f39c12;">'+t.due+'</span></div><div class="sla-bar"><div class="sla-fill '+t.color+'" style="width:'+t.sla+'%"></div></div></div>').join('');
+}
+function renderOverdue(){
+  document.getElementById('overdueCount').textContent='('+OVERDUE.length+')';
+  document.getElementById('overdueTasks').innerHTML=OVERDUE.map(t=>'<div class="task-item overdue"><div class="task-title">'+t.title+'</div><div class="task-meta">'+t.type+' — <span style="color:#e74c3c;">'+t.due+'</span></div><div class="sla-bar"><div class="sla-fill sla-red" style="width:100%"></div></div></div>').join('');
+}
+
+// ══════════════════════════════════════════════
+// ANALYTICS
+// ══════════════════════════════════════════════
+function animateAnalytics(){
+  const months=[{m:'Oct',v:12},{m:'Nov',v:18},{m:'Dec',v:24},{m:'Jan',v:31},{m:'Feb',v:28},{m:'Mar',v:35}];
+  const maxV=Math.max(...months.map(m=>m.v));
+  document.getElementById('volumeChart').innerHTML=months.map(m=>'<div class="vbar"><div class="vbar-val">'+m.v+'</div><div class="vbar-fill" style="height:0;--h:'+Math.round(m.v/maxV*180)+'px;"></div><div class="vbar-lbl">'+m.m+'</div></div>').join('');
+  setTimeout(()=>document.querySelectorAll('#volumeChart .vbar-fill').forEach((b,i)=>setTimeout(()=>{b.style.height=b.style.getPropertyValue('--h');},i*100)),100);
+  const disc=[{n:'Architectural',v:92,c:'green'},{n:'Structural',v:88,c:'green'},{n:'MEP-Electrical',v:76,c:'orange'},{n:'MEP-Mechanical',v:71,c:'orange'},{n:'Fire',v:95,c:'green'},{n:'Civil',v:82,c:'green'},{n:'Interior',v:68,c:'red'},{n:'Landscape',v:90,c:'green'}];
+  document.getElementById('approvalBars').innerHTML=disc.map(d=>'<div class="hbar-row"><span class="hbar-label">'+d.n+'</span><div class="hbar-track"><div class="hbar-fill '+d.c+'" data-w="'+d.v+'%" style="width:0">'+d.v+'%</div></div><span class="hbar-value">'+d.v+'%</span></div>').join('');
+  const codes=[{label:'A — Approved',pct:42,color:'#2ecc71',count:181},{label:'B — w/ Comments',pct:28,color:'#4da6ff',count:121},{label:'C — Revise',pct:18,color:'#f39c12',count:78},{label:'D — Rejected',pct:8,color:'#e74c3c',count:34},{label:'E — Not Reviewed',pct:4,color:'#7a8a9e',count:18}];
+  const total=codes.reduce((s,c)=>s+c.count,0);const r=75,circ=2*Math.PI*r;let off=0;let arcs='';
+  codes.forEach(c=>{const dash=(c.pct/100)*circ;arcs+='<circle cx="100" cy="100" r="'+r+'" fill="none" stroke="'+c.color+'" stroke-width="20" stroke-dasharray="'+dash+' '+(circ-dash)+'" stroke-dashoffset="'+-off+'" transform="rotate(-90 100 100)"/>';off+=dash;});
+  document.getElementById('donutChart').innerHTML='<svg width="200" height="200" viewBox="0 0 200 200">'+arcs+'<text x="100" y="95" text-anchor="middle" font-size="24" font-weight="800" fill="#e0e0e0">'+total+'</text><text x="100" y="112" text-anchor="middle" font-size="10" fill="#7a8a9e">Total</text></svg><div class="donut-legend">'+codes.map(c=>'<div class="leg-item"><div class="leg-dot" style="background:'+c.color+';"></div><span>'+c.label+': '+c.count+'</span></div>').join('')+'</div>';
+  document.getElementById('overdueBars').innerHTML=[{n:'AA Eng. (AHQ)',v:8,c:'red'},{n:'AA Eng. (MTC)',v:5,c:'orange'},{n:'AA Eng. (PRV)',v:3,c:'orange'},{n:'AA Eng. (LBP)',v:2,c:'green'}].map(c=>'<div class="hbar-row"><span class="hbar-label">'+c.n+'</span><div class="hbar-track"><div class="hbar-fill '+c.c+'" data-w="'+c.v*10+'%" style="width:0">'+c.v+'</div></div><span class="hbar-value">'+c.v+' items</span></div>').join('');
+  document.getElementById('turnaroundBars').innerHTML=[{n:'0-3 days',v:35,c:'green'},{n:'4-7 days',v:28,c:'green'},{n:'8-14 days',v:22,c:'orange'},{n:'15-21 days',v:10,c:'orange'},{n:'21+ days',v:5,c:'red'}].map(t=>'<div class="hbar-row"><span class="hbar-label">'+t.n+'</span><div class="hbar-track"><div class="hbar-fill '+t.c+'" data-w="'+t.v+'%" style="width:0">'+t.v+'%</div></div><span class="hbar-value">'+t.v+'%</span></div>').join('');
+  const breaches=[8,12,6,4,3,2],maxB=14,mn2=['Oct','Nov','Dec','Jan','Feb','Mar'];
+  const pts=breaches.map((b,i)=>({x:40+i*80,y:140-b/maxB*120}));
+  document.getElementById('trendChart').innerHTML=pts.map((p,i)=>'<text x="'+p.x+'" y="155" text-anchor="middle" font-size="10" fill="#7a8a9e">'+mn2[i]+'</text>').join('')+'<polyline points="'+pts.map(p=>p.x+','+p.y).join(' ')+'" fill="none" stroke="#2ecc71" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="600" stroke-dashoffset="600" style="animation:lineAnim 2s ease-out forwards;"/>'+pts.map((p,i)=>'<circle cx="'+p.x+'" cy="'+p.y+'" r="5" fill="#2ecc71"/><text x="'+p.x+'" y="'+(p.y-10)+'" text-anchor="middle" font-size="11" font-weight="700" fill="#2ecc71">'+breaches[i]+'</text>').join('');
+  document.getElementById('gateGrid').innerHTML=PROJECTS.map(p=>{let dots='';for(let i=0;i<9;i++){dots+='<div class="gdot '+(i<p.stage?'gd-done':i===p.stage?'gd-now':'')+'"></div>';}return '<div class="gate-row"><div class="gate-proj">'+p.code+' — '+p.name+'</div>'+dots+'</div>';}).join('');
+  document.getElementById('costStats').innerHTML=[{l:'Total Variations',v:'12',c:'c-blue'},{l:'Approved Value',v:'45.2M',c:'c-green'},{l:'Pending',v:'8.7M',c:'c-orange'},{l:'Rejected',v:'2.1M',c:'c-red'}].map((s,i)=>'<div class="stat-box" style="animation-delay:'+i*100+'ms;"><div class="stat-num '+s.c+'">'+s.v+'</div><div class="stat-label">'+s.l+'</div></div>').join('');
+  setTimeout(()=>{
+    document.querySelectorAll('#analytics .stat-box').forEach((b,i)=>{b.classList.remove('visible');setTimeout(()=>b.classList.add('visible'),i*100);});
+    document.querySelectorAll('#analytics .hbar-row').forEach((r,i)=>{r.classList.remove('visible');const f=r.querySelector('.hbar-fill');if(f)f.style.width='0';setTimeout(()=>{r.classList.add('visible');if(f)f.style.width=f.dataset.w;},i*120);});
+    document.querySelectorAll('#analytics .gate-row').forEach((r,i)=>{r.classList.remove('visible');setTimeout(()=>r.classList.add('visible'),i*100);});
+  },150);
+}
+
+// ══════════════════════════════════════════════
+// DOCUMENTS
+// ══════════════════════════════════════════════
+function renderGovDocs(){
+  const base='computer:///sessions/affectionate-exciting-mccarthy/mnt/ERP/Claude%20study/';
+  document.getElementById('govDocsBody').innerHTML=GOV_DOCS.map(d=>{const fn='HAI-'+d.ref+'-R0.0_'+d.title.replace(/ /g,'_')+'.'+d.type;return '<tr><td><strong style="color:#4da6ff;">HAI-'+d.ref+'</strong></td><td>'+d.title+'</td><td><span class="badge b-type">'+d.type.toUpperCase()+'</span></td><td style="color:#7a8a9e;">'+d.cat+'</td><td><a href="'+base+fn+'" target="_blank" style="color:#4da6ff;text-decoration:none;font-size:12px;">Open &#8594;</a></td></tr>';}).join('');
+}
+
+// ══════════════════════════════════════════════
+// TEMPLATES
+// ══════════════════════════════════════════════
+function renderTemplates(){
+  let html='';
+  for(const[group,items]of Object.entries(TEMPLATES)){
+    const title=group.replace(/_/g,' ').replace(/-/g,' — ');
+    html+='<div style="margin-bottom:20px;"><div style="font-size:13px;font-weight:600;color:#f39c12;margin-bottom:10px;">'+title+'</div><div class="tpl-grid">';
+    items.forEach(t=>{const base='computer:///sessions/affectionate-exciting-mccarthy/mnt/ERP/Claude%20study/HAI%20Templates%20Starter%20Pack/';html+='<a href="'+base+group+'/'+t.f+'" target="_blank" style="text-decoration:none;"><div class="tpl-card"><div class="tpl-cat">'+group+'</div><div class="tpl-name">'+t.n+'</div><div class="tpl-file">'+t.f+'</div></div></a>';});
+    html+='</div></div>';
+  }
+  document.getElementById('templatesContainer').innerHTML=html;
+}
+
+// ══════════════════════════════════════════════
+// RISK MATRIX
+// ══════════════════════════════════════════════
+function renderRiskMatrix(){
+  const prob=['Almost Certain','Likely','Possible','Unlikely','Rare'];
+  const impact=['Insignificant','Minor','Moderate','Major','Catastrophic'];
+  const matrix=[[5,10,15,20,25],[4,8,12,16,20],[3,6,9,12,15],[2,4,6,8,10],[1,2,3,4,5]];
+  const riskMap={};RISKS.forEach(r=>{const key=r.p+'-'+r.i;if(!riskMap[key])riskMap[key]=[];riskMap[key].push(r.id);});
+  let html='<div class="risk-header"></div>';
+  impact.forEach(im=>html+='<div class="risk-header">'+im+'</div>');
+  for(let row=0;row<5;row++){
+    html+='<div class="risk-header" style="font-size:9px;">'+prob[row]+'</div>';
+    for(let col=0;col<5;col++){
+      const score=matrix[row][col];const cls=score<=4?'risk-low':score<=9?'risk-med':score<=15?'risk-high':'risk-extreme';
+      const p=5-row,i=col+1;const key=p+'-'+i;const items=riskMap[key]||[];
+      html+='<div class="risk-cell '+cls+'" onclick="showToast(\'Score: '+score+(items.length?' — '+items.join(', '):'')+'\')">'+score+(items.length?'<br><span style="font-size:9px;">'+items.join(', ')+'</span>':'')+'</div>';
+    }
+  }
+  document.getElementById('riskGrid').innerHTML=html;
+  const open=RISKS.filter(r=>r.status==='Open').length,crit=RISKS.filter(r=>r.status==='Critical').length;
+  document.getElementById('riskStats').innerHTML='<div class="stat-box visible"><div class="stat-num c-blue">'+RISKS.length+'</div><div class="stat-label">Total Risks</div></div><div class="stat-box visible"><div class="stat-num c-red">'+crit+'</div><div class="stat-label">Critical</div></div><div class="stat-box visible"><div class="stat-num c-orange">'+open+'</div><div class="stat-label">Open</div></div><div class="stat-box visible"><div class="stat-num c-green">'+(RISKS.length-open-crit)+'</div><div class="stat-label">Mitigated</div></div>';
+  const cats={};RISKS.forEach(r=>{cats[r.cat]=(cats[r.cat]||0)+1;});
+  document.getElementById('riskByCategory').innerHTML='<div style="font-size:12px;font-weight:600;color:#4da6ff;margin-bottom:8px;">Risks by Category</div>'+Object.entries(cats).map(([c,n])=>'<div class="hbar-row visible"><span class="hbar-label">'+c+'</span><div class="hbar-track"><div class="hbar-fill purple" style="width:'+(n/RISKS.length*100)+'%">'+n+'</div></div><span class="hbar-value">'+n+'</span></div>').join('');
+}
+function renderRiskRegister(){
+  document.getElementById('riskRegBody').innerHTML=RISKS.map(r=>{const score=r.p*r.i;const cls=score<=4?'b-approved':score<=9?'b-review':score<=15?'b-rejected':'b-rejected';return '<tr><td style="color:#4da6ff;font-weight:600;">'+r.id+'</td><td>'+r.risk+'</td><td style="color:#7a8a9e;">'+r.cat+'</td><td>'+r.p+'</td><td>'+r.i+'</td><td><span class="badge '+cls+'">'+score+'</span></td><td>'+r.owner+'</td><td style="font-size:11px;">'+r.mit+'</td><td><span class="badge '+(r.status==='Critical'?'b-rejected':r.status==='Open'?'b-review':'b-approved')+'">'+r.status+'</span></td></tr>';}).join('');
+}
+
+// ══════════════════════════════════════════════
+// PROCESS FLOWS
+// ══════════════════════════════════════════════
+function switchFlowTab(tabId,btn){
+  document.querySelectorAll('#processflows .doc-content').forEach(c=>c.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+  document.querySelectorAll('#flowTabs .doc-tab').forEach(t=>t.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+}
+const PF_DATA=[
+  {id:'PF-01',gov:'GOV-051',title:'Document Review & Approval',cat:'Core',steps:['Contractor Prepares','Submit via Platform','Doc Controller Check','Consultant Review','PM Decision','Response Code Issued']},
+  {id:'PF-02',gov:'GOV-052',title:'Correspondence Management',cat:'Core',steps:['Letter Drafted','Internal Review','Issue Letter','Track Receipt','Response Due','Follow-up/Escalate']},
+  {id:'PF-03',gov:'GOV-053',title:'Variation Order Processing',cat:'Contractual',steps:['VO Identified','Formal Request','Cost Assessment','Technical Review','ER Approval','Instruction Issued']},
+  {id:'PF-04',gov:'GOV-054',title:'Procurement Workflow',cat:'Commercial',steps:['Requirement Identified','Scope Defined','Tender Issued','Evaluation','Award','Contract Execution']},
+  {id:'PF-05',gov:'GOV-055',title:'Stage Gate Review',cat:'Governance',steps:['Deliverables Compiled','Compliance Check','Gate Review Meeting','Decision: Pass/Fail','Conditions Recorded','Stage Advance']},
+  {id:'PF-06',gov:'GOV-056',title:'Design Freeze Exception',cat:'Design',steps:['Exception Request','Impact Assessment','Stakeholder Review','Approval/Rejection','Implementation','Close-out']},
+  {id:'PF-07',gov:'GOV-057',title:'Authority Submissions',cat:'Regulatory',steps:['Requirement Identified','Documents Prepared','Internal QC','Submit to Authority','Track Progress','NOC Received']},
+  {id:'PF-08',gov:'GOV-058',title:'IPC Processing',cat:'Commercial',steps:['Contractor Applies','QS Verification','Consultant Check','ER Certification','Payment Instruction','Payment Issued']},
+  {id:'PF-09',gov:'GOV-059',title:'Approval Engine Logic',cat:'Core',steps:['Submittal Received','Auto-Route by Type','Parallel/Sequential','SLA Timer Started','Review Complete','Code Assigned']},
+  {id:'PF-10',gov:'GOV-060',title:'Quality Supervision',cat:'Quality',steps:['Inspection Requested','Inspector Assigned','On-Site Check','Report Filed','NCR if Needed','Close-out']},
+  {id:'PF-11',gov:'GOV-061',title:'Budget & Cost Control',cat:'Commercial',steps:['Budget Baseline','Cost Tracking','Variance Analysis','Forecast Update','Management Report','Corrective Action']},
+  {id:'PF-12',gov:'GOV-062',title:'Risk Register Management',cat:'Governance',steps:['Risk Identified','Assessment (P×I)','Mitigation Plan','Owner Assigned','Monitor & Review','Close/Escalate']},
+  {id:'PF-13',gov:'GOV-063',title:'Contractor Performance',cat:'Governance',steps:['KPIs Defined','Data Collection','Score Calculation','Report Generated','Review Meeting','Action Plan']},
+  {id:'PF-14',gov:'GOV-064',title:'Lessons Learned Capture',cat:'Governance',steps:['Event Occurs','Lesson Documented','Root Cause','Recommendation','Distribution','Implementation']},
+  {id:'PF-15',gov:'GOV-065',title:'Handover & DLP',cat:'Handover',steps:['Pre-Handover Prep','Snag List','Remediation','Practical Completion','DLP Starts','Final Certificate']},
+  {id:'PF-16',gov:'GOV-066',title:'Meeting & Action Tracking',cat:'Core',steps:['Meeting Scheduled','Agenda Issued','Meeting Held','MOM Drafted','Actions Assigned','Tracking & Close']},
+  {id:'PF-17',gov:'GOV-067',title:'External Stakeholder Portal',cat:'Governance',steps:['Stakeholder Identified','Access Granted','Dashboard View','Report Access','Feedback Channel','Audit Log']},
+  {id:'PF-18',gov:'GOV-068',title:'Report Generation & Export',cat:'Core',steps:['Report Triggered','Data Aggregated','Template Applied','QC Review','Export (PDF/XLS)','Distribution']},
+  {id:'PF-19',gov:'GOV-069',title:'User & Role Management',cat:'Admin',steps:['User Request','Role Assignment','RBAC Config','Access Granted','Periodic Review','Deactivation']},
+  {id:'PF-20',gov:'GOV-070',title:'ERP Integration',cat:'Technical',steps:['Data Mapping','API Connection','Sync Schedule','Validation Rules','Error Handling','Monitoring']},
+  {id:'PF-21',gov:'GOV-071',title:'Dashboard & Analytics',cat:'Technical',steps:['KPI Defined','Data Source','Widget Config','Real-Time Update','User Filters','Export/Share']},
+  {id:'PF-22',gov:'GOV-072',title:'Notification & Escalation',cat:'Core',steps:['Trigger Event','Rule Evaluation','Notification Sent','Acknowledgment','Escalation if No ACK','Resolution']},
+  {id:'PF-23',gov:'GOV-073',title:'Predictive Analytics',cat:'Technical',steps:['Historical Data','Model Training','Prediction Run','Alert Generation','Dashboard Display','Action Trigger']},
+  {id:'PF-24',gov:'GOV-076',title:'Post Go-Live Support',cat:'Admin',steps:['Issue Reported','Triage','Fix Development','Testing','Deployment','User Notification']},
+  {id:'PF-25',gov:'GOV-077',title:'Consultant Mobilisation',cat:'Governance',steps:['Scope Defined','Proposal Received','Evaluation','Appointment','Onboarding','Kick-off']},
+  {id:'PF-26',gov:'GOV-078',title:'Final Account Settlement',cat:'Contractual',steps:['Draft Final Account','QS Review','Dispute Resolution','Agreement','Certificate Issued','Payment']},
+  {id:'PF-27',gov:'GOV-079',title:'Lessons Learned — CI',cat:'Governance',steps:['Data Collected','Analysis','Improvement Plan','Implementation','Measurement','Report']},
+  {id:'PF-28',gov:'GOV-080',title:'Taking Over Certificate',cat:'Contractual',steps:['Application Filed','Inspection','Snag List','Remediation','TOC Issued','DLP Begins']},
+  {id:'PF-29',gov:'GOV-081',title:'Final Payment Certificate',cat:'Contractual',steps:['Final Account Agreed','All Claims Settled','Certificate Prepared','ER Sign-off','Payment Issued','Contract Closed']},
+  {id:'PF-30',gov:'GOV-082',title:'Performance Certificate',cat:'Contractual',steps:['DLP Expires','Final Inspection','Defects Cleared','Certificate Issued','Retention Released','Contract Complete']},
+  {id:'PF-31',gov:'GOV-083',title:'Snag List Resolution',cat:'Quality',steps:['Snag Identified','Logged in System','Contractor Notified','Remediation','Re-Inspection','Close-out']},
+];
+function renderProcessFlows(){
+  const base='computer:///sessions/affectionate-exciting-mccarthy/mnt/ERP/Claude%20study/';
+  // PF Register
+  document.getElementById('flowRegister').innerHTML='<div class="chart-box"><div class="chart-title">Process Flow Register — PF-01 to PF-31 (31 Flows)</div><table class="dtable"><thead><tr><th>PF ID</th><th>GOV Ref</th><th>Process Flow Title</th><th>Category</th><th>Steps</th><th>.drawio</th></tr></thead><tbody>'+
+    PF_DATA.map(p=>{const fn='HAI-'+p.gov+'-R0.0_'+p.id+'_'+p.title.replace(/ /g,'_').replace(/[&—]/g,'')+'.drawio';const catCls=p.cat==='Core'?'b-type':p.cat==='Contractual'?'b-review':p.cat==='Commercial'?'b-submitted':p.cat==='Governance'?'b-approved':p.cat==='Quality'?'b-approved':p.cat==='Technical'?'b-type':'b-review';return '<tr><td style="color:#4da6ff;font-weight:600;">'+p.id+'</td><td style="color:#7a8a9e;">HAI-'+p.gov+'</td><td>'+p.title+'</td><td><span class="badge '+catCls+'">'+p.cat+'</span></td><td style="color:#7a8a9e;">'+p.steps.length+' steps</td><td><a href="'+base+fn+'" target="_blank" style="color:#4da6ff;text-decoration:none;">Open &#8594;</a></td></tr>';}).join('')+
+    '</tbody></table></div>';
+
+  // Visual Flows
+  document.getElementById('flowVisual').innerHTML=PF_DATA.map(p=>'<div class="chart-box"><div class="chart-title">'+p.id+' — '+p.title+' <span class="badge '+(p.cat==='Core'?'b-type':p.cat==='Contractual'?'b-review':'b-approved')+'" style="margin-left:8px;">'+p.cat+'</span></div><div class="flow-container">'+p.steps.map((s,i,a)=>'<div class="flow-step"><div class="fs-title">'+s+'</div><div class="fs-role">Step '+(i+1)+'</div></div>'+(i<a.length-1?'<div class="flow-arrow">&#9654;</div>':'')).join('')+'</div></div>').join('');
+
+  // Escalation Matrix
+  document.getElementById('flowEscalation').innerHTML='<div class="chart-box"><div class="chart-title">5-Level Escalation Matrix</div><table class="dtable"><thead><tr><th>Level</th><th>Trigger</th><th>Escalated To</th><th>Timeframe</th><th>Action</th></tr></thead><tbody>'+
+    [{l:'L1',t:'80% SLA consumed',to:'Document Controller',tf:'Auto-trigger',a:'Email reminder to reviewer'},{l:'L2',t:'SLA breached',to:'Project Manager',tf:'Immediate',a:'PM intervention required'},{l:'L3',t:'SLA + 7 days',to:'Design Manager',tf:'24 hours',a:'Direct review override'},{l:'L4',t:'SLA + 14 days',to:'Programme Director',tf:'Immediate',a:'Governance committee review'},{l:'L5',t:'SLA + 21 days',to:'CEO / Board',tf:'Emergency',a:'Executive intervention, contractual action'}].map(e=>{const cls=e.l==='L1'?'b-review':e.l==='L2'?'b-submitted':e.l==='L3'?'b-review':'b-rejected';return '<tr><td><span class="badge '+cls+'">'+e.l+'</span></td><td>'+e.t+'</td><td style="color:#4da6ff;">'+e.to+'</td><td style="color:#7a8a9e;">'+e.tf+'</td><td style="color:#b0c4de;">'+e.a+'</td></tr>';}).join('')+
+    '</tbody></table></div><div class="chart-box"><div class="chart-title">FIDIC Time-Bar Enforcement</div><div style="font-size:12px;color:#b0c4de;line-height:1.8;padding:8px;">Per <strong style="color:#f39c12;">FIDIC Sub-Clause 20.1</strong>, the Contractor must give notice within <strong style="color:#e74c3c;">28 days</strong> of becoming aware of an event giving rise to a claim. Failure results in automatic time-bar. The platform enforces this by tracking all claim-related correspondence and triggering alerts at 14, 21, and 28 day thresholds.</div></div>';
+}
+
+// ══════════════════════════════════════════════
+// NEW SUBMITTAL
+// ══════════════════════════════════════════════
+function addFiles(files){for(let f of files)uploadedFiles.push({name:f.name,size:(f.size/1024).toFixed(0)+' KB',progress:0});renderFileList();uploadedFiles.forEach((f,i)=>{if(f.progress===0){let p=0;const iv=setInterval(()=>{p+=Math.random()*30+10;if(p>=100){p=100;clearInterval(iv);}f.progress=Math.min(p,100);renderFileList();},200+i*100);}});validateNS();}
+function removeFile(idx){uploadedFiles.splice(idx,1);renderFileList();validateNS();}
+function renderFileList(){const c=document.getElementById('fileList');if(!uploadedFiles.length){c.innerHTML='';return;}c.innerHTML=uploadedFiles.map((f,i)=>'<div style="display:flex;align-items:center;gap:10px;padding:8px;background:#0a1628;border-radius:4px;margin-bottom:6px;"><span style="font-size:16px;">&#128196;</span><div style="flex:1;"><div style="font-size:12px;color:#e0e0e0;">'+f.name+'</div><div style="font-size:10px;color:#7a8a9e;">'+f.size+' — '+(f.progress<100?'Uploading...':'Complete')+'</div><div class="sla-bar"><div class="sla-fill sla-green" style="width:'+f.progress+'%"></div></div></div><span style="cursor:pointer;color:#e74c3c;font-size:14px;" onclick="removeFile('+i+')">&#10005;</span></div>').join('');}
+function validateNS(){const checks=[{id:'chk1',ok:!!document.getElementById('nsTitle')?.value.trim()},{id:'chk2',ok:!!document.getElementById('nsCat')?.value},{id:'chk3',ok:!!document.getElementById('nsDisc')?.value},{id:'chk4',ok:!!document.getElementById('nsType')?.value},{id:'chk5',ok:uploadedFiles.length>0}];checks.forEach(c=>{const el=document.getElementById(c.id);if(el){const txt=el.textContent.replace(/[\u2610\u2611\u2713☐☑✓]/g,'').trim();el.innerHTML=c.ok?'<span style="color:#2ecc71;">&#9745;</span> '+txt:'&#9744; '+txt;}});}
+function submitNS(){document.getElementById('modalRef').textContent=document.getElementById('nsRef').value;document.getElementById('successModal').classList.add('show');}
+function closeModal(){document.getElementById('successModal').classList.remove('show');}
+
+// ══════════════════════════════════════════════
+// BOOT
+// ══════════════════════════════════════════════
+init();
+</script>
+</body>
+</html>

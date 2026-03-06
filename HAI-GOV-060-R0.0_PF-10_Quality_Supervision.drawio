@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2026-03-01" agent="5.0" version="13.0.0" etag="abc123">
+  <diagram id="pf10-quality" name="PF-10 Quality &amp; Site Supervision">
+    <mxGraphModel dx="1600" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Page background -->
+        <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry width="1169" height="827" as="geometry" />
+        </mxCell>
+        
+        <!-- Title Bar -->
+        <mxCell id="titleBar" value="PF-10: QUALITY &amp; SITE SUPERVISION | HAI GOVERNANCE PLATFORM | FIDIC 1999 Red Book SC 7.1-7.6, SC 11" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1B2A4A;strokeColor=#1B2A4A;fontColor=#FFFFFF;fontSize=12;fontStyle=bold;align=left;padding=8;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1169" height="35" as="geometry" />
+        </mxCell>
+        
+        <!-- SLA/Contract Reference Bar -->
+        <mxCell id="refBar" value="CONTRACT REFS: Manner of Execution (SC 7.1) | Samples Testing (SC 7.2) | Defects &amp; Rejection (SC 7.5) | Remedial Work at Contractor Cost (SC 7.6) | DLP = 400 days (SC 11) | NCR Severity: Critical / Major / Minor | SLA: Proposal 5 WD, Verification 5 WD, Closure 2 WD" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1976D2;strokeWidth=1;fontSize=9;align=left;padding=6;" vertex="1" parent="1">
+          <mxGeometry x="0" y="35" width="1169" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- Swim Lane Headers -->
+        <!-- HAI Inspection Side (Light Blue) -->
+        <mxCell id="lane1Header" value="HAI INSPECTION SIDE&#10;(Site Inspector + QA Manager)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#D6E4F0;strokeColor=#1976D2;strokeWidth=2;fontSize=10;fontStyle=bold;align=center;" vertex="1" parent="1">
+          <mxGeometry x="0" y="75" width="350" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- Contractor Side (Gold) -->
+        <mxCell id="lane2Header" value="CONTRACTOR SIDE" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF8E1;strokeColor=#F57F17;strokeWidth=2;fontSize=10;fontStyle=bold;align=center;" vertex="1" parent="1">
+          <mxGeometry x="350" y="75" width="350" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- System Side (Green) -->
+        <mxCell id="lane3Header" value="SYSTEM SIDE&#10;(NCR Tracking, Scorecard, Escalation)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#388E3C;strokeWidth=2;fontSize=10;fontStyle=bold;align=center;" vertex="1" parent="1">
+          <mxGeometry x="700" y="75" width="469" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- Vertical Swim Lane Separators -->
+        <mxCell id="sep1" value="" style="rounded=0;strokeColor=#666666;strokeWidth=1;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="350" y="75" width="1" height="650" as="geometry" />
+        </mxCell>
+        <mxCell id="sep2" value="" style="rounded=0;strokeColor=#666666;strokeWidth=1;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="700" y="75" width="1" height="650" as="geometry" />
+        </mxCell>
+        
+        <!-- START -->
+        <mxCell id="start" value="START" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=2;fontSize=11;fontStyle=bold;" vertex="1" parent="1">
+          <mxGeometry x="130" y="125" width="90" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- Step 1: Create Inspection Report -->
+        <mxCell id="step1" value="HAI Inspector:&#10;Create Inspection Report&#10;(Mobile App: photos, location, checklist)&#10;SC 7.1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1976D2;strokeWidth=2;fontSize=9;align=center;" vertex="1" parent="1">
+          <mxGeometry x="70" y="210" width="210" height="70" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="edge1" edge="1" parent="1" source="start" target="step1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Decision: NCR Needed? -->
+        <mxCell id="decision1" value="NCR Needed?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFCC;strokeColor=#FBC02D;strokeWidth=2;fontSize=10;fontStyle=bold;" vertex="1" parent="1">
+          <mxGeometry x="110" y="325" width="130" height="100" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="edge2" edge="1" parent="1" source="step1" target="decision1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Step 2: Raise NCR -->
+        <mxCell id="step2" value="Inspector: Raise NCR&#10;Severity: Critical/Major/Minor&#10;SC 7.5" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1976D2;strokeWidth=2;fontSize=9;align=center;" vertex="1" parent="1">
+          <mxGeometry x="70" y="465" width="210" height="70" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="edgeYes" edge="1" parent="1" source="decision1" target="step2" label="Yes">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="sourcePoint" x="175" y="425" />
+            <mxPoint as="targetPoint" x="175" y="465" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Step 3: Generate NCR Notification (System Lane) -->
+        <mxCell id="step3" value="System: Generate&#10;NCR Notification&#10;(Auto-send to Contractor)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#388E3C;strokeWidth=2;fontSize=9;align=center;" vertex="1" parent="1">
+          <mxGeometry x="780" y="470" width="180" height="70" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="edge3" edge="1" parent="1" source="step2" target="step3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Step 4: Contractor Submit Rectification Proposal -->
+        <mxCell id="step4" value="Contractor: Submit&#10;Rectification Proposal&#10;(RCA + CAP)&#10;SLA: 5 WD&#10;SC 7.6" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#F57F17;strokeWidth=2;fontSize=9;align=center;" vertex="1" parent="1">
+          <mxGeometry x="390" y="465" width="210" height="75" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="edge4" edge="1" parent="1" source="step3" target="step4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Step 5: Verify Rectification On-Site -->
+        <mxCell id="step5" value="Inspector: Verify&#10;Rectification On-Site&#10;(Work vs NCR requirement)&#10;SLA: 5 WD" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1976D2;strokeWidth=2;fontSize=9;align=center;" vertex="1" parent="1">
+          <mxGeometry x="70" y="600" width="210" height="75" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="edge5" edge="1" parent="1" source="step4" target="step5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Decision: Rectification Acceptable? -->
+        <mxCell id="decision2" value="Rectification&#10;Acceptable?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFCC;strokeColor=#FBC02D;strokeWidth=2;fontSize=10;fontStyle=bold;" vertex="1" parent="1">
+          <mxGeometry x="110" y="715" width="130" height="100" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="edge6" edge="1" parent="1" source="step5" target="decision2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Return to Contractor (No loop) -->
+        <mxCell id="edgeNo" edge="1" parent="1" source="decision2" target="step4" label="No - Re-work">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="sourcePoint" x="175" y="715" />
+            <mxPoint as="targetPoint" x="495" y="545" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Step 6: QA Manager Close or Escalate -->
+        <mxCell id="step6" value="QA Manager:&#10;Close NCR or Escalate&#10;SLA: 2 WD" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1976D2;strokeWidth=2;fontSize=9;align=center;" vertex="1" parent="1">
+          <mxGeometry x="70" y="860" width="210" height="65" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="edgeYes2" edge="1" parent="1" source="decision2" target="step6" label="Yes">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="sourcePoint" x="175" y="815" />
+            <mxPoint as="targetPoint" x="175" y="860" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Step 7: Link to Contractor Scorecard (System Lane) -->
+        <mxCell id="step7" value="System: Link to&#10;Contractor Scorecard&#10;(Update Quality Metrics)&#10;Feed PF-13" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#388E3C;strokeWidth=2;fontSize=9;align=center;" vertex="1" parent="1">
+          <mxGeometry x="780" y="860" width="180" height="75" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="edge7" edge="1" parent="1" source="step6" target="step7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- END -->
+        <mxCell id="end" value="END" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=2;fontSize=11;fontStyle=bold;" vertex="1" parent="1">
+          <mxGeometry x="820" y="990" width="90" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="edge8" edge="1" parent="1" source="step7" target="end">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- No NCR needed path to END -->
+        <mxCell id="edgeNoNcr" edge="1" parent="1" source="decision1" target="end" label="No NCR">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="sourcePoint" x="240" y="375" />
+            <mxPoint as="targetPoint" x="820" y="1015" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- KPI Box -->
+        <mxCell id="kpiBox" value="KPIs: NCR count per contractor | Rectification turnaround (NCR→closure) | Open NCR aging" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E5F5;strokeColor=#7B1FA2;strokeWidth=2;fontSize=8;align=left;padding=6;" vertex="1" parent="1">
+          <mxGeometry x="390" y="990" width="280" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- Boundary Box -->
+        <mxCell id="boundaryBox" value="BOUNDARY: On-site quality inspections &amp; NCR management. Excludes design quality reviews. Scorecard feeds PF-13." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F2F1;strokeColor=#00796B;strokeWidth=2;fontSize=8;align=left;padding=6;" vertex="1" parent="1">
+          <mxGeometry x="390" y="1050" width="280" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- Escalation Box (L1-L5) -->
+        <mxCell id="escalationBox" value="ESCALATION (Per FIDIC): L1 (D-2) | L2 (D+0) | L3 (D+3) | L4 (D+7) | L5 (48h before time-bar) | Delay Damages: QAR 39,800/day + Engineer fee QAR 4,000/day" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#E65100;strokeWidth=2;fontSize=8;align=left;padding=6;" vertex="1" parent="1">
+          <mxGeometry x="700" y="990" width="469" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- Override Panel -->
+        <mxCell id="overridePanel" value="HAI OVERRIDE AUTHORITY (SC 3.1): Engineer may reject any work not in accordance with Contract (SC 7.5). Engineer may instruct removal &amp; re-execution at Contractor's cost (SC 7.6). Contractor shall make good defects notified during DLP at own cost (SC 11.1)." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1565C0;strokeWidth=2;fontSize=8;align=left;padding=6;" vertex="1" parent="1">
+          <mxGeometry x="0" y="1070" width="1169" height="50" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

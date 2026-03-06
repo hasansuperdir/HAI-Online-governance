@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2026-03-01T00:00:00.000Z" agent="5.0" version="24.0.0" type="device">
+  <diagram id="pf08_ipc" name="PF-08: IPC Processing">
+    <mxGraphModel dx="2000" dy="1500" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" parent="-1" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Title Bar (Navy) -->
+        <mxCell id="title" value="PF-08: IPC Processing (Certification &amp; Payment) | Contract A068_CUC_SQ_CO_023/017 | SC 14: 28 CD cert, 10 CD payment, 10% retention (5% TOC/5% DLP)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1B2A4A;fontColor=#ffffff;fontSize=11;fontStyle=bold;align=left;verticalAlign=middle;spacing=10" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="1080" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- SLA Bar -->
+        <mxCell id="sla_bar" value="CONTRACT SLAs: IPC Certification = 28 CD (SC 14.6) | Payment = 10 CD (SC 14.7) | Retention = 10% (5% at TOC, 5% at DLP end) | MOS = 60% (SC 14)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFA500;fontColor=#000000;fontSize=9;align=left;verticalAlign=middle;spacing=5" vertex="1" parent="1">
+          <mxGeometry x="40" y="100" width="1080" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- CONTRACTOR LANE Header -->
+        <mxCell id="lane1_title" value="CONTRACTOR SIDE" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#B0C4DE;fontColor=#000000;fontSize=10;fontStyle=bold;align=center;verticalAlign=middle" vertex="1" parent="1">
+          <mxGeometry x="40" y="160" width="300" height="35" as="geometry" />
+        </mxCell>
+        
+        <!-- HAI SIDE Lane Header -->
+        <mxCell id="lane2_title" value="HAI SIDE (QS + PM + Finance)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#B0C4DE;fontColor=#000000;fontSize=10;fontStyle=bold;align=center;verticalAlign=middle" vertex="1" parent="1">
+          <mxGeometry x="380" y="160" width="360" height="35" as="geometry" />
+        </mxCell>
+        
+        <!-- SYSTEM SIDE Lane Header -->
+        <mxCell id="lane3_title" value="SYSTEM SIDE (Approval, ERP Sync)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#B0C4DE;fontColor=#000000;fontSize=10;fontStyle=bold;align=center;verticalAlign=middle" vertex="1" parent="1">
+          <mxGeometry x="800" y="160" width="320" height="35" as="geometry" />
+        </mxCell>
+        
+        <!-- START (Contractor Lane) -->
+        <mxCell id="start" value="START: Contractor Ready" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;strokeWidth=2;fontSize=9;align=center" vertex="1" parent="1">
+          <mxGeometry x="110" y="220" width="160" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- Step 1: Submit IPC -->
+        <mxCell id="step1" value="1. Submit IPC with BOQ Breakdown&#10;(SC 14.3)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;strokeWidth=1;fontSize=9;align=center" vertex="1" parent="1">
+          <mxGeometry x="110" y="320" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_start_1" edge="1" parent="1" source="start" target="step1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Step 2: System Validates -->
+        <mxCell id="step2" value="2. System Validates Completeness" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;strokeWidth=1;fontSize=9;align=center" vertex="1" parent="1">
+          <mxGeometry x="540" y="320" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_1_2" edge="1" parent="1" source="step1" target="step2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Decision: Incomplete? -->
+        <mxCell id="decision1" value="Incomplete?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;strokeWidth=1;fontSize=9;align=center" vertex="1" parent="1">
+          <mxGeometry x="565" y="430" width="110" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_2_d1" edge="1" parent="1" source="step2" target="decision1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Return Incomplete -->
+        <mxCell id="return_incomplete" value="Return to Contractor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcccc;strokeColor=#ff0000;strokeWidth=1;fontSize=9;align=center" vertex="1" parent="1">
+          <mxGeometry x="400" y="450" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_d1_return" edge="1" parent="1" source="decision1" target="return_incomplete">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_return_step1" edge="1" parent="1" source="return_incomplete" target="step1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Step 3: HAI QS Verify Quantities -->
+        <mxCell id="step3" value="3. HAI QS Verify Quantities On-Site&#10;Physical measurement, deduction calc&#10;SLA: 5 WD" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;strokeWidth=1;fontSize=9;align=center" vertex="1" parent="1">
+          <mxGeometry x="400" y="560" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_d1_step3" edge="1" parent="1" source="decision1" target="step3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Decision: Quantity Accepted? -->
+        <mxCell id="decision2" value="Quantity&#10;Accepted?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;strokeWidth=1;fontSize=9;align=center" vertex="1" parent="1">
+          <mxGeometry x="425" y="680" width="110" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_step3_d2" edge="1" parent="1" source="step3" target="decision2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Disputed Quantities -->
+        <mxCell id="dispute_qty" value="Dispute &amp; Resolve" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcccc;strokeColor=#ff0000;strokeWidth=1;fontSize=9;align=center" vertex="1" parent="1">
+          <mxGeometry x="280" y="700" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_d2_dispute" edge="1" parent="1" source="decision2" target="dispute_qty">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_dispute_step3" edge="1" parent="1" source="dispute_qty" target="step3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Step 4: HAI PM Review -->
+        <mxCell id="step4" value="4. HAI PM Review &amp; Recommend&#10;Certification&#10;SLA: 2 WD" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;strokeWidth=1;fontSize=9;align=center" vertex="1" parent="1">
+          <mxGeometry x="540" y="700" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_d2_step4" edge="1" parent="1" source="decision2" target="step4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Step 5: Approval Authority Certifies -->
+        <mxCell id="step5" value="5. Approval Authority: Certify IPC&#10;Issue cert with certified amount&#10;SC 14.6 (28 CD)&#10;SLA: 3 WD" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;strokeWidth=1;fontSize=9;align=center" vertex="1" parent="1">
+          <mxGeometry x="810" y="700" width="160" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_step4_step5" edge="1" parent="1" source="step4" target="step5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Step 6: HAI Finance Process Payment -->
+        <mxCell id="step6" value="6. HAI Finance: Process Payment Instr&#10;Apply Retention (10%: 5% TOC, 5% DLP)&#10;MOS 60% Check&#10;SLA: 2 WD" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;strokeWidth=1;fontSize=9;align=center" vertex="1" parent="1">
+          <mxGeometry x="540" y="840" width="160" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_step5_step6" edge="1" parent="1" source="step5" target="step6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Step 7: System Push to ERP -->
+        <mxCell id="step7" value="7. System: Push Certified IPC to ERP&#10;Auto-create payment instruction&#10;SC 14.7 (10 CD payment)&#10;SLA: 1 WD" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;strokeWidth=1;fontSize=9;align=center" vertex="1" parent="1">
+          <mxGeometry x="810" y="840" width="160" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_step6_step7" edge="1" parent="1" source="step6" target="step7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- KPI Box -->
+        <mxCell id="kpi_box" value="KPIs: IPC processing time | Certification accuracy (cert vs claimed) | Payment cycle | SLA compliance (28 CD cert, 10 CD payment)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6F3FF;strokeColor=#0066CC;strokeWidth=2;fontSize=8;align=left;verticalAlign=top;spacing=3" vertex="1" parent="1">
+          <mxGeometry x="40" y="970" width="520" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- Boundary Box -->
+        <mxCell id="boundary_box" value="Boundary: Monthly/interim payments. Excludes final accounts. Includes retentions and provisional sums." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0FFF0;strokeColor=#00CC00;strokeWidth=2;fontSize=8;align=left;verticalAlign=top;spacing=3" vertex="1" parent="1">
+          <mxGeometry x="600" y="970" width="520" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- END -->
+        <mxCell id="end" value="END: IPC Certified &amp; Approved for Payment" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;strokeWidth=2;fontSize=9;align=center" vertex="1" parent="1">
+          <mxGeometry x="810" y="970" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_step7_end" edge="1" parent="1" source="step7" target="end">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="draw.io" modified="2026-03-03T00:00:00Z" version="21.0" type="device">
+  <diagram id="PF-23" name="PF-23: Predictive Analytics">
+    <mxGraphModel dx="2200" dy="1600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- TITLE BAR                                   -->
+        <!-- ═══════════════════════════════════════════ -->
+        <mxCell id="title_bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1B2A4A;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1654" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="title_main" value="PF-23: Predictive Analytics &amp; Forecasting Engine" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#FFFFFF;fontSize=22;fontStyle=1;fontFamily=Segoe UI;" vertex="1" parent="1">
+          <mxGeometry x="20" y="5" width="600" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="title_sub" value="Module: Analytics &amp; KPI | SOW Ref: K.5-K.8 | FIDIC: Cl. 4.21 Progress Reports | Stage: 5-7 (Construction through DLP)" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#B0BEC5;fontSize=11;fontFamily=Segoe UI;" vertex="1" parent="1">
+          <mxGeometry x="20" y="38" width="800" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="title_rev" value="HAI-GOV-073-R0.0" style="text;html=1;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#78909C;fontSize=11;fontFamily=Segoe UI;" vertex="1" parent="1">
+          <mxGeometry x="1400" y="5" width="240" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="title_date" value="Rev 0.0 | March 2026" style="text;html=1;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#78909C;fontSize=10;fontFamily=Segoe UI;" vertex="1" parent="1">
+          <mxGeometry x="1400" y="38" width="240" height="25" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- SLA / CONTEXT BAR                           -->
+        <!-- ═══════════════════════════════════════════ -->
+        <mxCell id="sla_bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#E0E0E0;" vertex="1" parent="1">
+          <mxGeometry x="0" y="70" width="1654" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="sla_txt" value="&lt;b&gt;SLA:&lt;/b&gt; Model refresh ≤ 24h after data ingestion | Forecast accuracy target ≥ 85% | Alert generation ≤ 1h of threshold breach prediction | Quarterly calibration report within 5 working days of quarter-end | Dashboard update ≤ 4h" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontFamily=Segoe UI;fontColor=#37474F;" vertex="1" parent="1">
+          <mxGeometry x="15" y="72" width="1624" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="sla_txt2" value="&lt;b&gt;Triggers:&lt;/b&gt; Automated nightly data sync | Manual model re-training on demand | Quarterly calibration cycle | Ad-hoc what-if scenario requests from ER" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontFamily=Segoe UI;fontColor=#546E7A;" vertex="1" parent="1">
+          <mxGeometry x="15" y="98" width="1624" height="26" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- SWIM LANE HEADERS                           -->
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- Lane 1: System / Platform (Automated) -->
+        <mxCell id="lh1" value="SYSTEM / PLATFORM&#10;(Automated)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1565C0;strokeWidth=2;fontSize=11;fontStyle=1;fontFamily=Segoe UI;verticalAlign=middle;align=center;" vertex="1" parent="1">
+          <mxGeometry x="0" y="140" width="120" height="50" as="geometry" />
+        </mxCell>
+        <!-- Lane 2: ER Analytics (R03-R05) -->
+        <mxCell id="lh2" value="ER ANALYTICS&#10;(R03-R05)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF8E1;strokeColor=#F9A825;strokeWidth=2;fontSize=11;fontStyle=1;fontFamily=Segoe UI;verticalAlign=middle;align=center;" vertex="1" parent="1">
+          <mxGeometry x="0" y="370" width="120" height="50" as="geometry" />
+        </mxCell>
+        <!-- Lane 3: ER Management (R01-R02) -->
+        <mxCell id="lh3" value="ER MANAGEMENT&#10;(R01-R02)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#2E7D32;strokeWidth=2;fontSize=11;fontStyle=1;fontFamily=Segoe UI;verticalAlign=middle;align=center;" vertex="1" parent="1">
+          <mxGeometry x="0" y="600" width="120" height="50" as="geometry" />
+        </mxCell>
+        <!-- Lane 4: Lead Consultant (R12) -->
+        <mxCell id="lh4" value="LEAD CONSULTANT&#10;(R12)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FCE4EC;strokeColor=#C62828;strokeWidth=2;fontSize=11;fontStyle=1;fontFamily=Segoe UI;verticalAlign=middle;align=center;" vertex="1" parent="1">
+          <mxGeometry x="0" y="830" width="120" height="50" as="geometry" />
+        </mxCell>
+        <!-- Lane 5: Contractor (R10-R11) -->
+        <mxCell id="lh5" value="CONTRACTOR&#10;(R10-R11)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F3E5F5;strokeColor=#6A1B9A;strokeWidth=2;fontSize=11;fontStyle=1;fontFamily=Segoe UI;verticalAlign=middle;align=center;" vertex="1" parent="1">
+          <mxGeometry x="0" y="1000" width="120" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- LANE BACKGROUNDS -->
+        <mxCell id="lb1" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=none;opacity=25;" vertex="1" parent="1">
+          <mxGeometry x="120" y="140" width="1534" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="lb2" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF8E1;strokeColor=none;opacity=25;" vertex="1" parent="1">
+          <mxGeometry x="120" y="370" width="1534" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="lb3" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=none;opacity=25;" vertex="1" parent="1">
+          <mxGeometry x="120" y="600" width="1534" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="lb4" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FCE4EC;strokeColor=none;opacity=25;" vertex="1" parent="1">
+          <mxGeometry x="120" y="830" width="1534" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="lb5" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F3E5F5;strokeColor=none;opacity=25;" vertex="1" parent="1">
+          <mxGeometry x="120" y="1000" width="1534" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- LANE SEPARATORS -->
+        <mxCell id="ls1" value="" style="line;strokeColor=#90CAF9;strokeWidth=1;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="370" width="1534" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ls2" value="" style="line;strokeColor=#FFF176;strokeWidth=1;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="600" width="1534" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ls3" value="" style="line;strokeColor=#A5D6A7;strokeWidth=1;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="830" width="1534" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ls4" value="" style="line;strokeColor=#EF9A9A;strokeWidth=1;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="1000" width="1534" height="1" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- START NODE                                  -->
+        <!-- ═══════════════════════════════════════════ -->
+        <mxCell id="start" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1B2A4A;strokeColor=#1B2A4A;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="160" y="240" width="30" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- LANE 1: SYSTEM / PLATFORM                   -->
+        <!-- ═══════════════════════════════════════════ -->
+
+        <!-- S1: Nightly Data Ingestion -->
+        <mxCell id="s1" value="&lt;b&gt;S1&lt;/b&gt;: Nightly Data Sync&#10;─────────────&#10;Ingest from: Progress,&#10;Cost, Quality, HSE,&#10;Contractual modules&#10;Validate data integrity" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#BBDEFB;strokeColor=#1565C0;strokeWidth=2;fontSize=10;fontFamily=Segoe UI;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="230" y="195" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="e_start_s1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1565C0;strokeWidth=2;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="start" target="s1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- S2: Feature Engineering -->
+        <mxCell id="s2" value="&lt;b&gt;S2&lt;/b&gt;: Feature Engineering&#10;─────────────&#10;Time-series decomposition&#10;Lag variables&#10;Rolling averages&#10;Seasonal indices" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#BBDEFB;strokeColor=#1565C0;strokeWidth=2;fontSize=10;fontFamily=Segoe UI;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="440" y="195" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="e_s1_s2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1565C0;strokeWidth=2;" edge="1" parent="1" source="s1" target="s2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- S3: Run Predictive Models -->
+        <mxCell id="s3" value="&lt;b&gt;S3&lt;/b&gt;: Run Predictive Models&#10;─────────────&#10;Schedule forecast (EAC)&#10;Cost forecast (ETC)&#10;Quality trend (NCR pred.)&#10;HSE incident projection&#10;Contractor performance" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#BBDEFB;strokeColor=#1565C0;strokeWidth=2;fontSize=10;fontFamily=Segoe UI;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="650" y="180" width="180" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="e_s2_s3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1565C0;strokeWidth=2;" edge="1" parent="1" source="s2" target="s3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- D1: Model Accuracy Check -->
+        <mxCell id="d1" value="&lt;b&gt;D1&lt;/b&gt;&#10;Accuracy&#10;≥ 85%?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1565C0;strokeWidth=2;fontSize=10;fontFamily=Segoe UI;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="880" y="210" width="110" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="e_s3_d1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1565C0;strokeWidth=2;" edge="1" parent="1" source="s3" target="d1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- NO path: Retrain -->
+        <mxCell id="s3b" value="&lt;b&gt;S3b&lt;/b&gt;: Re-calibrate&#10;Model Parameters&#10;(Auto-tune)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFCDD2;strokeColor=#C62828;strokeWidth=2;fontSize=10;fontFamily=Segoe UI;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="870" y="155" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="e_d1_no" value="No" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#C62828;strokeWidth=2;fontColor=#C62828;fontSize=10;fontStyle=1;" edge="1" parent="1" source="d1" target="s3b">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_s3b_s3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#C62828;strokeWidth=1;dashed=1;" edge="1" parent="1" source="s3b" target="s3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="840" y="180" />
+              <mxPoint x="840" y="250" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- YES path: Anomaly Detection -->
+        <mxCell id="s4" value="&lt;b&gt;S4&lt;/b&gt;: Anomaly Detection&#10;─────────────&#10;Statistical outliers&#10;Deviation from baseline&#10;Cross-module correlation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#BBDEFB;strokeColor=#1565C0;strokeWidth=2;fontSize=10;fontFamily=Segoe UI;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="195" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="e_d1_yes" value="Yes" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2E7D32;strokeWidth=2;fontColor=#2E7D32;fontSize=10;fontStyle=1;" edge="1" parent="1" source="d1" target="s4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- D2: Threshold Breach Predicted? -->
+        <mxCell id="d2" value="&lt;b&gt;D2&lt;/b&gt;&#10;Breach&#10;Predicted?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1565C0;strokeWidth=2;fontSize=10;fontFamily=Segoe UI;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1250" y="210" width="110" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="e_s4_d2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1565C0;strokeWidth=2;" edge="1" parent="1" source="s4" target="d2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- YES: Generate Predictive Alert -->
+        <mxCell id="s5" value="&lt;b&gt;S5&lt;/b&gt;: Generate&#10;Predictive Alert&#10;─────────────&#10;L2 Early Warning&#10;to ER + Consultant&#10;(SLA: ≤ 1h)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFCDD2;strokeColor=#C62828;strokeWidth=2;fontSize=10;fontFamily=Segoe UI;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1410" y="155" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="e_d2_yes" value="Yes" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#C62828;strokeWidth=2;fontColor=#C62828;fontSize=10;fontStyle=1;" edge="1" parent="1" source="d2" target="s5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- NO: Update Dashboard -->
+        <mxCell id="s6" value="&lt;b&gt;S6&lt;/b&gt;: Update Analytics&#10;Dashboard&#10;─────────────&#10;KPI trend charts&#10;Forecast vs Actual&#10;Confidence bands" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#BBDEFB;strokeColor=#1565C0;strokeWidth=2;fontSize=10;fontFamily=Segoe UI;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1410" y="295" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="e_d2_no" value="No" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1565C0;strokeWidth=2;fontColor=#1565C0;fontSize=10;fontStyle=1;" edge="1" parent="1" source="d2" target="s6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_s5_s6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#C62828;strokeWidth=1;dashed=1;" edge="1" parent="1" source="s5" target="s6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- LANE 2: ER ANALYTICS (R03-R05)              -->
+        <!-- ═══════════════════════════════════════════ -->
+
+        <!-- A1: Review Forecast Results -->
+        <mxCell id="a1" value="&lt;b&gt;A1&lt;/b&gt;: Review Forecast&#10;Results&#10;─────────────&#10;Schedule EAC analysis&#10;Cost ETC variance&#10;Quality trend review" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=2;fontSize=10;fontFamily=Segoe UI;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="230" y="410" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="e_s6_a1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#F9A825;strokeWidth=2;" edge="1" parent="1" source="s6" target="a1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1490" y="430" />
+              <mxPoint x="200" y="430" />
+              <mxPoint x="200" y="470" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- A2: What-If Scenario Modelling -->
+        <mxCell id="a2" value="&lt;b&gt;A2&lt;/b&gt;: What-If Scenario&#10;Modelling&#10;─────────────&#10;Schedule acceleration&#10;Resource reallocation&#10;Mitigation cost impact" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=2;fontSize=10;fontFamily=Segoe UI;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="440" y="410" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="e_a1_a2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#F9A825;strokeWidth=2;" edge="1" parent="1" source="a1" target="a2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- A3: Benchmark Comparison -->
+        <mxCell id="a3" value="&lt;b&gt;A3&lt;/b&gt;: Benchmark&#10;Comparison&#10;─────────────&#10;Industry standards&#10;Historical project data&#10;Regional benchmarks" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=2;fontSize=10;fontFamily=Segoe UI;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="650" y="410" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="e_a2_a3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#F9A825;strokeWidth=2;" edge="1" parent="1" source="a2" target="a3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- A4: Prepare Predictive Report -->
+        <mxCell id="a4" value="&lt;b&gt;A4&lt;/b&gt;: Prepare Predictive&#10;Analytics Report&#10;─────────────&#10;Executive summary&#10;Key risk indicators&#10;Recommended actions&#10;Confidence levels" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=2;fontSize=10;fontFamily=Segoe UI;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="870" y="400" width="170" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="e_a3_a4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#F9A825;strokeWidth=2;" edge="1" parent="1" source="a3" target="a4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- A5: Quarterly Calibration -->
+        <mxCell id="a5" value="&lt;b&gt;A5&lt;/b&gt;: Quarterly Model&#10;Calibration&#10;─────────────&#10;Forecast vs Actual delta&#10;Parameter adjustment&#10;Accuracy scoring&#10;Calibration certificate" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=2;fontSize=10;fontFamily=Segoe UI;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="400" width="170" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="e_a4_a5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#F9A825;strokeWidth=2;" edge="1" parent="1" source="a4" target="a5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- LANE 3: ER MANAGEMENT (R01-R02)             -->
+        <!-- ═══════════════════════════════════════════ -->
+
+        <!-- M1: Review Predictive Report -->
+        <mxCell id="m1" value="&lt;b&gt;M1&lt;/b&gt;: Review Predictive&#10;Analytics Report&#10;─────────────&#10;Risk assessment&#10;Strategic implications&#10;Budget impact analysis" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C8E6C9;strokeColor=#2E7D32;strokeWidth=2;fontSize=10;fontFamily=Segoe UI;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="440" y="640" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="e_a4_m1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2E7D32;strokeWidth=2;" edge="1" parent="1" source="a4" target="m1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- D3: Corrective Action Required? -->
+        <mxCell id="d3" value="&lt;b&gt;D3&lt;/b&gt;&#10;Corrective&#10;Action?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#2E7D32;strokeWidth=2;fontSize=10;fontFamily=Segoe UI;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="670" y="660" width="110" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="e_m1_d3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2E7D32;strokeWidth=2;" edge="1" parent="1" source="m1" target="d3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- YES: Issue Instruction -->
+        <mxCell id="m2" value="&lt;b&gt;M2&lt;/b&gt;: Issue Preventive&#10;Instruction&#10;─────────────&#10;Via PF-22 Escalation&#10;Link to PF-13 Contractor&#10;Performance" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C8E6C9;strokeColor=#2E7D32;strokeWidth=2;fontSize=10;fontFamily=Segoe UI;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="850" y="640" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="e_d3_yes" value="Yes" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2E7D32;strokeWidth=2;fontColor=#2E7D32;fontSize=10;fontStyle=1;" edge="1" parent="1" source="d3" target="m2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- M3: Endorse Quarterly Report -->
+        <mxCell id="m3" value="&lt;b&gt;M3&lt;/b&gt;: Endorse Quarterly&#10;Calibration Report&#10;─────────────&#10;Sign-off accuracy&#10;Approve parameter&#10;adjustments" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C8E6C9;strokeColor=#2E7D32;strokeWidth=2;fontSize=10;fontFamily=Segoe UI;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="640" width="170" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="e_a5_m3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2E7D32;strokeWidth=2;" edge="1" parent="1" source="a5" target="m3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_m2_m3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2E7D32;strokeWidth=2;" edge="1" parent="1" source="m2" target="m3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- NO path from D3 to M3 -->
+        <mxCell id="e_d3_no" value="No" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#546E7A;strokeWidth=1;dashed=1;fontColor=#546E7A;fontSize=10;" edge="1" parent="1" source="d3" target="m3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="725" y="780" />
+              <mxPoint x="1185" y="780" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- LANE 4: LEAD CONSULTANT (R12)               -->
+        <!-- ═══════════════════════════════════════════ -->
+
+        <!-- C1: Receive Predictive Alerts -->
+        <mxCell id="c1" value="&lt;b&gt;C1&lt;/b&gt;: Receive Predictive&#10;Alerts &amp; Reports&#10;─────────────&#10;Review risk predictions&#10;Assess design impact&#10;Validate assumptions" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8BBD0;strokeColor=#C62828;strokeWidth=2;fontSize=10;fontFamily=Segoe UI;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="440" y="860" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="e_m2_c1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#C62828;strokeWidth=2;" edge="1" parent="1" source="m2" target="c1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- C2: Provide Technical Input -->
+        <mxCell id="c2" value="&lt;b&gt;C2&lt;/b&gt;: Provide Technical&#10;Input to Models&#10;─────────────&#10;Design risk factors&#10;Material lead times&#10;Complexity ratings" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8BBD0;strokeColor=#C62828;strokeWidth=2;fontSize=10;fontFamily=Segoe UI;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="700" y="860" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="e_c1_c2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#C62828;strokeWidth=2;" edge="1" parent="1" source="c1" target="c2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- LANE 5: CONTRACTOR (R10-R11)                -->
+        <!-- ═══════════════════════════════════════════ -->
+
+        <!-- K1: Receive Early Warnings -->
+        <mxCell id="k1" value="&lt;b&gt;K1&lt;/b&gt;: Receive Early&#10;Warning Notifications&#10;─────────────&#10;Predicted schedule slip&#10;Cost overrun forecast&#10;Quality trend alert" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1BEE7;strokeColor=#6A1B9A;strokeWidth=2;fontSize=10;fontFamily=Segoe UI;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="440" y="1020" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="e_m2_k1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6A1B9A;strokeWidth=2;" edge="1" parent="1" source="m2" target="k1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- K2: Submit Mitigation Plan -->
+        <mxCell id="k2" value="&lt;b&gt;K2&lt;/b&gt;: Submit Mitigation&#10;/ Recovery Plan&#10;─────────────&#10;Corrective actions&#10;Resource adjustment&#10;Timeline via PF-13" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1BEE7;strokeColor=#6A1B9A;strokeWidth=2;fontSize=10;fontFamily=Segoe UI;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="700" y="1020" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="e_k1_k2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6A1B9A;strokeWidth=2;" edge="1" parent="1" source="k1" target="k2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- END NODE                                    -->
+        <!-- ═══════════════════════════════════════════ -->
+        <mxCell id="end" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1B2A4A;strokeColor=#1B2A4A;strokeWidth=4;" vertex="1" parent="1">
+          <mxGeometry x="1370" y="690" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="end_ring" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#1B2A4A;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1365" y="685" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e_m3_end" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1B2A4A;strokeWidth=2;" edge="1" parent="1" source="m3" target="end">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- ANNOTATION BOXES                            -->
+        <!-- ═══════════════════════════════════════════ -->
+
+        <!-- KPI Box -->
+        <mxCell id="kpi_box" value="&lt;b&gt;KPI TARGETS&lt;/b&gt;&#10;─────────────&#10;K.5: Forecast accuracy ≥ 85%&#10;K.6: Alert lead time ≥ 14 days&#10;K.7: Model refresh ≤ 24h&#10;K.8: Calibration quarterly" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8EAF6;strokeColor=#283593;strokeWidth=2;fontSize=10;fontFamily=Segoe UI;align=left;verticalAlign=middle;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="1410" y="470" width="200" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- Cross-Ref Box -->
+        <mxCell id="xref_box" value="&lt;b&gt;CROSS-REFERENCES&lt;/b&gt;&#10;─────────────&#10;PF-13: Contractor Performance&#10;PF-21: Dashboard Analytics&#10;PF-22: Notification Escalation&#10;PF-11: Budget Cost Mgmt&#10;PF-10: Quality Supervision&#10;GOV-017: KPI/SLA Definitions&#10;GOV-020: Dashboard Wireframes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECEFF1;strokeColor=#546E7A;strokeWidth=1;fontSize=9;fontFamily=Segoe UI;align=left;verticalAlign=middle;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="1410" y="610" width="210" height="150" as="geometry" />
+        </mxCell>
+
+        <!-- Forecast Types Box -->
+        <mxCell id="forecast_box" value="&lt;b&gt;FORECAST MODELS&lt;/b&gt;&#10;─────────────&#10;1. Schedule: Earned Value (EAC/ETC)&#10;2. Cost: Budget at Completion&#10;3. Quality: NCR trend regression&#10;4. HSE: Incident rate projection&#10;5. Contractor: Performance index&#10;6. Risk: Probability-impact scoring" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECEFF1;strokeColor=#546E7A;strokeWidth=1;fontSize=9;fontFamily=Segoe UI;align=left;verticalAlign=middle;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="140" y="390" width="210" height="140" as="geometry" />
+        </mxCell>
+
+        <!-- Response Codes -->
+        <mxCell id="resp_box" value="&lt;b&gt;RESPONSE CODES&lt;/b&gt;&#10;─────────────&#10;A: Forecast accepted&#10;B: Accepted with notes&#10;C: Recalibrate &amp; resubmit&#10;D: Model rejected&#10;E: For information only" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECEFF1;strokeColor=#546E7A;strokeWidth=1;fontSize=9;fontFamily=Segoe UI;align=left;verticalAlign=middle;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="1410" y="780" width="200" height="120" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
