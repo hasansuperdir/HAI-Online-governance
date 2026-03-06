@@ -1,6 +1,21 @@
 "use client";
 
 import { useState } from "react";
+import ERDashboard from "@/components/platform/dashboards/ERDashboard";
+import CostDashboard from "@/components/platform/dashboards/CostDashboard";
+import QualityDashboard from "@/components/platform/dashboards/QualityDashboard";
+import ContractorPortal from "@/components/platform/dashboards/ContractorPortal";
+import ConsultantPortal from "@/components/platform/dashboards/ConsultantPortal";
+import GovernanceDashboard from "@/components/platform/dashboards/GovernanceDashboard";
+
+const subDashboardTabs = [
+  { id: "er", label: "ER Dashboard", ref: "R01-R02" },
+  { id: "cost", label: "Cost Dashboard", ref: "R03-R05" },
+  { id: "quality", label: "Quality Dashboard", ref: "R06-R08" },
+  { id: "contractor", label: "Contractor Portal", ref: "R10-R11" },
+  { id: "consultant", label: "Consultant Portal", ref: "R12" },
+  { id: "governance", label: "Governance Dashboard", ref: "R01-R13" },
+];
 
 /* ─── Project Data ─── */
 interface Project {
@@ -288,6 +303,7 @@ export default function DashboardPage() {
   const [selectedProject, setSelectedProject] = useState("");
   const [activeStage, setActiveStage] = useState<number | null>(null);
   const [expandedReq, setExpandedReq] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState("er");
 
   const projects = projectType ? projectData[projectType] || [] : [];
   const project = projects.find((p) => p.name === selectedProject) || null;
@@ -498,6 +514,34 @@ export default function DashboardPage() {
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* ─── Sub-Dashboard Tabs ─── */}
+          <div className="mb-6">
+            {/* Tab Bar */}
+            <div className="flex border-b border-hai-steel mb-4">
+              {subDashboardTabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`px-4 py-2.5 text-xs font-medium transition-all border-b-2 -mb-px ${
+                    activeTab === tab.id
+                      ? "border-hai-accent text-white"
+                      : "border-transparent text-gray-500 hover:text-gray-300 hover:border-gray-600"
+                  }`}
+                >
+                  {tab.label} <span className="text-gray-600 ml-1">({tab.ref})</span>
+                </button>
+              ))}
+            </div>
+
+            {/* Tab Content */}
+            {activeTab === "er" && <ERDashboard />}
+            {activeTab === "cost" && <CostDashboard />}
+            {activeTab === "quality" && <QualityDashboard />}
+            {activeTab === "contractor" && <ContractorPortal />}
+            {activeTab === "consultant" && <ConsultantPortal />}
+            {activeTab === "governance" && <GovernanceDashboard />}
           </div>
 
           {/* ─── Stage Ribbon (0-8) ─── */}
