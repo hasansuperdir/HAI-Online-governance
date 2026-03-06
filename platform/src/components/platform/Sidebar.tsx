@@ -19,7 +19,7 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="w-60 bg-hai-navy border-r border-hai-steel flex flex-col h-screen fixed left-0 top-0">
+    <aside className="w-60 bg-hai-navy border-r border-hai-steel flex flex-col h-screen fixed left-0 top-0 z-50">
       {/* Logo */}
       <div className="p-5 border-b border-hai-steel">
         <Link href="/" className="text-xl font-bold">
